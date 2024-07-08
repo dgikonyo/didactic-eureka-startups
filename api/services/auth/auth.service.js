@@ -34,6 +34,10 @@ class AuthService {
       updatedAt
     );
 
+    if (registerDto.username == null) {
+        
+    }
+
     const user = new User(registerDto);
 
     await user.save();
