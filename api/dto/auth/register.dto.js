@@ -30,4 +30,5 @@ export class RegisterDto {
       this.createdAt = createdAt;
       this.updatedAt = updatedAt;
     }
+    
   }

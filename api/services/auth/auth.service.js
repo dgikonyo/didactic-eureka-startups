@@ -1,6 +1,7 @@
 const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
-const RegisterDto = require("../../dto/auth/auth.dto");
+const RegisterDto = require("../../dto/auth/register.dto");
+const LoginDto = require("../../dto/auth/login.dto");
 const User = require("../../entities/users.model");
 const ResponseDto = require("../../dto/response.dto");
 
@@ -35,7 +36,6 @@ class AuthService {
     );
 
     if (registerDto.username == null) {
-        
     }
 
     const user = new User(registerDto);
