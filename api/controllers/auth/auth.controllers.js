@@ -5,7 +5,6 @@ const Validate = require("class-validator");
 const User = require("../../entities/users.model");
 const RegisterDto = require("../../dto/auth/register.dto");
 const ResponseDto = require("../../dto/response.dto");
-
 const router = express.Router();
 
 exports.registerUser = async (req, res, next) => {

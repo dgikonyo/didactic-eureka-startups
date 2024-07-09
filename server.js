@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
 const AuthRoutes = require("./api/routes/auth/auth.routes");
 const ServerRoute = require("./api/routes/server.route");
+const serverTest = require("./api/routes/server.route");
 const app = express();
 const mongoose = require("mongoose");
 const { MongoClient, ServerApiVersion } = require("mongodb");
@@ -34,7 +35,7 @@ mongoose
   .catch((err) => console.log(err));
 
 // mount routes
-app.use("/api/v1", ServerRoute);
+app.use("/api/v1/ping", serverTest);
 app.use("/api/v1/auth", AuthRoutes);
 
 app.listen(PORT, () => {
