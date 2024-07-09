@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 const uuid = require("uuid");
 const Schema = mongoose.Schema;
-import { required } from "nodemon/lib/config";
-import validator from "validator";
+const validator = require("validator");
 
 const userSchema = new Schema(
   {
