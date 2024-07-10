@@ -59,3 +59,5 @@ class ResponseDto {
     this.additionalData = additionalData;
   }
 }
+
+module.exports = ResponseDto;
