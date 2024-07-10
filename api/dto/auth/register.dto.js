@@ -1,7 +1,7 @@
 class RegisterDto {
   username;
-  firstname;
-  lastname;
+  firstName;
+  lastName;
   email;
   dateOfBirth;
   country_id;
@@ -11,8 +11,8 @@ class RegisterDto {
 
   constructor(
     username,
-    firstname,
-    lastname,
+    firstName,
+    lastName,
     email,
     dateOfBirth,
     country_id,
@@ -21,8 +21,8 @@ class RegisterDto {
     updatedAt
   ) {
     this.username = username;
-    this.firstname = firstname;
-    this.lastname = lastname;
+    this.firstName = firstName;
+    this.lastName = lastName;
     this.email = email;
     this.dateOfBirth = dateOfBirth;
     this.country_id = country_id;
@@ -31,75 +31,77 @@ class RegisterDto {
     this.updatedAt = updatedAt;
   }
 
-  get getUsername() {
+  getUsername() {
     return this.username;
   }
 
-  set setUsername(newUsername) {
+  setUsername(newUsername) {
     this.username = newUsername;
   }
 
-  get getFirstName() {
-    return this.firstname;
+  getFirstName() {
+    return this.firstName;
   }
 
-  set setFirstName(newFirstName) {
+  setFirstName(newFirstName) {
     this.username = newFirstName;
   }
 
-  get getLastName() {
-    return this.lastname;
+  getLastName() {
+    return this.lastName;
   }
 
-  set setLastName(newLastname) {
-    this.lastname = newLastname;
+  setLastName(newLastname) {
+    this.lastName = newLastname;
   }
 
-  get getEmail() {
+  getEmail() {
     return this.email;
   }
 
-  set setEmail(newEmail) {
+  setEmail(newEmail) {
     this.email = newEmail;
   }
 
-  get getDateOfBirth() {
+  getDateOfBirth() {
     return this.dateOfBirth;
   }
 
-  set setDateOfBirth(newDob) {
+  setDateOfBirth(newDob) {
     this.dateOfBirth = newDob;
   }
 
-  get getCountryId() {
+  getCountryId() {
     return this.country_id;
   }
 
-  set setCountryId(country_id) {
+  setCountryId(country_id) {
     this.country_id = country_id;
   }
 
-  get getPassword() {
+  getPassword() {
     return this.password;
   }
 
-  set setPassword(newPassword) {
+  setPassword(newPassword) {
     this.password = newPassword;
   }
 
-  get getCreatedAt() {
+  getCreatedAt() {
     return this.createdAt;
   }
 
-  set setCreatedAt(createdAt) {
+  setCreatedAt(createdAt) {
     this.createdAt = createdAt;
   }
 
-  get getUpdatedAt() {
+  getUpdatedAt() {
     return this.updatedAt;
   }
 
-  set setUpdatedAt(updatedAt) {
+  setUpdatedAt(updatedAt) {
     this.updatedAt = updatedAt;
   }
 }
+
+module.exports = RegisterDto

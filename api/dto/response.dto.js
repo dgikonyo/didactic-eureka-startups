@@ -19,43 +19,43 @@ class ResponseDto {
     this.additionalData = additionalData;
   }
 
-  get getTimeStamp() {
+  getTimeStamp() {
     return this.timestamp;
   }
 
-  set setTimeStamp(timestamp) {
+  setTimeStamp(timestamp) {
     this.timestamp = timestamp;
   }
 
-  get getStatusCode() {
+  getStatusCode() {
     return this.statusCode;
   }
 
-  set setStatusCode(statusCode) {
+  setStatusCode(statusCode) {
     this.statusCode = statusCode;
   }
 
-  get getStatusCodeDesc() {
+  getStatusCodeDesc() {
     return this.statusCodeDesc;
   }
 
-  set setStatusCodeDesc(statusCodeDesc) {
+  setStatusCodeDesc(statusCodeDesc) {
     this.statusCodeDesc = statusCodeDesc;
   }
 
-  get getStatusCodeMessage() {
+  getStatusCodeMessage() {
     return this.statusCodeMessage;
   }
 
-  set setStatusCodeMessage(statusCodeMessage) {
+  setStatusCodeMessage(statusCodeMessage) {
     this.statusCodeMessage = statusCodeMessage;
   }
 
-  get getAdditionalData() {
+  getAdditionalData() {
     return this.additionalData;
   }
 
-  set setAdditionalData(additionalData) {
+  setAdditionalData(additionalData) {
     this.additionalData = additionalData;
   }
 }

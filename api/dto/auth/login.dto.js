@@ -7,19 +7,19 @@ class LoginDto {
     this.password = password;
   }
 
-  get getEmail() {
+  getEmail() {
     return this.email;
   }
 
-  set setEmail(newEmail) {
+  setEmail(newEmail) {
     this.email = newEmail;
   }
 
-  get getPassword() {
+  getPassword() {
     return this.password;
   }
 
-  set setPassword(newPassword) {
+  setPassword(newPassword) {
     this.password = newPassword;
   }
 }

@@ -10,13 +10,26 @@ class AuthController {
   async registerUser(req, res, next) {
     console.log(`Attempt to register a user: {}`, req.body);
     const registrationDto = plainToInstance(RegisterDto, req.body);
-    const errors = await Validate(registrationDto);
+    // const errors = await Validate(registrationDto);
     const responseDto = new ResponseDto();
 
-    if (errors.length > 0) {
-      return res.status(400).json(errors);
+    // if (errors.length > 0) {
+    //   return res.status(400).json({ errors });
+    // }
+
+    const isEmailAlreadyExist = await User.findOne({ email: registrationDto.email });
+
+    if (isEmailAlreadyExist) {
+      responseDto.setTimeStamp(new Date());
+      responseDto.setStatusCode(400);
+      responseDto.setStatusCodeDesc("Bad Request");
+      responseDto.setStatusCodeMessage("Failure");
+      responseDto.setAdditionalData("Duplicate email found");
+
+      return res.status(400).json({ responseDto });
     }
-    if (registerDto.getUsername() === null) {
+
+    if (registrationDto.username == null) {
       responseDto.setTimestamp(new Date());
       responseDto.setStatusCode(400);
       responseDto.setStatusCodeDesc("Bad Request");
@@ -24,7 +37,7 @@ class AuthController {
       responseDto.setAdditionalData("Username missing");
 
       return res.status(400).json({ responseDto });
-    } else if (registrationDto.getFirstName() === null) {
+    } else if (registrationDto.firstName == null) {
       responseDto.setTimeStamp(new Date());
       responseDto.setStatusCode(400);
       responseDto.setStatusCodeDesc("Bad Request");
@@ -32,7 +45,7 @@ class AuthController {
       responseDto.setAdditionalData("First Name missing");
 
       return res.status(400).json({ responseDto });
-    } else if (registrationDto.getLastName() === null) {
+    } else if (registrationDto.lastName == null) {
       responseDto.setTimestamp(new Date());
       responseDto.setStatusCode(400);
       responseDto.setStatusCodeDesc("Bad Request");
@@ -40,7 +53,7 @@ class AuthController {
       responseDto.setAdditionalData("Last Name missing");
 
       return res.status(400).json({ responseDto });
-    } else if (registrationDto.getEmail() === null) {
+    } else if (registrationDto.email == null) {
       responseDto.setTimestamp(new Date());
       responseDto.setStatusCode(400);
       responseDto.setStatusCodeDesc("Bad Request");
@@ -48,7 +61,7 @@ class AuthController {
       responseDto.setAdditionalData("Email missing");
 
       return res.status(400).json({ responseDto });
-    } else if (registrationDto.getPassword() === null) {
+    } else if (registrationDto.password == null) {
       responseDto.setTimestamp(new Date());
       responseDto.setStatusCode(400);
       responseDto.setStatusCodeDesc("Bad Request");
@@ -58,6 +71,7 @@ class AuthController {
       return res.status(400).json({ responseDto });
     } else {
       let user = new User(registrationDto);
+      console.log("here");
 
       try {
         const result = await user.save();
