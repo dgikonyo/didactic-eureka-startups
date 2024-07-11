@@ -9,7 +9,6 @@ const app = express();
 const mongoose = require("mongoose");
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
-
 // setup global config acess
 dotenv.config();
 

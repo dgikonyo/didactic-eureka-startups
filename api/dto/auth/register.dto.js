@@ -6,6 +6,7 @@ class RegisterDto {
   dateOfBirth;
   country_id;
   password;
+  role_id;
   createdAt;
   updatedAt;
 
@@ -17,6 +18,7 @@ class RegisterDto {
     dateOfBirth,
     country_id,
     password,
+    role_id,
     createdAt,
     updatedAt
   ) {
@@ -27,6 +29,7 @@ class RegisterDto {
     this.dateOfBirth = dateOfBirth;
     this.country_id = country_id;
     this.password = password;
+    this.role_id = role_id;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
   }
@@ -44,7 +47,7 @@ class RegisterDto {
   }
 
   setFirstName(newFirstName) {
-    this.username = newFirstName;
+    this.firstName = newFirstName;
   }
 
   getLastName() {
@@ -87,6 +90,14 @@ class RegisterDto {
     this.password = newPassword;
   }
 
+  getRoleId() {
+    return this.role_id;
+  }
+
+  setRoleId(role_id) {
+    this.role_id = role_id;
+  }
+
   getCreatedAt() {
     return this.createdAt;
   }
@@ -104,4 +115,4 @@ class RegisterDto {
   }
 }
 
-module.exports = RegisterDto
+module.exports = RegisterDto;
