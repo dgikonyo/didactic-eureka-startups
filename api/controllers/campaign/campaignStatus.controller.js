@@ -1,0 +1,4 @@
+
+class CampaignStatuController {
+  async createStatus() {}
+}
