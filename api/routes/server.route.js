@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const ResponseDto = require("../dto/response.dto");
 
-exports.serverTest = async (req, res, next) => {
-  console.log("Attempt to access server");
+const serverTest = async (req, res, next) => {
+  console.log(`Attempt to access server`);
   var responseDto = new ResponseDto();
 
   try {
@@ -25,4 +25,4 @@ exports.serverTest = async (req, res, next) => {
   }
 };
 
-module.exports = router;
+module.exports = serverTest;

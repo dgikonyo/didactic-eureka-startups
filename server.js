@@ -39,7 +39,8 @@ mongoose
   .catch((err) => console.log(err));
 
 // mount routes
-app.use("/api/v1/ping", serverTest);
+const auth = require("./api/middleware/auth.middleware");
+app.get("/api/v1/ping", auth, serverTest);
 app.use("/api/v1/auth", AuthRoutes);
 
 app.listen(PORT, () => {
