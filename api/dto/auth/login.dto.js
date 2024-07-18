@@ -23,3 +23,5 @@ class LoginDto {
     this.password = newPassword;
   }
 }
+
+module.exports = LoginDto;

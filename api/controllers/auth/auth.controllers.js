@@ -4,8 +4,10 @@ const registerDecorator = require("class-validator");
 const { Validate } = require("class-validator");
 const User = require("../../entities/users.model");
 const RegisterDto = require("../../dto/auth/register.dto");
+const LoginDto = require("../../dto/auth/login.dto");
 const ResponseDto = require("../../dto/response.dto");
 const bycrpt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 class AuthController {
   async registerUser(req, res, next) {
@@ -103,7 +105,54 @@ class AuthController {
   }
 
   async loginUser(req, res, next) {
-    console.log(`A`)
+    console.log(`Attempt to sign in a user: {}`, req.body);
+
+    const loginDto = plainToInstance(LoginDto, req.body);
+    const responseDto = new ResponseDto();
+
+    try {
+      const user = await User.findOne({ email: loginDto.getEmail() });
+
+      if (!user) {
+        responseDto.setTimeStamp(new Date());
+        responseDto.setStatusCode(400);
+        responseDto.setStatusCodeDesc("BAD REQUEST");
+        responseDto.setStatusCodeMessage("Failure");
+        responseDto.setAdditionalData("Email or password not found");
+
+        res.status(404).json(responseDto);
+      } else if (await bycrpt.compare(loginDto.getPassword(), user.password)) {
+        const tokenPayload = {
+          email: user.email,
+        };
+
+        const accessToken = jwt.sign(tokenPayload, "SECRET");
+
+        responseDto.setTimeStamp(new Date());
+        responseDto.setStatusCode(200);
+        responseDto.setStatusCodeDesc("USER SIGN IN SUCCESSFUL");
+        responseDto.setStatusCodeMessage("Success");
+        responseDto.setAdditionalData(accessToken);
+
+        res.status(200).json(responseDto);
+      } else {
+        responseDto.setTimeStamp(new Date());
+        responseDto.setStatusCode(400);
+        responseDto.setStatusCodeDesc("BAD REQUEST");
+        responseDto.setStatusCodeMessage("Failure");
+        responseDto.setAdditionalData("Email or password not found");
+
+        res.status(400).json(responseDto);
+      }
+    } catch (error) {
+      responseDto.setTimeStamp(new Date());
+      responseDto.setStatusCode(500);
+      responseDto.setStatusCodeDesc("INTERNAL SERVER ERROR");
+      responseDto.setStatusCodeMessage("Failure");
+      responseDto.setAdditionalData(error.message);
+
+      res.status(500).json(responseDto);
+    }
   }
 }
 

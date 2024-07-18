@@ -4,6 +4,10 @@ const router = express.Router();
 
 const authController = new AuthController();
 
-router.post("/register/users", authController.registerUser.bind(authController));
+router.post(
+  "/register/users",
+  authController.registerUser.bind(authController)
+);
+router.post("/sign-in", authController.loginUser.bind(authController));
 
 module.exports = router;
