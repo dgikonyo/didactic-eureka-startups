@@ -122,7 +122,30 @@ class CampaignDto {
   setSupportEmail(supportEmail) {
     this.supportEmail = supportEmail;
   }
-  
+
+  getFundingModel() {
+    return this.fundingModel;
+  }
+
+  setFundingModel(fundingModel) {
+    this.fundingModel = fundingModel;
+  }
+
+  getUserId() {
+    return this.user_id;
+  }
+
+  setUserId(user_id) {
+    this.user_id = user_id;
+  }
+
+  getCampaignStatus() {
+    return this.campaignStatus;
+  }
+
+  setSupportEmail(campaignStatus) {
+    this.campaignStatus = campaignStatus;
+  }
 }
 
 module.exports = CampaignDto;

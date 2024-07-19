@@ -10,8 +10,14 @@ const bycrpt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 class AuthController {
+  /**
+   * Registers a new user.
+   * @param {Object} req - The incoming request object containing user data.
+   * @param {Object} res - The outgoing response object for sending responses.
+   * @param {Function} next - The next middleware function to be called.
+   */
   async registerUser(req, res, next) {
-    console.log(`Attempt to register a user: {}`, req.body);
+    console.log(`Attempt to register a user: ${JSON.stringify(req.body)}`);
 
     const registrationDto = plainToInstance(RegisterDto, req.body);
     const register = new RegisterDto();
@@ -89,7 +95,7 @@ class AuthController {
         responseDto.setStatusCode(201);
         responseDto.setStatusCodeDesc("USER CREATED");
         responseDto.setStatusCodeMessage("Success");
-        responseDto.setAdditionalData(user);
+        responseDto.setAdditionalData(result);
 
         res.status(201).json(responseDto);
       } catch (error) {
@@ -104,8 +110,14 @@ class AuthController {
     }
   }
 
+  /**
+   * Handles user login.
+   * @param {Object} req - The incoming request object containing user credentials.
+   * @param {Object} res - The outgoing response object for sending responses.
+   * @param {Function} next - The next middleware function to be called.
+   */
   async loginUser(req, res, next) {
-    console.log(`Attempt to sign in a user: {}`, req.body);
+    console.log(`Attempt to sign in a user: ${JSON.stringify(req.body)}`);
 
     const loginDto = plainToInstance(LoginDto, req.body);
     const responseDto = new ResponseDto();
