@@ -1,5 +1,6 @@
 const { plainToInstance } = require("class-transformer");
 const Campaign = require("../../entities/campaign/campaign.model");
+
 class CampaignController {
   /**
    * create
@@ -13,3 +14,5 @@ class CampaignController {
     const campaignDto = new CampaignDto();
   }
 }
+
+module.exports = CampaignController;

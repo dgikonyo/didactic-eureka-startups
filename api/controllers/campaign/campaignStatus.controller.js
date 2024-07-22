@@ -2,6 +2,7 @@ const CampaignStatus = require("../../entities/campaign/campaignStatus.model");
 const CampaignStatusDto = require("../../dto/campaign/campaignStatus.dto");
 const { plainToInstance } = require("class-transformer");
 const ResponseDto = require("../../dto/response.dto");
+const uuid = require("uuid");
 
 class CampaignStatusController {
   /**
@@ -27,7 +28,7 @@ class CampaignStatusController {
       responseDto.setStatusCode(400);
       responseDto.setStatusCodeDesc("Bad Request");
       responseDto.setStatusCodeMessage("Failure");
-      responseDto.setAdditionalData("Duplicate email found");
+      responseDto.setAdditionalData("Duplicate campaign status found");
 
       return res.status(400).json(responseDto);
     }
@@ -49,7 +50,7 @@ class CampaignStatusController {
 
         responseDto.setTimeStamp(new Date());
         responseDto.setStatusCode(201);
-        responseDto.setStatusCodeDesc("CANPAIGN STATUS CREATED");
+        responseDto.setStatusCodeDesc("CAMPAIGN STATUS CREATED");
         responseDto.setStatusCodeMessage("Success");
         responseDto.setAdditionalData(result);
 
@@ -79,6 +80,7 @@ class CampaignStatusController {
     const responseDto = new ResponseDto();
     try {
       const campaignStatuses = await CampaignStatus.find({});
+      console.log(campaignStatuses);
 
       if (campaignStatuses == null) {
         responseDto.setTimeStamp(new Date());
@@ -114,13 +116,6 @@ class CampaignStatusController {
   }
 
   async updateStatus(req, res, next) {
-    /**
-     * get a status id to update
-     * if the id is not found, return error
-     * else find the exact record and update
-     *  only allow the status name to be updated, also make sure to edit the timestamp.
-     */
-
     console.log(
       `Attempt to update a campaign status: ${JSON.stringify(req.body)}`
     );
@@ -140,6 +135,34 @@ class CampaignStatusController {
       responseDto.setAdditionalData("Campaign Status not found");
 
       res.status(404).json(responseDto);
+    } else {
+      try {
+        campaignStatusDto.setStatusName(campaignStatusInst.statusName);
+
+        const result = await CampaignStatus.findByIdAndUpdate(
+          req.params.id,
+          campaignStatusDto,
+          { new: true }
+        );
+
+        responseDto.setTimeStamp(new Date());
+        responseDto.setStatusCode(200);
+        responseDto.setStatusCodeDesc("OK");
+        responseDto.setStatusCodeMessage("RESOURCE UPDATED");
+        responseDto.setAdditionalData(result);
+
+        res.status(500).json(responseDto);
+      } catch (error) {
+        responseDto.setTimeStamp(new Date());
+        responseDto.setStatusCode(500);
+        responseDto.setStatusCodeDesc("INTERNAL SERVER ERROR");
+        responseDto.setStatusCodeMessage("Failure");
+        responseDto.setAdditionalData(error.message);
+
+        res.status(500).json(responseDto);
+      }
     }
   }
 }
+
+module.exports = CampaignStatusController;

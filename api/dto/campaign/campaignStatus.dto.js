@@ -1,8 +1,18 @@
 class CampaignStatusDto {
+  id;
   statusName;
 
-  constructor(statusName) {
+  constructor(id, statusName) {
+    this.id = id;
     this.statusName = statusName;
+  }
+
+  getId() {
+    return this.id;
+  }
+
+  setId(id) {
+    this.id = id;
   }
 
   getStatusName() {

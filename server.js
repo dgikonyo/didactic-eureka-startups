@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
 const AuthRoutes = require("./api/routes/auth/auth.routes");
 const ServerRoute = require("./api/routes/server.route");
+const CampaignRoutes = require("./api/routes/campaign/campaign.route");
 const serverTest = require("./api/routes/server.route");
 const app = express();
 const mongoose = require("mongoose");
@@ -42,6 +43,7 @@ mongoose
 const auth = require("./api/middleware/auth.middleware");
 app.get("/api/v1/ping", auth, serverTest);
 app.use("/api/v1/auth", AuthRoutes);
+app.use("/api/v1/campaigns", CampaignRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}/api/v1`);

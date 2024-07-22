@@ -1,7 +1,4 @@
-const express = require("express");
 const { plainToInstance } = require("class-transformer");
-const registerDecorator = require("class-validator");
-const { Validate } = require("class-validator");
 const User = require("../../entities/users.model");
 const RegisterDto = require("../../dto/auth/register.dto");
 const LoginDto = require("../../dto/auth/login.dto");
