@@ -19,33 +19,33 @@ class CampaignStatusController {
     const campaignStatusInstance = plainToInstance(CampaignStatusDto, req.body);
     const campaignStatusDto = new CampaignStatusDto();
     const responseDto = new ResponseDto();
-    const isStatusAlreadyExists = await CampaignStatus.findOne({
-      statusName: campaignStatusInstance.statusName,
-    });
+    try {
+      const isStatusAlreadyExists = await CampaignStatus.findOne({
+        statusName: campaignStatusInstance.statusName,
+      });
 
-    if (isStatusAlreadyExists) {
-      responseDto.setTimeStamp(new Date());
-      responseDto.setStatusCode(400);
-      responseDto.setStatusCodeDesc("Bad Request");
-      responseDto.setStatusCodeMessage("Failure");
-      responseDto.setAdditionalData("Duplicate campaign status found");
+      if (isStatusAlreadyExists) {
+        responseDto.setTimeStamp(new Date());
+        responseDto.setStatusCode(400);
+        responseDto.setStatusCodeDesc("Bad Request");
+        responseDto.setStatusCodeMessage("Failure");
+        responseDto.setAdditionalData("Duplicate campaign status found");
 
-      return res.status(400).json(responseDto);
-    }
+        return res.status(400).json(responseDto);
+      }
 
-    if (campaignStatusInstance.getStatusName() == null) {
-      responseDto.setTimeStamp(new Date());
-      responseDto.setStatusCode(400);
-      responseDto.setStatusCodeDesc("Bad Request");
-      responseDto.setStatusCodeMessage("Failure");
-      responseDto.setAdditionalData("Input status name");
+      if (campaignStatusInstance.getStatusName() == null) {
+        responseDto.setTimeStamp(new Date());
+        responseDto.setStatusCode(400);
+        responseDto.setStatusCodeDesc("Bad Request");
+        responseDto.setStatusCodeMessage("Failure");
+        responseDto.setAdditionalData("Input status name");
 
-      return res.status(400).json(responseDto);
-    } else {
-      campaignStatusDto.setStatusName(campaignStatusInstance.statusName);
+        return res.status(400).json(responseDto);
+      } else {
+        campaignStatusDto.setStatusName(campaignStatusInstance.statusName);
+        let campaignStatus = new CampaignStatus(campaignStatusDto);
 
-      let campaignStatus = new CampaignStatus(campaignStatusDto);
-      try {
         const result = await campaignStatus.save();
 
         responseDto.setTimeStamp(new Date());
@@ -54,16 +54,16 @@ class CampaignStatusController {
         responseDto.setStatusCodeMessage("Success");
         responseDto.setAdditionalData(result);
 
-        res.status(201).json(responseDto);
-      } catch (error) {
-        responseDto.setTimeStamp(new Date());
-        responseDto.setStatusCode(500);
-        responseDto.setStatusCodeDesc("INTERNAL SERVER ERROR");
-        responseDto.setStatusCodeMessage("Failure");
-        responseDto.setAdditionalData(error.message);
-
-        res.status(500).json(responseDto);
+        return res.status(201).json(responseDto);
       }
+    } catch (error) {
+      responseDto.setTimeStamp(new Date());
+      responseDto.setStatusCode(500);
+      responseDto.setStatusCodeDesc("INTERNAL SERVER ERROR");
+      responseDto.setStatusCodeMessage("Failure");
+      responseDto.setAdditionalData(error.message);
+
+      return res.status(500).json(responseDto);
     }
   }
 
@@ -74,15 +74,15 @@ class CampaignStatusController {
    * @param {Function} next - The next middleware function to be called.
    */
   async getAllCampaignStatuses(req, res, next) {
-    console.log(`Attempt to get campaign status: ${JSON.stringify(req.body)}`);
-
-    const campaignStatusDto = new CampaignStatusDto();
+    console.log(
+      `Attempt to get campaign statuses: ${JSON.stringify(req.body)}`
+    );
     const responseDto = new ResponseDto();
+
     try {
       const campaignStatuses = await CampaignStatus.find({});
-      console.log(campaignStatuses);
 
-      if (campaignStatuses == null) {
+      if (!campaignStatuses || campaignStatuses.length === 0) {
         responseDto.setTimeStamp(new Date());
         responseDto.setStatusCode(404);
         responseDto.setStatusCodeDesc("NOT FOUND");
@@ -94,7 +94,7 @@ class CampaignStatusController {
 
       const campaignStatusesDto = campaignStatuses.map(
         (campaignStatus) =>
-          new campaignStatusDto(campaignStatus.id, campaignStatus.statusName)
+          new CampaignStatusDto(campaignStatus.id, campaignStatus.statusName)
       );
 
       responseDto.setTimeStamp(new Date());
@@ -103,7 +103,7 @@ class CampaignStatusController {
       responseDto.setStatusCodeMessage("Success");
       responseDto.setAdditionalData(campaignStatusesDto);
 
-      res.status(200).json(responseDto);
+      return res.status(200).json(responseDto);
     } catch (error) {
       responseDto.setTimeStamp(new Date());
       responseDto.setStatusCode(500);
@@ -111,7 +111,7 @@ class CampaignStatusController {
       responseDto.setStatusCodeMessage("Failure");
       responseDto.setAdditionalData(error.message);
 
-      res.status(500).json(responseDto);
+      return res.status(500).json(responseDto);
     }
   }
 
@@ -120,47 +120,47 @@ class CampaignStatusController {
       `Attempt to update a campaign status: ${JSON.stringify(req.body)}`
     );
 
-    const campaignStatusInst = plainToInstance(LoginDto, req.body);
-    const campaignStatusDto = new CampaignStatusDto();
+    const campaignStatusInst = plainToInstance(CampaignStatusDto, req.body);
+    const responseDto = new ResponseDto();
 
-    const isCampaignStatusExists = await CampaignStatus.find({
-      id: campaignStatusInst.getStatusName(),
-    });
+    try {
+      const isCampaignStatusExists = await CampaignStatus.findOne({
+        id: campaignStatusInst.id,
+      });
 
-    if (isCampaignStatusExists == null) {
-      responseDto.setTimeStamp(new Date());
-      responseDto.setStatusCode(400);
-      responseDto.setStatusCodeDesc("BAD REQUEST");
-      responseDto.setStatusCodeMessage("Failure");
-      responseDto.setAdditionalData("Campaign Status not found");
-
-      res.status(404).json(responseDto);
-    } else {
-      try {
-        campaignStatusDto.setStatusName(campaignStatusInst.statusName);
-
-        const result = await CampaignStatus.findByIdAndUpdate(
-          req.params.id,
-          campaignStatusDto,
-          { new: true }
-        );
-
+      if (!isCampaignStatusExists || isCampaignStatusExists.length === 0) {
         responseDto.setTimeStamp(new Date());
-        responseDto.setStatusCode(200);
-        responseDto.setStatusCodeDesc("OK");
-        responseDto.setStatusCodeMessage("RESOURCE UPDATED");
-        responseDto.setAdditionalData(result);
-
-        res.status(500).json(responseDto);
-      } catch (error) {
-        responseDto.setTimeStamp(new Date());
-        responseDto.setStatusCode(500);
-        responseDto.setStatusCodeDesc("INTERNAL SERVER ERROR");
+        responseDto.setStatusCode(404);
+        responseDto.setStatusCodeDesc("NOT FOUND");
         responseDto.setStatusCodeMessage("Failure");
-        responseDto.setAdditionalData(error.message);
+        responseDto.setAdditionalData("Campaign Status not found");
 
-        res.status(500).json(responseDto);
+        return res.status(404).json(responseDto);
       }
+
+      let result = await CampaignStatus.findByIdAndUpdate(
+        { id: campaignStatusInst.id },
+        { statusName: campaignStatusInst.statusName },
+        { new: true }
+      );
+
+      console.log(result);
+
+      responseDto.setTimeStamp(new Date());
+      responseDto.setStatusCode(200);
+      responseDto.setStatusCodeDesc("OK");
+      responseDto.setStatusCodeMessage("RESOURCE UPDATED");
+      responseDto.setAdditionalData(result);
+
+      return res.status(200).json(responseDto);
+    } catch (error) {
+      responseDto.setTimeStamp(new Date());
+      responseDto.setStatusCode(500);
+      responseDto.setStatusCodeDesc("INTERNAL SERVER ERROR");
+      responseDto.setStatusCodeMessage("Failure");
+      responseDto.setAdditionalData(error.message);
+
+      return res.status(500).json(responseDto);
     }
   }
 }

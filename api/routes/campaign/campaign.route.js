@@ -10,15 +10,15 @@ const campaignStatusController = new CampaignStatusController();
 
 // campaign status routes
 router.post(
-  "/create",
+  "/campaign-statuses/create",
   campaignStatusController.createStatus.bind(campaignStatusController)
 );
 router.get(
-  "/show",
+  "/campaign-statuses/show",
   campaignStatusController.getAllCampaignStatuses.bind(campaignStatusController)
 );
 router.patch(
-  "/update/:id",
+  "/campaign-statuses/update",
   campaignStatusController.updateStatus.bind(campaignStatusController)
 );
 

@@ -43,7 +43,7 @@ mongoose
 const auth = require("./api/middleware/auth.middleware");
 app.get("/api/v1/ping", auth, serverTest);
 app.use("/api/v1/auth", AuthRoutes);
-app.use("/api/v1/campaigns", CampaignRoutes);
+app.use("/api/v1/campaigns", auth, CampaignRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}/api/v1`);

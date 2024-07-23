@@ -94,7 +94,7 @@ class AuthController {
         responseDto.setStatusCodeMessage("Success");
         responseDto.setAdditionalData(result);
 
-        res.status(201).json(responseDto);
+        return res.status(201).json(responseDto);
       } catch (error) {
         responseDto.setTimeStamp(new Date());
         responseDto.setStatusCode(500);
@@ -102,7 +102,7 @@ class AuthController {
         responseDto.setStatusCodeMessage("Failure");
         responseDto.setAdditionalData(error.message);
 
-        res.status(500).json(responseDto);
+        return res.status(500).json(responseDto);
       }
     }
   }
@@ -129,7 +129,7 @@ class AuthController {
         responseDto.setStatusCodeMessage("Failure");
         responseDto.setAdditionalData("Email or password not found");
 
-        res.status(404).json(responseDto);
+        return res.status(404).json(responseDto);
       } else if (await bycrpt.compare(loginDto.getPassword(), user.password)) {
         const tokenPayload = {
           email: user.email,
@@ -143,7 +143,7 @@ class AuthController {
         responseDto.setStatusCodeMessage("Success");
         responseDto.setAdditionalData(accessToken);
 
-        res.status(200).json(responseDto);
+        return res.status(200).json(responseDto);
       } else {
         responseDto.setTimeStamp(new Date());
         responseDto.setStatusCode(400);
@@ -151,7 +151,7 @@ class AuthController {
         responseDto.setStatusCodeMessage("Failure");
         responseDto.setAdditionalData("Email or password not found");
 
-        res.status(400).json(responseDto);
+        return res.status(400).json(responseDto);
       }
     } catch (error) {
       responseDto.setTimeStamp(new Date());
@@ -160,7 +160,7 @@ class AuthController {
       responseDto.setStatusCodeMessage("Failure");
       responseDto.setAdditionalData(error.message);
 
-      res.status(500).json(responseDto);
+      return res.status(500).json(responseDto);
     }
   }
 }
