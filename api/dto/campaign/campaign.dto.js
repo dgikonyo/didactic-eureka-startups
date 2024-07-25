@@ -119,7 +119,7 @@ class CampaignDto {
   }
 
   getStory() {
-    return this.timestamp;
+    return this.story;
   }
 
   setStory(story) {
