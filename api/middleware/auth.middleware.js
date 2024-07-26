@@ -45,7 +45,7 @@ class AuthMiddleware {
         return forbiddenResponse(res, responseDto, "Insufficient Permissions!");
       }
 
-      res.user = user;
+      req.user = user;
       next();
     } catch (error) {
       responseDto.setTimeStamp(new Date());

@@ -13,10 +13,8 @@ class CampaignController {
   async createCampaign(req, res, next) {
     console.log(`Attempt to create a new campaign: {}`, req.body);
 
-    const campaignDto = new CampaignDto();
     const campaignInstance = plainToInstance(CampaignDto, req.body);
     const responseDto = new ResponseDto();
-    console.log(req.user)
 
     try {
       const isCampaignExists = await Campaign.findOne({
@@ -97,7 +95,7 @@ class CampaignController {
         responseDto.setAdditionalData("Campaign status missing");
 
         return res.status(400).json(responseDto);
-      } else if (req.user.id == null) {
+      } else if (!req.user.id) {
         responseDto.setTimeStamp(new Date());
         responseDto.setStatusCode(400);
         responseDto.setStatusCodeDesc("Bad Request");
@@ -106,7 +104,6 @@ class CampaignController {
 
         return res.status(400).json(responseDto);
       } else {
-        campaignDto.setId(campaignInstance.id);
         campaignDto.setTitle(campaignInstance.title);
         campaignDto.setTagLine(campaignInstance.tagLine);
         campaignDto.setStartDate(campaignInstance.startDate);
