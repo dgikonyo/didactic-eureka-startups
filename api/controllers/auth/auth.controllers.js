@@ -5,8 +5,12 @@ const LoginDto = require("../../dto/auth/login.dto");
 const ResponseDto = require("../../dto/response.dto");
 const bycrpt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const AuthMiddleware = require("../../middleware/auth.middleware");
 
 class AuthController {
+  constructor() {
+    this.authMiddleware = new AuthMiddleware();
+  }
   /**
    * Registers a new user.
    * @param {Object} req - The incoming request object containing user data.
@@ -131,11 +135,7 @@ class AuthController {
 
         return res.status(404).json(responseDto);
       } else if (await bycrpt.compare(loginDto.getPassword(), user.password)) {
-        const tokenPayload = {
-          email: user.email,
-        };
-
-        const accessToken = jwt.sign(tokenPayload, "SECRET");
+        const accessToken = await this.authMiddleware.generateToken(user);
 
         responseDto.setTimeStamp(new Date());
         responseDto.setStatusCode(200);

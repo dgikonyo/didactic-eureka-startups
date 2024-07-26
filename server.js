@@ -9,6 +9,8 @@ const serverTest = require("./api/routes/server.route");
 const app = express();
 const mongoose = require("mongoose");
 const { MongoClient, ServerApiVersion } = require("mongodb");
+const AuthMiddleware = require("./api/middleware/auth.middleware");
+const authMiddleware = new AuthMiddleware();
 
 // setup global config acess
 dotenv.config();
@@ -40,10 +42,17 @@ mongoose
   .catch((err) => console.log(err));
 
 // mount routes
-const auth = require("./api/middleware/auth.middleware");
-app.get("/api/v1/ping", auth, serverTest);
+app.get(
+  "/api/v1/ping",
+  (req, res, next) => authMiddleware.authenticateToken(req, res, next),
+  serverTest
+);
 app.use("/api/v1/auth", AuthRoutes);
-app.use("/api/v1/campaigns", auth, CampaignRoutes);
+app.use(
+  "/api/v1/campaigns",
+  (req, res, next) => authMiddleware.authenticateToken(req, res, next),
+  CampaignRoutes
+);
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}/api/v1`);

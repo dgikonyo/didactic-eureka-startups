@@ -1,7 +1,7 @@
 const { plainToInstance } = require("class-transformer");
 const Campaign = require("../../entities/campaign/campaign.model");
 const ResponseDto = require("../../dto/response.dto");
-const CampaignDto = require("../../dto/campaign/campaign.dto")
+const CampaignDto = require("../../dto/campaign/campaign.dto");
 
 class CampaignController {
   /**
@@ -16,14 +16,14 @@ class CampaignController {
     const campaignDto = new CampaignDto();
     const campaignInstance = plainToInstance(CampaignDto, req.body);
     const responseDto = new ResponseDto();
-console.log(campaignInstance);
+    console.log(req.user)
 
-    try{
+    try {
       const isCampaignExists = await Campaign.findOne({
         title: campaignInstance.title,
       });
 
-      if(isCampaignExists){
+      if (isCampaignExists) {
         responseDto.setTimeStamp(new Date());
         responseDto.setStatusCode(400);
         responseDto.setStatusCodeDesc("Bad Request");
@@ -65,7 +65,7 @@ console.log(campaignInstance);
         responseDto.setAdditionalData("Input campaign duration");
 
         return res.status(400).json(responseDto);
-      } else if(campaignInstance.getTargetAmount() == null) {
+      } else if (campaignInstance.getTargetAmount() == null) {
         responseDto.setTimeStamp(new Date());
         responseDto.setStatusCode(400);
         responseDto.setStatusCodeDesc("Bad Request");
@@ -106,33 +106,33 @@ console.log(campaignInstance);
 
         return res.status(400).json(responseDto);
       } else {
-          campaignDto.setId(campaignInstance.id);
-          campaignDto.setTitle(campaignInstance.title);
-          campaignDto.setTagLine(campaignInstance.tagLine);
-          campaignDto.setStartDate(campaignInstance.startDate);
-          campaignDto.setEndDate(campaignInstance.endDate);
-          campaignDto.setDuration(campaignInstance.duration);
-          campaignDto.setTargetAmount(campaignInstance.targetAmount);
-          campaignDto.setVideoUrl(campaignInstance.videoUrl);
-          campaignDto.setVideoOverlayUrl(campaignInstance.videoOverlayUrl);
-          campaignDto.setStory(campaignInstance.story);
-          campaignDto.setSupportEmail(campaignInstance.supportEmail);
-          campaignDto.setFundingModel(campaignInstance.fundingModel);
-          campaignDto.setUserId(req.user.id);
-          campaignDto.setCampaignStatus(campaignInstance.campaignStatus);
+        campaignDto.setId(campaignInstance.id);
+        campaignDto.setTitle(campaignInstance.title);
+        campaignDto.setTagLine(campaignInstance.tagLine);
+        campaignDto.setStartDate(campaignInstance.startDate);
+        campaignDto.setEndDate(campaignInstance.endDate);
+        campaignDto.setDuration(campaignInstance.duration);
+        campaignDto.setTargetAmount(campaignInstance.targetAmount);
+        campaignDto.setVideoUrl(campaignInstance.videoUrl);
+        campaignDto.setVideoOverlayUrl(campaignInstance.videoOverlayUrl);
+        campaignDto.setStory(campaignInstance.story);
+        campaignDto.setSupportEmail(campaignInstance.supportEmail);
+        campaignDto.setFundingModel(campaignInstance.fundingModel);
+        campaignDto.setUserId(req.user.id);
+        campaignDto.setCampaignStatus(campaignInstance.campaignStatus);
 
-          let campaign = new Campaign(campaignDto);
-          const result = await campaign.save();
+        let campaign = new Campaign(campaignDto);
+        const result = await campaign.save();
 
-          responseDto.setTimeStamp(new Date());
-          responseDto.setStatusCode(201);
-          responseDto.setStatusCodeDesc("CAMPAIGN CREATED");
-          responseDto.setStatusCodeMessage("Success");
-          responseDto.setAdditionalData(result);
+        responseDto.setTimeStamp(new Date());
+        responseDto.setStatusCode(201);
+        responseDto.setStatusCodeDesc("CAMPAIGN CREATED");
+        responseDto.setStatusCodeMessage("Success");
+        responseDto.setAdditionalData(result);
 
-          return res.status(201).json(responseDto);
+        return res.status(201).json(responseDto);
       }
-    } catch(error){
+    } catch (error) {
       responseDto.setTimeStamp(new Date());
       responseDto.setStatusCode(500);
       responseDto.setStatusCodeDesc("INTERNAL SERVER ERROR");
