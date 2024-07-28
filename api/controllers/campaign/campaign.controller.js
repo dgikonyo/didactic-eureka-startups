@@ -1,7 +1,7 @@
 const { plainToInstance } = require("class-transformer");
 const Campaign = require("../../entities/campaign/campaign.model");
 const ResponseDto = require("../../dto/response.dto");
-const CampaignDto = require("../../dto/campaign/campaign.dto");
+const CampaignDto = require("../../dto/campaign/campaign.dto")
 
 class CampaignController {
   /**
@@ -13,6 +13,7 @@ class CampaignController {
   async createCampaign(req, res, next) {
     console.log(`Attempt to create a new campaign: {}`, req.body);
 
+    const campaignDto = new CampaignDto();
     const campaignInstance = plainToInstance(CampaignDto, req.body);
     const responseDto = new ResponseDto();
 
@@ -95,7 +96,7 @@ class CampaignController {
         responseDto.setAdditionalData("Campaign status missing");
 
         return res.status(400).json(responseDto);
-      } else if (!req.user.id) {
+      } else if (req.user.id == null) {
         responseDto.setTimeStamp(new Date());
         responseDto.setStatusCode(400);
         responseDto.setStatusCodeDesc("Bad Request");
@@ -139,6 +140,8 @@ class CampaignController {
       return res.status(500).json(responseDto);
     }
   }
+
+  async
 }
 
 module.exports = CampaignController;

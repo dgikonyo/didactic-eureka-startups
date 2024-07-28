@@ -154,8 +154,16 @@ class CampaignDto {
     return this.campaignStatus;
   }
 
-  setSupportEmail(campaignStatus) {
+  setCampaignStatus(campaignStatus) {
     this.campaignStatus = campaignStatus;
+  }
+
+  getSupportEmail() {
+    return this.supportEmail;
+  }
+
+  setSupportEmail(supportEmail) {
+    this.supportEmail = supportEmail;
   }
 }
 
