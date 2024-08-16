@@ -1,5 +1,4 @@
 class CampaignDto {
-  id;
   title;
   tagLine;
   startDate;
@@ -15,7 +14,6 @@ class CampaignDto {
   campaignStatus;
 
   constructor(
-    id,
     title,
     tagLine,
     startDate,
@@ -31,7 +29,6 @@ class CampaignDto {
     campaignStatus,
     countryId
   ) {
-    this.id = id;
     this.title = title;
     this.tagLine = tagLine;
     this.startDate = startDate;
