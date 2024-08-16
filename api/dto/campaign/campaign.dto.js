@@ -1,5 +1,4 @@
 class CampaignDto {
-  id;
   title;
   tagLine;
   startDate;
@@ -15,7 +14,6 @@ class CampaignDto {
   campaignStatus;
 
   constructor(
-    id,
     title,
     tagLine,
     startDate,
@@ -28,9 +26,9 @@ class CampaignDto {
     supportEmail,
     fundingModel,
     user_id,
-    campaignStatus
+    campaignStatus,
+    countryId
   ) {
-    this.id = id;
     this.title = title;
     this.tagLine = tagLine;
     this.startDate = startDate;
@@ -44,14 +42,6 @@ class CampaignDto {
     this.fundingModel = fundingModel;
     this.user_id = user_id;
     this.campaignStatus = campaignStatus;
-  }
-
-  getId() {
-    return this.id;
-  }
-
-  setId(id) {
-    this.id = id;
   }
 
   getTitle() {
@@ -164,6 +154,14 @@ class CampaignDto {
 
   setSupportEmail(supportEmail) {
     this.supportEmail = supportEmail;
+  }
+
+  getCountryId() {
+    return this.countryId;
+  }
+
+  setCountryId(countryId) {
+    this.countryId = countryId;
   }
 }
 

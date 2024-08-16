@@ -13,11 +13,11 @@ router.post(
 );
 
 router.post(
-  "/show/verified",
-  campaignController.listVerifiedCampaigns.bind(campaignController)
+  "/verified/show",
+  campaignController.getVerifiedCampaigns.bind(campaignController)
 );
 
-router.post("/show", campaignController.listCampaigns.bind(campaignController));
+router.post("/show", campaignController.getCampaigns.bind(campaignController));
 // campaign status routes
 router.post(
   "/campaign-statuses/create",

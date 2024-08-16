@@ -9,14 +9,14 @@ class CampaignController {
     return await campaignService.createCampaign(req, res);
   }
 
-  async listVerifiedCampaigns(req, res, next) {
+  async getVerifiedCampaigns(req, res, next) {
     console.log(`Attempt to list verified campaigns: ${JSON.stringify(req.body)}`);
 
     const campaignService = new CampaignService();
     return await campaignService.listVerifiedCampaigns(req, res);
   }
 
-  async listCampaigns(req, res, next) {
+  async getCampaigns(req, res, next) {
     console.log(`Attempt to list all campaigns: ${JSON.stringify(req.body)}`);
 
     const campaignService = new CampaignService();
