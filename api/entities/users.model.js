@@ -19,13 +19,13 @@ const userSchema = new Schema(
     firstName: {
       type: String,
       trim: true,
-      required: [true, "First must be provided"],
+      required: [true, "First name must be provided"],
       minlength: 3,
     },
     lastName: {
       type: String,
       trim: true,
-      required: [true, "First must be provided"],
+      required: [true, "Last name must be provided"],
       minlength: 3,
     },
     email: {

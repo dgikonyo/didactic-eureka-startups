@@ -21,8 +21,6 @@ let PORT = process.env.PORT || 3000;
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-app.use(express.json());
-
 // database connection
 const username = encodeURIComponent(process.env.DB_USER_NAME);
 const password = encodeURIComponent(process.env.DB_PASSWORD);
