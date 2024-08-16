@@ -7,7 +7,17 @@ const campaignController = new CampaignController();
 const campaignStatusController = new CampaignStatusController();
 
 // campaign routes
-router.post("/create", campaignController.createCampaign.bind(campaignController));
+router.post(
+  "/create",
+  campaignController.createCampaign.bind(campaignController)
+);
+
+router.post(
+  "/show/verified",
+  campaignController.listVerifiedCampaigns.bind(campaignController)
+);
+
+router.post("/show", campaignController.listCampaigns.bind(campaignController));
 // campaign status routes
 router.post(
   "/campaign-statuses/create",
