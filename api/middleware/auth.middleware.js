@@ -10,8 +10,12 @@ class AuthMiddleware {
   async generateToken(user) {
     const payload = {
       id: user.id,
+      username: user.username,
+      firstName: user.firstName,
+      lastName: user.lastName,
       email: user.email,
       role: user.role,
+      country_id: user.country_id,
     };
 
     return jwt.sign(payload, secret, { expiresIn: "1h" });

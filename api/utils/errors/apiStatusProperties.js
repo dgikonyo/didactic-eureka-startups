@@ -12,7 +12,8 @@ class AppError extends Error {
     super(message);
     this.statusCode = statusCode;
     /**
-     * isOperational: Flag to distinguish between operational errors (expected) and programmer errors (unexpected).
+     * isOperational: Flag to distinguish between operational errors 
+     * (expected) and programmer errors (unexpected).
      */
     this.isOperational = true;
     Error.captureStackTrace(this, this.constructor);
