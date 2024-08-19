@@ -60,6 +60,7 @@ class AuthMiddleware {
       req.user = user;
       next();
     } catch (error) {
+<<<<<<< HEAD
       return ResponseService.sendResponse(
         res,
         500,
@@ -67,6 +68,15 @@ class AuthMiddleware {
         "FAILURE",
         error.message
       );
+=======
+      responseDto.setTimeStamp(new Date());
+      responseDto.setStatusCode(500);
+      responseDto.setStatusCodeDesc("INTERNAL SERVER ERROR");
+      responseDto.setStatusCodeMessage("Failure");
+      responseDto.setAdditionalData(error.message);
+
+      return res.status(401).json(responseDto);
+>>>>>>> fcbcf71 (changed structure)
     }
   }
 }

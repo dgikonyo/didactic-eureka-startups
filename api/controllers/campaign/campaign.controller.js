@@ -32,6 +32,13 @@ class CampaignController {
     const campaignService = new CampaignService();
     return await campaignService.getSingleCampaign(req, res);
   }
+
+  async getUserCampaigns(req, res, next) {
+    console.log(`Attempt to fetch all campains belonging to user: ${JSON.stringify(req.body)}`);
+
+    const campaignService = new CampaignService();
+    return await campaignService.listUserCampaigns(req, res);
+  }
 }
 
 module.exports = CampaignController;

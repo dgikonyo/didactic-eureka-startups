@@ -5,6 +5,11 @@ const uuid = require("uuid");
 
 const campaignSchema = new Schema(
   {
+    id: {
+      type: String,
+      default: uuid.v4(),
+      unique: true,
+    },
     title: {
       type: String,
       trim: true,
@@ -61,10 +66,13 @@ const campaignSchema = new Schema(
     },
     campaignStatus: {
       type: String,
+<<<<<<< HEAD
       required: true,
     },
     countryId: {
       type: Number,
+=======
+>>>>>>> fcbcf71 (changed structure)
       required: true,
     },
     countryId: {
