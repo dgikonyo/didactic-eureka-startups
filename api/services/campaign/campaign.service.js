@@ -86,7 +86,7 @@ class CampaignService {
           404,
           "NOT FOUND",
           "FAILURE",
-          "No campaigns found from the country"
+          "No campaigns found"
         );
       }
 
@@ -141,14 +141,22 @@ class CampaignService {
   }
 
   async listCampaigns(req, res) {
-    /**
-     * list all trusted or verified campaigns
-     */
-    
-    // const campaigns = await Campaign.find({
-    //     campaignStatus: 
-    // })
+    try {
+      const campaigns = await Campaign.find(
+        { campaignStatus: "trusted" }, { campaignStatus: "verified" }
+      );
+    } catch (error) {
+      return ResponseService.sendResponse(
+        res,
+        500,
+        "INTERNAL SERVER ERROR",
+        "FAILURE",
+        error.message
+      );
+    }
   }
+
+  async getCampaign(req, res) { }
 
   validateCampaign(campaignInstance, userId) {
     const errors = [];
