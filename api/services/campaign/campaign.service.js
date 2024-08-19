@@ -145,9 +145,9 @@ class CampaignService {
      * list all trusted or verified campaigns
      */
     
-    const campaigns = await Campaign.find({
-        campaignStatus:
-    })
+    // const campaigns = await Campaign.find({
+    //     campaignStatus: 
+    // })
   }
 
   validateCampaign(campaignInstance, userId) {
