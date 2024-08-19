@@ -1,9 +1,15 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const validator = require("validator");
+const uuid = require("uuid");
 
 const campaignSchema = new Schema(
   {
+    id: {
+      type: String,
+      default: uuid.v4(),
+      unique: true,
+    },
     title: {
       type: String,
       trim: true,
@@ -59,7 +65,7 @@ const campaignSchema = new Schema(
       required: true,
     },
     campaignStatus: {
-      type: Number,
+      type: String,
       required: true,
     },
     countryId: {

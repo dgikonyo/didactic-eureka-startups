@@ -53,10 +53,10 @@ class AuthMiddleware {
       next();
     } catch (error) {
       responseDto.setTimeStamp(new Date());
-      responseDto.setStatusCode(590);
+      responseDto.setStatusCode(500);
       responseDto.setStatusCodeDesc("INTERNAL SERVER ERROR");
       responseDto.setStatusCodeMessage("Failure");
-      responseDto.setAdditionalData("Unauthorized access to resource!");
+      responseDto.setAdditionalData(error.message);
 
       return res.status(401).json(responseDto);
     }
