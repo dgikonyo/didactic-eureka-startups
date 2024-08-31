@@ -8,18 +8,14 @@ const campaignStatusController = new CampaignStatusController();
 
 // campaign routes
 router.post("/create", campaignController.createCampaign.bind(campaignController));
+router.post("/verified/show", campaignController.getVerifiedCampaigns.bind(campaignController));
+router.post("/show", campaignController.getCampaigns.bind(campaignController));
+router.post("/user/show", campaignController.getUserCampaigns.bind(campaignController));
+router.post("/campaign/:id", campaignController.getCampaigns.bind(campaignController));
+
 // campaign status routes
-router.post(
-  "/campaign-statuses/create",
-  campaignStatusController.createStatus.bind(campaignStatusController)
-);
-router.get(
-  "/campaign-statuses/show",
-  campaignStatusController.getAllCampaignStatuses.bind(campaignStatusController)
-);
-router.patch(
-  "/campaign-statuses/update",
-  campaignStatusController.updateStatus.bind(campaignStatusController)
-);
+router.post("/campaign-statuses/create", campaignStatusController.createStatus.bind(campaignStatusController));
+router.get("/campaign-statuses/show", campaignStatusController.getAllCampaignStatuses.bind(campaignStatusController));
+router.patch("/campaign-statuses/update", campaignStatusController.updateStatus.bind(campaignStatusController));
 
 module.exports = router;

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-const uuid = require("uuid");
 const Schema = mongoose.Schema;
 const validator = require("validator");
+const uuid = require("uuid");
 
 const campaignSchema = new Schema(
   {
@@ -65,6 +65,10 @@ const campaignSchema = new Schema(
       required: true,
     },
     campaignStatus: {
+      type: String,
+      required: true,
+    },
+    countryId: {
       type: Number,
       required: true,
     },
