@@ -4,6 +4,11 @@ const uuid = require("uuid")
 
 const campaignStatusSchema = new Schema(
   {
+    id: {
+      type: String,
+      default: uuid.v4(),
+      unique: true,
+    },
     statusName: {
       type: String,
       unique: true,

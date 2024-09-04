@@ -4,6 +4,21 @@ const CampaignDto = require("../../dto/campaign/campaign.dto");
 const ResponseService = require("../../utils/responses/responseUtils");
 
 class CampaignService {
+  /**
+   * Creates a new campaign.
+   *
+   * This method handles the creation of a new campaign by performing the following steps:
+   *   1. Validates the request body using the `validateCampaign` method.
+   *   2. Checks for duplicate campaign names.
+   *   3. Populates a `CampaignDto` object with the request data.
+   *   4. Creates a new `Campaign` instance from the `CampaignDto`.
+   *   5. Saves the new campaign to the database.
+   *   6. Sends a success response with the created campaign data.
+   *
+   * @param {Object} req The Express request object containing the campaign data.
+   * @param {Object} res The Express response object.
+   * @returns {Promise} A promise that resolves with the response object.
+   */
   async createCampaign(req, res) {
     const campaignInstance = plainToInstance(CampaignDto, req.body);
     const campaignDto = new CampaignDto();
@@ -73,13 +88,22 @@ class CampaignService {
     }
   }
 
+  /**
+   * Lists verified campaigns based on the specified campaign status.
+   *
+   * This function retrieves campaigns from the database with the given campaign status.
+   * If no campaigns are found, a 404 "Not Found" response is sent.
+   * Otherwise, a 200 "OK" response is sent with the list of verified campaigns.
+   *
+   * @param {Object} req The Express request object.
+   * @param {Object} res The Express response object.
+   */
   async listVerifiedCampaigns(req, res) {
     try {
       const verifiedCampaigns = await Campaign.find({
         campaignStatus: req.body.campaignStatus,
       });
 
-      console.log(verifiedCampaigns);
       if (!verifiedCampaigns) {
         return ResponseService.sendResponse(
           res,
@@ -108,6 +132,21 @@ class CampaignService {
     }
   }
 
+  /**
+   * @async
+   * @brief Lists all campaigns associated with the requesting user.
+   *
+   * This function retrieves a list of all campaigns where the `user_id`
+   * field matches the user ID extracted from the request object (`req`).
+   * On success, it sends a response with status code 200 (OK) and the list
+   * of campaigns in the response body. If no campaigns are found for the
+   * user, it sends a 404 (NOT FOUND) response with an appropriate message.
+   * On any error, it sends a 500 (INTERNAL SERVER ERROR) response.
+   *
+   * @param {Object} req The Express request object.
+   * @param {Object} res The Express response object.
+   * @return {Promise} A promise that resolves with the response object.
+   */
   async listUserCampaigns(req, res) {
     try {
       const userCampaigns = await Campaign.find({ user_id: req.user.id });
@@ -140,10 +179,39 @@ class CampaignService {
     }
   }
 
-  async listCampaigns(req, res) {
+  /**
+   * Lists campaigns for a specific country.
+   *
+   * This function retrieves a list of campaigns that are either "trusted" or
+   * "verified" and belong to the country specified in the request body.
+   *
+   * @param {Object} req The Express request object containing the country ID.
+   * @param {Object} res The Express response object.
+   * @returns {Promise} A promise that resolves with the response object.
+   */
+  async listCampaignsPerCountry(req, res) {
     try {
-      const campaigns = await Campaign.find(
-        { campaignStatus: "trusted" }, { campaignStatus: "verified" }
+      const campaigns = await Campaign.find({
+        $or: [{ campaignStatus: "trusted" }, { campaignStatus: "verified" }],
+        countryId: req.body.countryId,
+      });
+
+      if (campaigns.length === 0) {
+        return ResponseService.sendResponse(
+          res,
+          404,
+          "NOT FOUND",
+          "FAILURE",
+          "There are no campaigns, atleast not yet!"
+        );
+      }
+
+      return ResponseService.sendResponse(
+        res,
+        200,
+        "OK",
+        "SUCCESSFUL",
+        campaigns
       );
     } catch (error) {
       return ResponseService.sendResponse(
@@ -156,8 +224,50 @@ class CampaignService {
     }
   }
 
-  async getCampaign(req, res) { }
+  /**
+   * Retrieves details of a single campaign.
+   *
+   * This function fetches a campaign based on the ID provided in the request body.
+   *
+   * @param {Object} req The Express request object containing the campaign ID.
+   * @param {Object} res The Express response object.
+   * @returns {Promise} A promise that resolves with the response object.
+   */
+  async getSingleCampaign(req, res) {
+    // receives an id from the frontend, it then brings up the details of the campaign
 
+    try {
+      const campaign = await Campaign.find({ id: req.body.id });
+
+      if (campaign.length === 0) {
+        return ResponseService.sendResponse(
+          res,
+          404,
+          "NOT FOUND",
+          "FAILURE",
+          "INVALID CAMPAIGN INFO ENTERED"
+        );
+      }
+    } catch (error) {
+      return ResponseService.sendResponse(
+        res,
+        500,
+        "INTERNAL SERVER ERROR",
+        "FAILURE",
+        error.message
+      );
+    }
+  }
+
+  /**
+   * Validates a campaign instance.
+   *
+   * This function validates a campaign instance to ensure that all required fields are present and valid.
+   *
+   * @param {Object} campaignInstance The campaign instance to validate.
+   * @param {number} userId The user ID associated with the campaign.
+   * @returns {Array} An array of error messages if any validation errors are found.
+   */
   validateCampaign(campaignInstance, userId) {
     const errors = [];
     if (!campaignInstance.title) errors.push("Input campaign title");
