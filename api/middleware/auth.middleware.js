@@ -10,8 +10,12 @@ class AuthMiddleware {
   async generateToken(user) {
     const payload = {
       id: user.id,
+      username: user.username,
+      firstName: user.firstName,
+      lastName: user.lastName,
       email: user.email,
       role: user.role,
+      country_id: user.country_id,
     };
 
     return jwt.sign(payload, secret, { expiresIn: "1h" });
@@ -49,10 +53,10 @@ class AuthMiddleware {
       next();
     } catch (error) {
       responseDto.setTimeStamp(new Date());
-      responseDto.setStatusCode(590);
+      responseDto.setStatusCode(500);
       responseDto.setStatusCodeDesc("INTERNAL SERVER ERROR");
       responseDto.setStatusCodeMessage("Failure");
-      responseDto.setAdditionalData("Unauthorized access to resource!");
+      responseDto.setAdditionalData(error.message);
 
       return res.status(401).json(responseDto);
     }

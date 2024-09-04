@@ -28,7 +28,8 @@ class CampaignDto {
     supportEmail,
     fundingModel,
     user_id,
-    campaignStatus
+    campaignStatus,
+    countryId
   ) {
     this.id = id;
     this.title = title;
@@ -48,10 +49,6 @@ class CampaignDto {
 
   getId() {
     return this.id;
-  }
-
-  setId(id) {
-    this.id = id;
   }
 
   getTitle() {
@@ -164,6 +161,14 @@ class CampaignDto {
 
   setSupportEmail(supportEmail) {
     this.supportEmail = supportEmail;
+  }
+
+  getCountryId() {
+    return this.countryId;
+  }
+
+  setCountryId(countryId) {
+    this.countryId = countryId;
   }
 }
 

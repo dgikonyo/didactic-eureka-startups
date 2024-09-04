@@ -6,8 +6,8 @@ const authController = new AuthController();
 
 router.post(
   "/register/users",
-  authController.registerUser.bind(authController)
+  authController.signUp.bind(authController)
 );
-router.post("/sign-in", authController.loginUser.bind(authController));
+router.post("/sign-in", authController.signIn.bind(authController));
 
 module.exports = router;
