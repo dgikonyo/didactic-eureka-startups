@@ -34,7 +34,9 @@ class CampaignController {
   }
 
   async getUserCampaigns(req, res, next) {
-    console.log(`Attempt to fetch all campains belonging to user: ${JSON.stringify(req.body)}`);
+    console.log(
+      `Attempt to fetch all campaigns belonging to user: ${JSON.stringify(req.body)}`
+    );
 
     const campaignService = new CampaignService();
     return await campaignService.listUserCampaigns(req, res);
