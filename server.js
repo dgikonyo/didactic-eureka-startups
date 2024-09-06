@@ -1,6 +1,5 @@
 // imports
 const express = require("express");
-const passport = require("passport");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
@@ -23,8 +22,6 @@ let PORT = process.env.PORT || 3000;
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(cors());
-app.use(passport.initialize());
-app.use(passport.session());
 
 // database connection
 const username = encodeURIComponent(process.env.DB_USER_NAME);
