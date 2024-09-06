@@ -1,15 +1,19 @@
 // imports
 const express = require("express");
+const app = express();
 const cors = require("cors");
 const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
+//  routes
 const AuthRoutes = require("./api/routes/auth/auth.routes");
 const ServerRoute = require("./api/routes/server.route");
 const CampaignRoutes = require("./api/routes/campaign/campaign.route");
+const UserRoutes = require("./api/routes/user/user.route");
 const serverTest = require("./api/routes/server.route");
-const app = express();
+// database
 const mongoose = require("mongoose");
 const { MongoClient, ServerApiVersion } = require("mongodb");
+// middleware
 const AuthMiddleware = require("./api/middleware/auth.middleware");
 const authMiddleware = new AuthMiddleware();
 
@@ -52,6 +56,11 @@ app.use(
   "/api/v1/campaigns",
   (req, res, next) => authMiddleware.authenticateToken(req, res, next),
   CampaignRoutes
+);
+app.use(
+  "/api/v1/users",
+  (req, res, next) => authMiddleware.authenticateToken(req, res, next),
+  UserRoutes
 );
 
 app.listen(PORT, () => {
