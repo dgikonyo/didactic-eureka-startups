@@ -1,8 +1,6 @@
-const express = require("express");
-const router = express.Router();
 const ResponseDto = require("../dto/response.dto");
 
-const serverTest = async (req, res, next) => {
+const serverTest = async (req, res) => {
   console.log(`Attempt to access server`);
   var responseDto = new ResponseDto();
 

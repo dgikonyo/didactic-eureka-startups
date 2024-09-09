@@ -8,9 +8,8 @@ class AuthController {
    * Registers a new user.
    * @param {Object} req - The incoming request object containing user data.
    * @param {Object} res - The outgoing response object for sending responses.
-   * @param {Function} next - The next middleware function to be called.
    */
-  async signUp(req, res, next) {
+  async signUp(req, res) {
     console.log(`Attempt to sign up a user: ${JSON.stringify(req.body)}`);
 
     const authService = new AuthService();
@@ -21,9 +20,8 @@ class AuthController {
    * Handles user login.
    * @param {Object} req - The incoming request object containing user credentials.
    * @param {Object} res - The outgoing response object for sending responses.
-   * @param {Function} next - The next middleware function to be called.
    */
-  async signIn(req, res, next) {
+  async signIn(req, res) {
     console.log(`Attempt to sign in a user: ${JSON.stringify(req.body)}`);
 
     const authService = new AuthService();

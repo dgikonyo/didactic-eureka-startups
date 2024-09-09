@@ -5,16 +5,16 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
 //  routes
-const AuthRoutes = require("./api/routes/auth/auth.routes");
-const ServerRoute = require("./api/routes/server.route");
-const CampaignRoutes = require("./api/routes/campaign/campaign.route");
-const UserRoutes = require("./api/routes/user/user.route");
-const serverTest = require("./api/routes/server.route");
+const AuthRoutes = require("./routes/auth/auth.routes");
+const ServerRoute = require("./routes/server.route");
+const CampaignRoutes = require("./routes/campaign/campaign.route");
+const UserRoutes = require("./routes/user/user.route");
+const serverTest = require("./routes/server.route");
 // database
 const mongoose = require("mongoose");
 const { MongoClient, ServerApiVersion } = require("mongodb");
 // middleware
-const AuthMiddleware = require("./api/middleware/auth.middleware");
+const AuthMiddleware = require("./middleware/auth.middleware");
 const authMiddleware = new AuthMiddleware();
 
 // setup global config acess
