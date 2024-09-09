@@ -2,16 +2,14 @@ const CampaignStatus = require("../../entities/campaign/campaignStatus.model");
 const CampaignStatusDto = require("../../dto/campaign/campaignStatus.dto");
 const { plainToInstance } = require("class-transformer");
 const ResponseDto = require("../../dto/response.dto");
-const uuid = require("uuid");
 
 class CampaignStatusController {
   /**
    * Creates a new campaign status.
    * @param {Object} req - The incoming request object containing campaign status data.
    * @param {Object} res - The outgoing response object for sending responses.
-   * @param {Function} next - The next middleware function to be called.
    */
-  async createStatus(req, res, next) {
+  async createStatus(req, res) {
     console.log(
       `Attempt to create campaign status: ${JSON.stringify(req.body)}`
     );
@@ -71,9 +69,8 @@ class CampaignStatusController {
    * Retrieves all campaign statuses.
    * @param {Object} req - The incoming request object.
    * @param {Object} res - The outgoing response object for sending responses.
-   * @param {Function} next - The next middleware function to be called.
    */
-  async getAllCampaignStatuses(req, res, next) {
+  async getAllCampaignStatuses(req, res) {
     console.log(
       `Attempt to get campaign statuses: ${JSON.stringify(req.body)}`
     );
@@ -115,7 +112,7 @@ class CampaignStatusController {
     }
   }
 
-  async updateStatus(req, res, next) {
+  async updateStatus(req, res) {
     console.log(
       `Attempt to update a campaign status: ${JSON.stringify(req.body)}`
     );

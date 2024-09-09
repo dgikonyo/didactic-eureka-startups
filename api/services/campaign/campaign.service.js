@@ -2,6 +2,7 @@ const { plainToInstance } = require("class-transformer");
 const Campaign = require("../../entities/campaign/campaign.model");
 const CampaignDto = require("../../dto/campaign/campaign.dto");
 const ResponseService = require("../../utils/responses/responseUtils");
+const ResponseDto = require("../../dto/response.dto");
 
 class CampaignService {
   /**
