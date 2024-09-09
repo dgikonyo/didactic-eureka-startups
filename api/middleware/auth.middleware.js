@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
-const responseDto = require("../dto/response.dto");
-const ResponseDto = require("../dto/response.dto");
 const dotenv = require("dotenv");
+const ResponseService = require("../utils/responses/responseUtils");
 // setup global config acess
 dotenv.config();
 const secret = process.env.JWT_SECRET_KEY;
@@ -22,23 +21,26 @@ class AuthMiddleware {
   }
 
   async authenticateToken(req, res, next) {
-    const responseDto = new ResponseDto();
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
-      return unauthorizedResponse(
+      return ResponseService.sendResponse(
         res,
-        responseDto,
-        "Unauthorized access to resource!"
+        400,
+        "BAD REQUEST",
+        "INVALID HEADER",
+        "FAILURE"
       );
     }
     const token = authHeader.split(" ")[1];
 
     if (!token) {
-      return unauthorizedResponse(
+      return ResponseService.sendResponse(
         res,
-        responseDto,
-        "Unauthorized access to resource!"
+        400,
+        "BAD REQUEST",
+        "INVALID TOKEN",
+        "FAILURE"
       );
     }
 
@@ -46,40 +48,26 @@ class AuthMiddleware {
       const user = jwt.verify(token, secret);
 
       if (!user) {
-        return forbiddenResponse(res, responseDto, "Insufficient Permissions!");
+        return ResponseService.sendResponse(
+          res,
+          403,
+          "FORBIDDEN",
+          "UNAUTHORIZED ACCESS TO TOKEN",
+          "FAILURE"
+        );
       }
 
       req.user = user;
       next();
     } catch (error) {
-      responseDto.setTimeStamp(new Date());
-      responseDto.setStatusCode(500);
-      responseDto.setStatusCodeDesc("INTERNAL SERVER ERROR");
-      responseDto.setStatusCodeMessage("Failure");
-      responseDto.setAdditionalData(error.message);
-
-      return res.status(401).json(responseDto);
+      return ResponseService.sendResponse(
+        res,
+        500,
+        "INTERNAL SERVER ERROR",
+        "FAILURE",
+        error.message
+      );
     }
-  }
-
-  unauthorizedResponse(res, responseDto, message) {
-    responseDto.setTimeStamp(new Date());
-    responseDto.setStatusCode(401);
-    responseDto.setStatusCodeDesc("UNAUTHORIZED");
-    responseDto.setStatusCodeMessage("Failure");
-    responseDto.setAdditionalData(message);
-
-    return res.status(401).json(responseDto);
-  }
-
-  forbiddenResponse(res, responseDto, message) {
-    responseDto.setTimeStamp(new Date());
-    responseDto.setStatusCode(403);
-    responseDto.setStatusCodeDesc("FORBIDDEN");
-    responseDto.setStatusCodeMessage("Failure");
-    responseDto.setAdditionalData(message);
-
-    return res.status(403).json(responseDto);
   }
 }
 module.exports = AuthMiddleware;
