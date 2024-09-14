@@ -3,7 +3,7 @@
     <div class="footer-section container-fluid">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-4">
-                <p>Konnect</p>
+                <p class="biz-title">Konnect</p>
                 <p>We have been connecting inventors with investors since 2021</p>
                 <p>Follow us</p>
                 <ul>
@@ -36,4 +36,11 @@
         </div>
     </div>
 </template>
-<style scoped></style>
+
+<style scoped>
+.biz-title{
+    font-family: "Merriweather Sans", sans-serif;
+    color: #E40066;
+    font-weight: 400;
+}
+</style>
