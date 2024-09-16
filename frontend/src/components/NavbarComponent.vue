@@ -1,22 +1,25 @@
 <script setup lang="ts"></script>
 <template>
     <section class="navbar">
-        <div class="buttons">
-            <button class="btn btn-login">Login</button>
-            <button class="btn2 btn-sign-up">Sign Up</button>
-        </div>
-        <div class="title">Konnect</div>
+        <div class="row">
+            <div class="buttons col-xs-6 col-md-3">
+                <button class="btn btn-login">Login</button>
+                <button class="btn2 btn-sign-up">Sign Up</button>
+            </div>
+            <div class="title col-xs-6 col-md-3">Konnect</div>
 
-        <div class="explore">
-            <button>Explore Projects <span>-></span></button>
+            <div class="explore col-xs-12 col-md-3">
+                <button>Explore Projects <span>-></span></button>
+            </div>
         </div>
+
     </section>
 </template>
 <style scoped>
 .btn-login {
     background-color: hsla(333, 100%, 45%, 1);
     font-size: 18px;
-    font-family: "Inter", sans-serif;
+    font-family: 'Inter', sans-serif;
     color: white;
     border: none;
     border-radius: 8px;
@@ -27,7 +30,7 @@
 .btn-sign-up {
     background-color: hsla(0, 0%, 100%, 0.3);
     font-size: 18px;
-    font-family: "Inter", sans-serif;
+    font-family: 'Inter', sans-serif;
     color: black;
     border-radius: 8px;
     padding: 6px 30px;
