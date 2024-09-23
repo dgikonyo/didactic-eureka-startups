@@ -4,6 +4,8 @@ const app = express();
 const cors = require("cors");
 const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
+const path = require('path');
+
 //  routes
 const AuthRoutes = require("./routes/auth/auth.routes");
 const ServerRoute = require("./routes/server.route");
@@ -26,6 +28,13 @@ let PORT = process.env.PORT || 3000;
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(cors());
+
+// Serve static files from the Vue.js dist directory
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
+// Catch-all route to serve the index.html file for any other routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+});
 
 // database connection
 const username = encodeURIComponent(process.env.DB_USER_NAME);
