@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import NavbarComponent from '../NavbarComponent.vue';
 </script>
+
 <template>
     <NavbarComponent></NavbarComponent>
     <section class="question-1">
