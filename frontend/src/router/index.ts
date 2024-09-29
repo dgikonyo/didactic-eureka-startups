@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import AppView from '../App.vue';
+import Questions from '@/components/questions/QuestionView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -9,6 +10,11 @@ const router = createRouter({
       name: 'home',
       component: AppView,
     },
+    {
+      path:'/campaign/start/questions',
+      name:'questions',
+      component: Questions,
+    }
     // {
     //   path: '/about',
     //   name: 'about',
