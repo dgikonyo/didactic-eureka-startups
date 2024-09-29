@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router';
 import Footer from './components/FooterComponent.vue'
+
+function nextComponent() {
+  
+}
 </script>
 
 <template>
@@ -37,7 +41,7 @@ import Footer from './components/FooterComponent.vue'
         </div>
 
         <div class="cta">
-          <button class="btn-start col-sm-12 col-md-12 col-lg-6">Start a Campaign</button>
+          <button class="btn-start col-sm-12 col-md-12 col-lg-6" v-on:click="nextComponent()">Start a Campaign</button>
           <button class="btn-explore col-sm-12 col-md-12 col-lg-6">Explore Projects</button>
         </div>
 
