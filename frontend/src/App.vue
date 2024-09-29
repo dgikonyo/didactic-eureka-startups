@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router';
-import Footer from './components/FooterComponent.vue'
+import Footer from './components/FooterComponent.vue';
+import CardComponent from './components/CardComponent.vue';
 </script>
 
 <template>
@@ -52,18 +53,18 @@ import Footer from './components/FooterComponent.vue'
   <section class="campaign-cards">
     <div class="campaign-section">
       <!-- verified projects -->
-        <div class="section-description row">
-          <p class="page-text col-8">
+        <div class="section-description">
+          <div class="lefty"><p class="page-text">
             We help local <span class="span-border">entrepreneurs</span> and
             <span class="span-blue">organizations</span> raise funds for <span class="span-border">projects</span>
-          </p>
-          <a class="col-4">View All</a>
+          </p></div>
+          <div class="righty"><a class="link">View All</a></div>
         </div>
 
           <div class="project-cards">
             <div class="card">
               <div class="pic-space">
-              <img src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png" class="card-img-top" alt="...">
+              <img src="./assets/Images/heroImage.png" class="card-img-top" alt="...">
               </div>
               <div class="card-body">
                 <h5 class="category">HEALTH 4 U</h5>
@@ -74,7 +75,7 @@ import Footer from './components/FooterComponent.vue'
 
             <div class="card">
               <div class="pic-space">
-              <img src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png" class="card-img-top" alt="...">
+              <img src="./assets/Images/heroImage.png" class="card-img-top" alt="...">
               </div>
               <div class="card-body">
                 <h5 class="category">HEALTH 4 U</h5>
@@ -85,7 +86,7 @@ import Footer from './components/FooterComponent.vue'
 
             <div class="card">
               <div class="pic-space">
-              <img src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png" class="card-img-top" alt="...">
+              <img src="./assets/Images/heroImage.png" class="card-img-top" alt="...">
               </div>
               <div class="card-body">
                 <h5 class="category">HEALTH 4 U</h5>
@@ -98,17 +99,17 @@ import Footer from './components/FooterComponent.vue'
 
     <div class="campaign-section2">
       <!-- projects near you -->
-      <div class="section-description row">
-          <p class="page-text col-8">
+      <div class="section-description">
+          <div class="lefty"><p class="page-text">
             <span class="span-blue">Investing</span> in a promising new venture.
-          </p>
-          <a class="col-4">View All</a>
+          </p></div>
+          <div class="righty"><a class="link">View All</a></div>
         </div>
 
           <div class="project-cards">
             <div class="card">
               <div class="pic-space">
-              <img src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png" class="card-img-top" alt="Bathing stones">
+              <img src="./assets/Images/heroImage.png" class="card-img-top" alt="Bathing stones">
               </div>
               <div class="card-body">
                 <h5 class="category">HEALTH 4 U</h5>
@@ -119,7 +120,7 @@ import Footer from './components/FooterComponent.vue'
 
             <div class="card">
               <div class="pic-space">
-              <img src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png" class="card-img-top" alt="Bathing stones">
+              <img src="./assets/Images/heroImage.png" class="card-img-top" alt="Bathing stones">
               </div>
               <div class="card-body">
                 <h5 class="category">HEALTH 4 U</h5>
@@ -130,7 +131,7 @@ import Footer from './components/FooterComponent.vue'
 
             <div class="card">
               <div class="pic-space">
-              <img src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png" class="card-img-top" alt="Bathing stones">
+              <img src="./assets/Images/heroImage.png" class="card-img-top" alt="Bathing stones">
               </div>
               <div class="card-body">
                 <h5 class="category">HEALTH 4 U</h5>
@@ -153,6 +154,7 @@ import Footer from './components/FooterComponent.vue'
           <div class="trending-row">
 
             <div class="trending-card">
+              <!--<img src="./assets/Images/rightTrend.jpg" alt="background image" class="trending-image">-->
               <div class="trending-body">
                 <p class="back">Writing</p>
                 <p class="card-text">How Romance Author, Penny Reid, 20X her funding goal with the help of Audiobooks</p>
@@ -194,7 +196,7 @@ template{
 }
 
 .hero-section{
-  background-image:url("./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png");
+  background-image:url("./assets/Images/heroImage.png");
   width: 100%;
   height: 70%;
   background-color: #E40066;
@@ -333,6 +335,19 @@ ul{
   display: flex;
   flex-direction: row;
 }
+
+.lefty{
+  flex: 70%;
+}
+
+.righty{
+  flex: 30%;
+  text-align: right;
+  padding-right: 20px;
+  padding-top: 20px;
+  font-size: 16px;
+}
+
 .desc{
   flex: 70%;
   font-weight: 500;
@@ -394,8 +409,9 @@ p.card-text{
 }
 
 .trending-card{
-  background-image:url("./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png");
-  object-fit: contain;
+  background-image:url("./assets/Images/rightTrend.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   max-width: 400px;
   border: none;
   height: 550px;
@@ -426,6 +442,7 @@ p.card-text{
 
 .footer{
   background-color: #EBB9DF;
+  color: #261447;
 }
 .end{
   background-color: #EBB9DF;
