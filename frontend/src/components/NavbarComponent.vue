@@ -2,41 +2,53 @@
     import { RouterLink, RouterView } from 'vue-router';
 </script>
 <template>
-    <section class="navbar">
-        <div class="row">
-            <div class="buttons col-xs-6 col-md-3">
-                <button class="btn btn-login">Login</button>
-                <button class="btn2 btn-sign-up">Sign Up</button>
-            </div>
-            <div class="title col-xs-6 col-md-3">Konnect</div>
-
-            <div class="explore col-xs-12 col-md-3">
-                <RouterLink to="/campaign/start/questions">Explore Projects <span>-></span></RouterLink>
-            </div>
+    <section class="navbar-section">
+        <div class="navigation-bar">
+            <div class="container">
+                <div class="nav-items row">
+                    <div class="button-div col-sm-12 col-md-3 col-lg-3">
+                        <button class="btn btn-login col-sm-6 col-md col-lg">Login</button>
+                        <button class="btn btn-sign-up col-sm-6 col-md col-lg">Sign Up</button>
+                    </div>
+                    <div class="title-div col-sm-12 col-md-3 col-lg-3">
+                        <p class="title">Konnect</p>
+                    </div>
+                    <div class="explore-div col-sm-12 col-md-3 col-lg-3">
+                        <RouterLink class="explore" to="/campaign/start/questions">Explore Projects <span> <font-awesome-icon :icon="['fas', 'right-long']" /></span></RouterLink>
+                    </div>
+                </div>
+            </div> 
         </div>
-
     </section>
 </template>
 <style scoped>
-.btn-login {
-    background-color: hsla(333, 100%, 45%, 1);
-    font-size: 18px;
-    font-family: 'Inter', sans-serif;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 6px 30px;
-    margin: 5px 20px;
-}
+    .navigation-bar {
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+        flex-wrap: nowrap;
+        width: 100%;    
+    }
 
-.btn-sign-up {
-    background-color: hsla(0, 0%, 100%, 0.3);
-    font-size: 18px;
-    font-family: 'Inter', sans-serif;
-    color: black;
-    border-radius: 8px;
-    padding: 6px 30px;
-    margin: 5px 20px;
-    border: black, 0.8px, solid;
-}
+    .btn {
+        font-size: 18px;
+        font-family: 'Inter', sans-serif;
+        border-radius: 8px;
+        padding: 5px 10px;
+        margin-right: 5px;
+    }
+
+    .btn-login {
+        background-color: hsla(333, 100%, 45%, 1);
+        color: white;
+        border: none;
+    }
+
+    .btn-sign-up {
+        background-color: hsla(0, 0%, 100%, 0.3);
+        font-size: 18px;
+        font-family: 'Inter', sans-serif;
+        color: black;
+        border: black, 0.8px, solid;
+    }
 </style>
