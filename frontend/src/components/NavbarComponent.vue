@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+    import { RouterLink, RouterView } from 'vue-router';
+</script>
 <template>
     <section class="navbar">
         <div class="row">
@@ -9,7 +11,7 @@
             <div class="title col-xs-6 col-md-3">Konnect</div>
 
             <div class="explore col-xs-12 col-md-3">
-                <button>Explore Projects <span>-></span></button>
+                <RouterLink to="/campaign/start/questions">Explore Projects <span>-></span></RouterLink>
             </div>
         </div>
 
