@@ -8,7 +8,7 @@
           <button class="btn2 btn-sign-up">Sign Up</button>
         </div>
 
-      <div class="right-hero">
+      <div class="right-hero">  
 
         <div class="title col-12"><p class="title-text">Konnect</p></div>
 
