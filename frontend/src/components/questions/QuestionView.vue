@@ -77,4 +77,6 @@ import NavbarComponent from '../NavbarComponent.vue';
         </div>
     </section>
 </template>
-<style scoped></style>
+<style scoped>
+
+</style>
