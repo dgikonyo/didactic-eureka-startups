@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import AppView from '../App.vue';
-import HomeView from '@/components/HomeView.vue';
+
+import HomeView from '../components/HomeView.vue';
 import QuestionViewVue from '../components/questions/QuestionView.vue';
 import ContentView from '../components/content/ContentView.vue';
 
