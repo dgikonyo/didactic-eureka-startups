@@ -2,6 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router';
 import Footer from './components/FooterComponent.vue';
 import CardComponent from './components/CardComponent.vue';
+import StartCampaign from './StartCampaign.vue';
 </script>
 
 <template>
@@ -61,44 +62,16 @@ import CardComponent from './components/CardComponent.vue';
           <div class="righty"><a class="link">View All</a></div>
         </div>
 
-          <div class="project-cards">
-            <div class="card">
-              <div class="pic-space">
-              <img src="./assets/Images/heroImage.png" class="card-img-top" alt="...">
-              </div>
-              <div class="card-body">
-                <h5 class="category">HEALTH 4 U</h5>
-                <p class="card-text">Spa stones: That absorb water and clean themselves</p>
-                <p class="card-text">Starting Price: <span class="price"> $15</span></p>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="pic-space">
-              <img src="./assets/Images/heroImage.png" class="card-img-top" alt="...">
-              </div>
-              <div class="card-body">
-                <h5 class="category">HEALTH 4 U</h5>
-                <p class="card-text">Spa stones: That absorb water and clean themselves</p>
-                <p class="card-text">Starting Price: <span class="price"> $15</span></p>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="pic-space">
-              <img src="./assets/Images/heroImage.png" class="card-img-top" alt="...">
-              </div>
-              <div class="card-body">
-                <h5 class="category">HEALTH 4 U</h5>
-                <p class="card-text">Spa stones: That absorb water and clean themselves</p>
-                <p class="card-text">Starting Price: <span class="price"> $15</span></p>
-              </div>
-            </div>
-          </div>
+        <div class="project-cards">
+            <CardComponent></CardComponent>
+            <CardComponent></CardComponent>
+            <CardComponent></CardComponent>
         </div>
+    </div>
 
     <div class="campaign-section2">
       <!-- projects near you -->
+
       <div class="section-description">
           <div class="lefty"><p class="page-text">
             <span class="span-blue">Investing</span> in a promising new venture.
@@ -106,41 +79,13 @@ import CardComponent from './components/CardComponent.vue';
           <div class="righty"><a class="link">View All</a></div>
         </div>
 
-          <div class="project-cards">
-            <div class="card">
-              <div class="pic-space">
-              <img src="./assets/Images/heroImage.png" class="card-img-top" alt="Bathing stones">
-              </div>
-              <div class="card-body">
-                <h5 class="category">HEALTH 4 U</h5>
-                <p class="card-text">Spa stones: That absorb water and clean themselves</p>
-                <p class="card-text">Starting Price: <span class="price"> $15</span></p>
-              </div>
-            </div>
+      <div class="project-cards">
+          <CardComponent></CardComponent>
+          <CardComponent></CardComponent>
+          <CardComponent></CardComponent>
+      </div>
 
-            <div class="card">
-              <div class="pic-space">
-              <img src="./assets/Images/heroImage.png" class="card-img-top" alt="Bathing stones">
-              </div>
-              <div class="card-body">
-                <h5 class="category">HEALTH 4 U</h5>
-                <p class="card-text">Spa stones: That absorb water and clean themselves</p>
-                <p class="card-text">Starting Price: <span class="price"> $15</span></p>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="pic-space">
-              <img src="./assets/Images/heroImage.png" class="card-img-top" alt="Bathing stones">
-              </div>
-              <div class="card-body">
-                <h5 class="category">HEALTH 4 U</h5>
-                <p class="card-text">Spa stones: That absorb water and clean themselves</p>
-                <p class="card-text">Starting Price: <span class="price"> $15</span></p>
-              </div>
-            </div>
-          </div>
-        </div>
+    </div>
   </section>
 
   <section class="trending">
@@ -197,6 +142,7 @@ template{
 
 .hero-section{
   background-image:url("./assets/Images/heroImage.png");
+  background-repeat: no-repeat;
   width: 100%;
   height: 70%;
   background-color: #E40066;
