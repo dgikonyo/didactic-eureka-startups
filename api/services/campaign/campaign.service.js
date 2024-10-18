@@ -180,7 +180,6 @@ class CampaignService {
     }
   }
 
-<<<<<<< HEAD
   /**
    * Lists campaigns for a specific country.
    *
@@ -214,12 +213,6 @@ class CampaignService {
         "OK",
         "SUCCESSFUL",
         campaigns
-=======
-  async listCampaigns(req, res) {
-    try {
-      const campaigns = await Campaign.find(
-        { campaignStatus: "trusted" }, { campaignStatus: "verified" }
->>>>>>> fcbcf71 (changed structure)
       );
     } catch (error) {
       return ResponseService.sendResponse(
@@ -232,7 +225,6 @@ class CampaignService {
     }
   }
 
-<<<<<<< HEAD
   /**
    * Retrieves details of a single campaign.
    *
@@ -277,10 +269,6 @@ class CampaignService {
    * @param {number} userId The user ID associated with the campaign.
    * @returns {Array} An array of error messages if any validation errors are found.
    */
-=======
-  async getCampaign(req, res) { }
-
->>>>>>> fcbcf71 (changed structure)
   validateCampaign(campaignInstance, userId) {
     const errors = [];
     if (!campaignInstance.title) errors.push("Input campaign title");

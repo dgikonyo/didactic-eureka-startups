@@ -66,13 +66,6 @@ const campaignSchema = new Schema(
     },
     campaignStatus: {
       type: String,
-<<<<<<< HEAD
-      required: true,
-    },
-    countryId: {
-      type: Number,
-=======
->>>>>>> fcbcf71 (changed structure)
       required: true,
     },
     countryId: {

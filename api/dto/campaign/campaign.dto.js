@@ -52,10 +52,6 @@ class CampaignDto {
     return this.id;
   }
 
-  getId() {
-    return this.id;
-  }
-
   getTitle() {
     return this.title;
   }
