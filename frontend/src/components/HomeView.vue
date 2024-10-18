@@ -33,7 +33,7 @@
         </div>
 
         <div class="cta">
-          <RouterLink to="/campaign/start/questions" class="btn-start col-sm-12 col-md-12 col-lg-6">Start a Campaign</RouterLink>
+          <RouterLink to="/campaign/questions" class="btn-start col-sm-12 col-md-12 col-lg-6">Start a Campaign</RouterLink>
           <button class="btn-explore col-sm-12 col-md-12 col-lg-6">Explore Projects</button>
         </div>
 
