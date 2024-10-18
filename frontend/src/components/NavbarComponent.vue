@@ -18,7 +18,7 @@
                         <RouterLink to='/' class="title">Konnect</RouterLink>
                     </div>
                     <div class="nav-item col-sm-12 col-md-4 col-lg-4">
-                        <RouterLink class="explore" to="/campaign/start/questions">Explore Projects <span> <font-awesome-icon :icon="['fas', 'arrow-right']" size="xs" class="explore-icon" /></span></RouterLink>
+                        <RouterLink class="explore" to="/campaign/questions">Explore Projects <span> <font-awesome-icon :icon="['fas', 'arrow-right']" size="xs" class="explore-icon" /></span></RouterLink>
                     </div>
                 </div>
             </div> 
