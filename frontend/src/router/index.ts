@@ -18,7 +18,7 @@ const router = createRouter({
       component: () => QuestionViewVue,
     },
     {
-      path: 'campaign/content',
+      path: '/campaign/content',
       name: 'content',
       component: () => ContentView,
     },
