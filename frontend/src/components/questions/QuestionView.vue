@@ -7,10 +7,8 @@ import NavbarComponent from '../NavbarComponent.vue';
   <NavbarComponent></NavbarComponent>
 
   <section class="questions">
-    <div class="question-stepper">
+    <div class="question-stepper"></div>
 
-    </div>
-    
     <div class="question-1 container">
       <div class="question-body">
         <div class="question-header row">
@@ -74,9 +72,9 @@ import NavbarComponent from '../NavbarComponent.vue';
           </div>
           <div class="col-12">
             <p class="question-guide">
-              Pick your country of legal residence if you are raising funds as an
-              individual. If you are raising funds for a business or nonprofit,
-              select the country where the entity is registered
+              Pick your country of legal residence if you are raising funds as
+              an individual. If you are raising funds for a business or
+              nonprofit, select the country where the entity is registered
             </p>
           </div>
         </div>
@@ -107,14 +105,17 @@ import NavbarComponent from '../NavbarComponent.vue';
           </div>
           <div class="col-12">
             <p class="question-guide">
-              Pick your country of legal residence if you are raising funds as an
-              individual. If you are raising funds for a business or nonprofit,
-              select the country where the entity is registered
+              Pick your country of legal residence if you are raising funds as
+              an individual. If you are raising funds for a business or
+              nonprofit, select the country where the entity is registered
             </p>
           </div>
         </div>
         <div class="categories row">
-          <select class="category-choices col-xs-12" placeholder="Select the currency">
+          <select
+            class="category-choices col-xs-12"
+            placeholder="Select the currency"
+          >
             <option value="choice">KSH</option>
             <option value="choice">UG</option>
             <option value="choice">TSH</option>
@@ -131,8 +132,6 @@ import NavbarComponent from '../NavbarComponent.vue';
       </div>
     </div>
   </section>
-
-
 </template>
 <style scoped>
 .container {
@@ -143,7 +142,7 @@ import NavbarComponent from '../NavbarComponent.vue';
   width: 80%;
 }
 
-.question-header>div {
+.question-header > div {
   text-align: center;
   display: flex;
   justify-content: center;
@@ -178,7 +177,7 @@ import NavbarComponent from '../NavbarComponent.vue';
   }
 }
 
-.categories>div>div>p {
+.categories > div > div > p {
   font-weight: 600;
   font-size: 16px;
 }
@@ -196,7 +195,7 @@ import NavbarComponent from '../NavbarComponent.vue';
   margin: 30px 10px 20px 0px;
 }
 
-.next>div {
+.next > div {
   display: flex;
   justify-content: flex-end;
   /* Aligns content to the right */

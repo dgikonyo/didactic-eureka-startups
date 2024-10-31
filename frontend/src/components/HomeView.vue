@@ -43,10 +43,7 @@ import Footer from './FooterComponent.vue';
         </div>
 
         <div class="cta">
-          <RouterLink
-            to="/campaign/questions"
-            class="btn-start col-sm-12 col-md-12 col-lg-6"
-            >Start a Campaign
+          <RouterLink to="/campaign/questions" class="btn-start col-sm-12 col-md-12 col-lg-6">Start a Campaign
           </RouterLink>
           <button class="btn-explore col-sm-12 col-md-12 col-lg-6">
             Explore Projects
@@ -60,26 +57,22 @@ import Footer from './FooterComponent.vue';
     </div>
   </section>
 
-  <section class="campaign-cards">
+  <section class="campaign-cards-section">
     <div class="campaign-section">
       <!-- verified projects -->
       <div class="section-description row">
-        <p class="page-text col-8">
+        <p class="page-text col-sm-12 col-md-8 col-lg-8">
           We help local <span class="span-border">entrepreneurs</span> and
           <span class="span-blue">organizations</span> raise funds for
           <span class="span-border">projects</span>
         </p>
-        <a class="col-4">View All</a>
+        <a class="col-sm-12 col-md-4 col-lg-4">View All</a>
       </div>
 
-      <div class="project-cards">
-        <div class="card">
+      <div class="project-cards row">
+        <div class="card col-sm-12 col-md-4 col-lg-4">
           <div class="pic-space">
-            <img
-              src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png"
-              class="card-img-top"
-              alt="..."
-            />
+            <img src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png" class="card-img-top" alt="..." />
           </div>
           <div class="card-body">
             <h5 class="category">HEALTH 4 U</h5>
@@ -92,13 +85,9 @@ import Footer from './FooterComponent.vue';
           </div>
         </div>
 
-        <div class="card">
+        <div class="card col-sm-12 col-md-4 col-lg-4">
           <div class="pic-space">
-            <img
-              src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png"
-              class="card-img-top"
-              alt="..."
-            />
+            <img src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png" class="card-img-top" alt="..." />
           </div>
           <div class="card-body">
             <h5 class="category">HEALTH 4 U</h5>
@@ -111,13 +100,9 @@ import Footer from './FooterComponent.vue';
           </div>
         </div>
 
-        <div class="card">
+        <div class="card col-sm-12 col-md-4 col-lg-4">
           <div class="pic-space">
-            <img
-              src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png"
-              class="card-img-top"
-              alt="..."
-            />
+            <img src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png" class="card-img-top" alt="..." />
           </div>
           <div class="card-body">
             <h5 class="category">HEALTH 4 U</h5>
@@ -132,23 +117,21 @@ import Footer from './FooterComponent.vue';
       </div>
     </div>
 
-    <div class="campaign-section2">
+    <div class="campaign-section">
       <!-- projects near you -->
       <div class="section-description row">
-        <p class="page-text col-8">
+        <p class="page-text col-sm-12 col-md-8 col-lg-8">
           <span class="span-blue">Investing</span> in a promising new venture.
         </p>
-        <a class="col-4">View All</a>
+        <a class="col-sm-12 col-md-4 col-lg-4">View All</a>
       </div>
 
-      <div class="project-cards">
-        <div class="card">
+      <div class="project-cards row">
+
+        <div class="card col-sm-12 col-md-4 col-lg-4">
           <div class="pic-space">
-            <img
-              src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png"
-              class="card-img-top"
-              alt="Bathing stones"
-            />
+            <img src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png" class="card-img-top"
+              alt="Bathing stones" />
           </div>
           <div class="card-body">
             <h5 class="category">HEALTH 4 U</h5>
@@ -161,13 +144,10 @@ import Footer from './FooterComponent.vue';
           </div>
         </div>
 
-        <div class="card">
+        <div class="card col-sm-12 col-md-4 col-lg-4">
           <div class="pic-space">
-            <img
-              src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png"
-              class="card-img-top"
-              alt="Bathing stones"
-            />
+            <img src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png" class="card-img-top"
+              alt="Bathing stones" />
           </div>
           <div class="card-body">
             <h5 class="category">HEALTH 4 U</h5>
@@ -180,13 +160,10 @@ import Footer from './FooterComponent.vue';
           </div>
         </div>
 
-        <div class="card">
+        <div class="card col-sm-12 col-md-4 col-lg-4">
           <div class="pic-space">
-            <img
-              src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png"
-              class="card-img-top"
-              alt="Bathing stones"
-            />
+            <img src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png" class="card-img-top"
+              alt="Bathing stones" />
           </div>
           <div class="card-body">
             <h5 class="category">HEALTH 4 U</h5>
@@ -202,53 +179,48 @@ import Footer from './FooterComponent.vue';
     </div>
   </section>
 
-  <section class="trending">
-    <div class="trending-section">
-      <!-- verified projects -->
-      <div class="section-description">
-        <div class="desc">
-          <p class="page-text">Trending right now</p>
-        </div>
-        <div class="desc2">
-          <p class="link-text"><a class="link">View All</a></p>
+  <section class="trending-section">
+    <!-- verified projects -->
+    <div class="section-description row">
+      <p class="page-text col-sm-12 col-md-8 col-lg-8">Trending right now</p>
+      <p class="link-text col-sm-12 col-md-4 col-lg-4"><a class="link">View All</a></p>
+    </div>
+
+    <div class="trending-row row">
+      <div class="trending-card col-sm-12 col-md-4 col-lg-4">
+        <div class="trending-body">
+          <p class="back">Writing</p>
+          <p class="card-text">
+            How Romance Author, Penny Reid, 20X her funding goal with the help
+            of Audiobooks
+          </p>
+          <button class="back">Read more</button>
         </div>
       </div>
 
-      <div class="trending-row">
-        <div class="trending-card">
-          <div class="trending-body">
-            <p class="back">Writing</p>
-            <p class="card-text">
-              How Romance Author, Penny Reid, 20X her funding goal with the help
-              of Audiobooks
-            </p>
-            <button class="back">Read more</button>
-          </div>
+      <div class="trending-card col-sm-12 col-md-4 col-lg-4">
+        <div class="trending-body">
+          <p class="back">Writing</p>
+          <p class="card-text">
+            How Romance Author, Penny Reid, 20X her funding goal with the help
+            of Audiobooks
+          </p>
+          <button class="back">Read more</button>
         </div>
+      </div>
 
-        <div class="trending-card">
-          <div class="trending-body">
-            <p class="back">Writing</p>
-            <p class="card-text">
-              How Romance Author, Penny Reid, 20X her funding goal with the help
-              of Audiobooks
-            </p>
-            <button class="back">Read more</button>
-          </div>
-        </div>
-
-        <div class="trending-card">
-          <div class="trending-body">
-            <p class="back">Writing</p>
-            <p class="card-text">
-              How Romance Author, Penny Reid, 20X her funding goal with the help
-              of Audiobooks
-            </p>
-            <button class="back">Read more</button>
-          </div>
+      <div class="trending-card col-sm-12 col-md-4 col-lg-4">
+        <div class="trending-body">
+          <p class="back">Writing</p>
+          <p class="card-text">
+            How Romance Author, Penny Reid, 20X her funding goal with the help
+            of Audiobooks
+          </p>
+          <button class="back">Read more</button>
         </div>
       </div>
     </div>
+
   </section>
   <section class="footer">
     <Footer class="end"></Footer>
@@ -350,14 +322,14 @@ template {
   margin-bottom: 10px;
 }
 
-.catchphrase > div {
+.catchphrase>div {
   border: black, 0.8px, solid;
   font-family: 'Inter', sans-serif;
   border-radius: 25px;
   margin: 10px 15px 10px 0px;
 }
 
-.catchphrase2 > div {
+.catchphrase2>div {
   border: black, 0.8px, solid;
   font-family: 'Inter', sans-serif;
   border-radius: 25px;
@@ -443,6 +415,7 @@ ul {
   max-width: 380px;
   border: black, 1.5px, solid;
   border-radius: 15px;
+  margin-bottom: 20px;
 }
 
 .card-img-top {
@@ -509,5 +482,12 @@ p.card-text {
 
 .end {
   padding: 20px 40px;
+}
+
+.campaign-cards-section,
+.trending-section {
+  max-width: 1280px;
+  padding: 2rem;
+  margin: 0 auto;
 }
 </style>
