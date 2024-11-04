@@ -1,12 +1,7 @@
-<script setup lang="ts">
-import NavbarComponent from '../NavbarComponent.vue';
-</script>
 <template>
   <!-- https://codepen.io/thomasMM/pen/jOWxOpV?editors=1000 -->
-
   <NavbarComponent></NavbarComponent>
-
-  <section class="questions">
+  <section class="questions-section">
     <div class="question-stepper"></div>
 
     <div class="question-1 container">
@@ -112,10 +107,7 @@ import NavbarComponent from '../NavbarComponent.vue';
           </div>
         </div>
         <div class="categories row">
-          <select
-            class="category-choices col-xs-12"
-            placeholder="Select the currency"
-          >
+          <select class="category-choices col-xs-12" placeholder="Select the currency">
             <option value="choice">KSH</option>
             <option value="choice">UG</option>
             <option value="choice">TSH</option>
@@ -126,86 +118,15 @@ import NavbarComponent from '../NavbarComponent.vue';
         <div class="horizontal-line"></div>
         <div class="next row">
           <div class="col-xs-12">
-            <button class="btn-next">Next:Campaign Details</button>
+            <RouterLink class="btn-next" to="/campaign/content">Next:Campaign Details</RouterLink>
           </div>
         </div>
       </div>
     </div>
   </section>
 </template>
-<style scoped>
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  width: 80%;
-}
-
-.question-header > div {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.question-body {
-  text-align: center;
-}
-
-.question-text {
-  font-size: 24px;
-  font-weight: 500;
-  width: 80%;
-}
-
-.question-guide {
-  font-weight: 400;
-  font-size: 16px;
-  width: 70%;
-}
-
-.categories {
-  width: 80%;
-  margin-bottom: 10%;
-
-  select {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30%;
-  }
-}
-
-.categories > div > div > p {
-  font-weight: 600;
-  font-size: 16px;
-}
-
-.horizontal-line {
-  background-color: #ccd1d1;
-  width: 100%;
-  height: 1px;
-  line-height: 80%;
-}
-
-.next {
-  width: 100%;
-  flex-wrap: wrap;
-  margin: 30px 10px 20px 0px;
-}
-
-.next > div {
-  display: flex;
-  justify-content: flex-end;
-  /* Aligns content to the right */
-}
-
-.btn-next {
-  font-size: 20px;
-  color: white;
-  background-color: rgb(44, 62, 80);
-  border: none;
-  padding: 10px 30px;
-}
-</style>
+<script setup lang="ts">
+import NavbarComponent from '../NavbarComponent.vue';
+import '../../assets/main.css';
+import { RouterLink } from 'vue-router';
+</script>

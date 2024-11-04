@@ -6,3 +6,130 @@
   width: 100%;
   margin: 0 auto;
 }
+
+/* QUESTIONS SECTION START*/
+.questions-section {
+  a {
+    text-decoration: none;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 80%;
+  }
+
+  .question-header>div {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .question-body {
+    text-align: center;
+  }
+
+  .question-text {
+    font-size: 24px;
+    font-weight: 500;
+    width: 80%;
+  }
+
+  .question-guide {
+    font-weight: 400;
+    font-size: 16px;
+    width: 70%;
+  }
+
+  .categories {
+    width: 80%;
+    margin-bottom: 10%;
+
+    select {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30%;
+    }
+  }
+
+  .categories>div>div>p {
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .horizontal-line {
+    background-color: #ccd1d1;
+    width: 100%;
+    height: 1px;
+    line-height: 80%;
+  }
+
+  .next {
+    width: 100%;
+    flex-wrap: wrap;
+    margin: 30px 10px 20px 0px;
+  }
+
+  .next>div {
+    display: flex;
+    justify-content: flex-end;
+    /* Aligns content to the right */
+  }
+
+  .btn-next {
+    font-size: 20px;
+    color: white;
+    background-color: rgb(44, 62, 80);
+    border: none;
+    padding: 10px 30px;
+  }
+}
+
+/* QUESTIONS SECTION END */
+
+/* CONTENT SECTION START*/
+.content-section {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+
+  .horizontal-line {
+    background-color: #ccd1d1;
+    width: 100%;
+    height: 1px;
+    line-height: 80%;
+  }
+
+  .next {
+    width: 100%;
+    flex-wrap: wrap;
+    margin: 30px 10px 20px 0px;
+  }
+
+  .next>div {
+    display: flex;
+    justify-content: flex-end;
+    /* Aligns content to the right */
+  }
+
+  .campaign-info {
+    margin-bottom: 30px;
+  }
+
+  .campaign-info-title {
+    font-size: var(--desktop-secondary-text-size);
+    font-weight: 500;
+  }
+
+  .campaign-info-expl {
+    font-size: var(--desktop-body-text-size);
+    font-weight: 300;
+    color: var(--light-secondary);
+  }
+}
+
+/* CONTENT SECTION END*/

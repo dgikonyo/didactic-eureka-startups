@@ -66,7 +66,7 @@ ul {
 }
 
 .footer-site-title {
-    font-family: 'Merriweather Sans', sFans-serif;
+    font-family: 'Merriweather Sans', sans-serif;
     color: #e40066;
     font-weight: 600;
     font-size: 20px;
