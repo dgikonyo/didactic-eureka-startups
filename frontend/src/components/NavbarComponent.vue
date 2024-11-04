@@ -30,6 +30,8 @@ import { RouterLink, RouterView } from 'vue-router';
 <style scoped>
 .navbar-section {
     max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .navigation-bar {

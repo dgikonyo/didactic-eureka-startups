@@ -1,11 +1,65 @@
 /* for entire site */
-:root {}
+* {
+  max-width: 100%;
+}
+
+:root {
+  color-scheme: light dark;
+  --light-background: #f0f0f0;
+  /* Light background color */
+  --light-primary: #261447;
+  /* Light primary color */
+  --light-secondary: #606060;
+  /* Light secondary color */
+  --light-accent: #E40066;
+  /* Light accent color */
+  --button-primary-color: #E40066;
+  /* Button primary color*/
+
+  /* font sizes */
+  --desktop-title-text-size: 70px;
+  --desktop-secondary-text-size: 24px;
+  --desktop-body-text-size: 18px;
+
+  --laptop-title-text-size: 50px;
+  --laptop-secondary-text-size: 24px;
+  --laptop-body-text-size: 18px;
+
+  --tablet-title-text-size: 45px;
+
+  --mobile-title-size: 50px;
+  --mobile-secondary-size: 20px;
+  --mobile-body-text-size: 18px;
+}
 
 /* semantic color variables for this project */
 :root {}
 
 @media (prefers-color-scheme: dark) {
-  :root {}
+  :root {
+    --dark-background: #1a1a1a;
+    /* Dark background color (a near-black shade to reduce strain on the eyes) */
+    --dark-primary: #d6d6f7;
+    /* Dark primary color (a softer, light variant of your light primary color) */
+
+    --dark-secondary: #c2c2c2;
+    /* Dark secondary color (a lighter gray for better contrast on dark backgrounds) */
+
+    --dark-accent: #ff5a8e;
+    /* Dark accent color (a more vibrant, lighter pink shade for accent visibility) */
+
+    --button-primary-color-dark: #ff5a8e;
+    /* Button primary color in dark mode, matching the accent color for consistency */
+  }
 }
 
-body {}
+body {
+  background-color: light-dark(var(--light-background), var(--dark-background));
+  color: light-dark(var(--light-primary), var(--dark-primary));
+  font-family: 'Merriweather Sans', sans-serif;
+}
+
+
+a {
+  text-decoration: none;
+}
