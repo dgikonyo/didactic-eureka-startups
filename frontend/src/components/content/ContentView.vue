@@ -16,11 +16,11 @@
         <div>
           <p class="campaign-info-expl">What is the title of your campaign?</p>
         </div>
-        <div>
-          <input placeholder="campaign name" type="text" />
+        <div class="campaign-info-input">
+          <input placeholder="Campaign Title" type="text" />
         </div>
       </div>
-      <div class="campaign-tagline">
+      <div class="campaign-info">
         <h2 class="campaign-info-title">Campaign Tagline</h2>
         <div>
           <p class="campaign-info-expl">
@@ -28,23 +28,26 @@
             your audience
           </p>
         </div>
-        <div>
-          <textarea placeholder="enter campaign tagline :)" rows="2"></textarea>
+        <div class="campaign-info-input">
+          <textarea placeholder="Enter Campaign Tagline :-)" rows="2" cols="80"></textarea>
         </div>
       </div>
-      <div class="campaign-card">
+      <div class="campaign-info">
         <h2 class="campaign-info-title">Campaign Card Image</h2>
         <div>
-          <p class="campaign-info-expl">Upload a square image that represents your campaign</p>
+          <p class="campaign-info-expl">
+            Upload a square image that represents your campaign
+          </p>
           <p class="campaign-info-expl">
             1080 * 1080 recommended resolution. 220 * 220 minimum resolution.
           </p>
         </div>
-        <div>
+        <div class="campaign-info-input">
           <input type="file" class="card-upload" name="campaign-card-image-upload" />
+          <label for="file">Select file</label>
         </div>
       </div>
-      <div class="campaign-video">
+      <div class="campaign-info">
         <h2 class="campaign-info-title">Pitch Video or Image</h2>
         <div>
           <p class="campaign-info-expl">
@@ -53,11 +56,11 @@
             your campaign on your page, cards and in searches.
           </p>
         </div>
-        <div>
-          <input type="text" placeholder="paste video link" />
+        <div class="campaign-info-input">
+          <input type="text" placeholder="Paste Video Link" />
         </div>
       </div>
-      <div class="campaign-location">
+      <div class="campaign-info">
         <h2 class="campaign-info-title">Location</h2>
         <div>
           <p class="campaign-info-expl">
@@ -66,14 +69,14 @@
             see.
           </p>
         </div>
-        <div>
+        <div class="campaign-info-input">
           <select>
             <option>Kenya</option>
             <option>Uganda</option>
           </select>
         </div>
       </div>
-      <div class="campaign-category">
+      <div class="campaign-info">
         <h2 class="campaign-info-title">Category</h2>
         <div>
           <p class="campaign-info-expl">
@@ -81,40 +84,42 @@
             represents your project
           </p>
         </div>
-        <div>
+        <div class="campaign-info-input">
           <select>
             <option>sdfgh</option>
             <option>oiuytr</option>
           </select>
         </div>
       </div>
-      <div class="campaign-tags">
+      <div class="campaign-info">
         <h2 class="campaign-info-title">Tags</h2>
         <div>
-          <p>
+          <p class="campaign-info-expl">
             Enter up to five keywords that best describe your campaign. These
             tags will help with organization and discoverability.
           </p>
         </div>
-        <div>
-          <textarea placeholder="...project, hiking-gear, assistance," rows="1"></textarea>
+        <div class="campaign-info-input">
+          <textarea placeholder="...project, hiking-gear, assistance," rows="2" cols="80"></textarea>
         </div>
       </div>
 
-      <div class="campaign-duration">
+      <div class="campaign-info">
         <h2 class="campaign-info-title">Campaign Duration</h2>
         <div>
-          <p>Enter the duration of your campaign in days</p>
+          <p class="campaign-info-expl">
+            Enter the duration of your campaign in days
+          </p>
         </div>
-        <div>
-          <input type="number" placeholder="16, 18, 20, 79" />
+        <div class="campaign-info-input">
+          <input type="number" placeholder="16, 18, 20, 79 ...." />
         </div>
       </div>
 
       <div class="horizontal-line"></div>
       <div class="next row">
         <div class="col-xs-12">
-          <button class="btn-next">Create</button>
+          <button class="btn-secondary">Create</button>
         </div>
       </div>
     </form>

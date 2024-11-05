@@ -118,7 +118,7 @@
         <div class="horizontal-line"></div>
         <div class="next row">
           <div class="col-xs-12">
-            <RouterLink class="btn-next" to="/campaign/content">Next:Campaign Details</RouterLink>
+            <RouterLink class="btn-next" to="/campaigns/content">Next:Campaign Details</RouterLink>
           </div>
         </div>
       </div>

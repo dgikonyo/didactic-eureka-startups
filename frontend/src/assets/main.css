@@ -2,10 +2,103 @@
 @import 'bootstrap/dist/css/bootstrap.css';
 
 /* for styling components */
-#app {
-  width: 100%;
+#app {  
   margin: 0 auto;
 }
+
+::placeholder {
+  opacity: 0.5;
+  color: var(--button-secondary-color);
+  font-weight: 600;
+}
+
+/* BUTTON STYLES START */
+.btn-primary {
+  background-color: var(--button-primary-color);
+  color: #FFFFFF;
+  font-size: var(--desktop-body-text-size);
+  border: none;
+  padding: 10px 30px;
+  border-radius: 8px;
+}
+
+.btn-secondary {
+  background-color: var(--button-secondary-color);
+  color: #FFFFFF;
+  font-size: var(--desktop-body-text-size);
+  border: none;
+  padding: 10px 30px;
+  border-radius: 8px;
+}
+
+/* BUTTON STYLES END */
+
+/* NAVBAR SECTION START */
+.navbar-section {
+  /* max-width: 1280px; */
+  margin-left: auto;
+  margin-right: auto;
+
+  .navigation-bar {
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-bottom: 20px;
+  }
+
+  .nav-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-item {
+    display: flex;
+    justify-content: center;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .btn {
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    border-radius: 8px;
+    padding: 5px 5px;
+    margin-right: 10px;
+    width: 100px;
+  }
+
+  .btn-login {
+    background-color: hsla(333, 100%, 45%, 1);
+    color: white;
+    border: none;
+  }
+
+  .btn-sign-up {
+    background-color: hsla(0, 0%, 100%, 0.3);
+    color: black;
+    border: black, 0.8px, solid;
+  }
+
+  .title {
+    font-size: 30px;
+    color: black;
+    font-weight: 500;
+  }
+
+  .explore {
+    font-size: 20px;
+    color: black;
+    font-weight: 500;
+  }
+
+  .explore-icon {
+    margin: 0 5px 0 5px;
+  }
+}
+
+/* NAVBAR SECTION END */
 
 /* QUESTIONS SECTION START*/
 .questions-section {
@@ -79,21 +172,13 @@
     justify-content: flex-end;
     /* Aligns content to the right */
   }
-
-  .btn-next {
-    font-size: 20px;
-    color: white;
-    background-color: rgb(44, 62, 80);
-    border: none;
-    padding: 10px 30px;
-  }
 }
 
 /* QUESTIONS SECTION END */
 
 /* CONTENT SECTION START*/
 .content-section {
-  width: 75%;
+  width: 800px;
   margin-left: auto;
   margin-right: auto;
 
@@ -130,6 +215,63 @@
     font-weight: 300;
     color: var(--light-secondary);
   }
+
+  .campaign-info-input {
+    width: 100%;
+  }
+
+  .card-upload {
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+  }
+
+  .campaign-info-input label {
+    display: block;
+    position: relative;
+    width: 100px;
+    height: 50px;
+    border-radius: 8px;
+    background: var(--button-secondary-color);
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform .2s ease-out;
+  }
 }
 
 /* CONTENT SECTION END*/
+
+/* ARTICLE SECTION START */
+.article-section {}
+
+/* ARTICLE SECTION END */
+
+/* EXPLORE SECTION START */
+.explore-section {
+  max-width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: auto;
+  margin-left: auto;
+we
+  .card {
+    width: 30%;
+    margin-bottom: 30px;
+    margin-right: 10px;
+  }
+
+  .search {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+}
+
+/* EXPLORE SECTION END */
