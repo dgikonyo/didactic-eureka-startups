@@ -43,7 +43,7 @@ import Footer from './FooterComponent.vue';
         </div>
 
         <div class="cta">
-          <RouterLink to="/campaign/questions" class="btn-start col-sm-12 col-md-12 col-lg-6">Start a Campaign
+          <RouterLink to="/campaigns/questions" class="btn-start col-sm-12 col-md-12 col-lg-6">Start a Campaign
           </RouterLink>
           <button class="btn-explore col-sm-12 col-md-12 col-lg-6">
             Explore Projects
@@ -127,7 +127,6 @@ import Footer from './FooterComponent.vue';
       </div>
 
       <div class="project-cards row">
-
         <div class="card col-sm-12 col-md-4 col-lg-4">
           <div class="pic-space">
             <img src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png" class="card-img-top"

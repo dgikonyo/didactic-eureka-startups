@@ -7,13 +7,21 @@ import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 
 import App from './App.vue';
 import router from './router';
 
-library.add(faArrowRight, faLinkedin, faXTwitter, faInstagram, faFacebook);
+library.add(
+  faArrowRight,
+  faLinkedin,
+  faXTwitter,
+  faInstagram,
+  faFacebook,
+  faMagnifyingGlass
+);
 
 const app = createApp(App);
 
