@@ -8,6 +8,7 @@ import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 
@@ -20,7 +21,8 @@ library.add(
   faXTwitter,
   faInstagram,
   faFacebook,
-  faMagnifyingGlass
+  faMagnifyingGlass,
+  faBookmark
 );
 
 const app = createApp(App);
