@@ -15,6 +15,10 @@ const countrySchema = new Schema(
       type: String,
       unique: true,
     },
+    country_currency: {
+      type: String,
+      unique: true,
+    },
   },
   { timestamps: true }
 );
