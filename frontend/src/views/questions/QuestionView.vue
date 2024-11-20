@@ -174,29 +174,6 @@ import { getCountries } from '@/services/CountryService';
 import { registerCampaign } from '@/services/CampaignService';
 import type { Country } from '@/types/Country';
 
-const campaign = ref<Campaign>({
-  category: '',
-  sub_category: '',
-  country: '',
-  currency: '',
-  title: '',
-  tagLine: '',
-  cardImage: '',
-  location: '',
-  tags: '',
-  startDate: '',
-  endDate: '',
-  duration: '',
-  targetAmount: '',
-  videoUrl: '',
-  videoOverlayUrl: '',
-  story: '',
-  supportEmail: '',
-  fundingModel: '',
-  user_id: '',
-  campaignStatus: '',
-  countryId: '',
-});
 
 const countries = ref<Country[]>([])
 
@@ -217,8 +194,8 @@ const next = () => {
   }
 };
 
-const registerCampaignHandler = async () => {
-  await registerCampaign(campaign.value);
+const registerCampaignHandler = async (campaign: Campaign) => {
+  await registerCampaign(campaign);
 };
 
 // get data to be saved into database
@@ -228,7 +205,29 @@ data: () => {
     countries,
     currencies: {},
     question,
-    addCampaign,
+    campaign: {
+      category: '',
+      sub_category: '',
+      country: '',
+      currency: '',
+      title: '',
+      tagLine: '',
+      cardImage: '',
+      location: '',
+      tags: '',
+      startDate: '',
+      endDate: '',
+      duration: '',
+      targetAmount: '',
+      videoUrl: '',
+      videoOverlayUrl: '',
+      story: '',
+      supportEmail: '',
+      fundingModel: '',
+      user_id: '',
+      campaignStatus: '',
+      countryId: '',
+    },
   };
 };
 </script>
