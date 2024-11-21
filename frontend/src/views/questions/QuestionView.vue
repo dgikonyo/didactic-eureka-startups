@@ -49,10 +49,9 @@
                 <div class="col-12">
                   <select class="category-choices" placeholder="Select" v-model="campaign.category">
                     <option disabled value="">Please select one</option>
-                    <option value="choice">FinTech</option>
-                    <option value="choice">Saab</option>
-                    <option value="choice">Mercedes</option>
-                    <option value="choice">Audi</option>
+                    <option value="choice" v-for="category in businessCategories" :key="category.categoryName">
+                      {{ category.categoryName }}
+                    </option>
                   </select>
                 </div>
               </div>
@@ -64,10 +63,9 @@
                 <div class="col-12">
                   <select class="category-choices" placeholder="Select" v-model="campaign.sub_category">
                     <option disabled value="">Please select one</option>
-                    <option value="choice">FinTech</option>
-                    <option value="choice">Saab</option>
-                    <option value="choice">Mercedes</option>
-                    <option value="choice">Audi</option>
+                    <option value="choice" v-for="category in businessCategories" :key="category.categoryName">
+                      {{ category.subcategories }}
+                    </option>
                   </select>
                 </div>
               </div>
@@ -106,8 +104,8 @@
             <div class="categories row">
               <select class="category-choices" placeholder="Select your country" v-model="campaign.country">
                 <option disabled value="">Please select one</option>
-                <option value="choice" v-for="country in countries" :key="country._id">
-                  {{ country.country_name }}
+                <option value="choice" v-for="country in countries" :key="country.name">
+                  {{ country.name }}
                 </option>
               </select>
             </div>
@@ -126,7 +124,7 @@
 
     <transition class="slide-fade">
       <div class="question-3 container" v-show="question === 3">
-        <form class="form" action="#" @submit.prevent="registerCampaign">
+        <form class="form" action="#" @submit.prevent="registerCampaignHandler">
           <div class="question-body">
             <div class="question-header row">
               <div class="col-12">
@@ -145,8 +143,8 @@
             <div class="categories row">
               <select class="category-choices col-xs-12" placeholder="Select the currency" v-model="campaign.currency">
                 <option disabled value="">Please select one</option>
-                <option value="choice" v-for="country in countries" :key="country._id">
-                  {{ country.country_currency }}
+                <option value="choice" v-for="country in countries" :key="country.name">
+                  {{ country.currencyAbbr }}
                 </option>
               </select>
             </div>
@@ -170,22 +168,41 @@ import '@/assets/main.css';
 import { RouterLink } from 'vue-router';
 import { onMounted, ref } from 'vue';
 import type { Campaign } from '@/types/Campaign';
-import { getCountries } from '@/services/CountryService';
+import { country } from '@/data/menu_data';
+import { businessCategories } from '@/data/menu_data'
 import { registerCampaign } from '@/services/CampaignService';
-import type { Country } from '@/types/Country';
 
-
-const countries = ref<Country[]>([])
-
-onMounted(async () => {
-  countries.value = await getCountries();
-});
-
-const addCampaign = async (campaign: Campaign) => {
-  await registerCampaign(campaign);
-};
 
 const question = ref(1);
+const countries = country;
+const categories = businessCategories;
+
+console.log(countries);
+
+const campaign = ref<Campaign>({
+  category: '',
+  sub_category: '',
+  country: '',
+  currency: '',
+  title: '',
+  tagLine: '',
+  cardImage: '',
+  location: '',
+  tags: '',
+  startDate: '',
+  endDate: '',
+  duration: '',
+  targetAmount: '',
+  videoUrl: '',
+  videoOverlayUrl: '',
+  story: '',
+  supportEmail: '',
+  fundingModel: '',
+  user_id: '',
+  campaignStatus: '',
+  countryId: '',
+});
+
 
 // Methods for navigating between questions
 const next = () => {
@@ -196,38 +213,5 @@ const next = () => {
 
 const registerCampaignHandler = async (campaign: Campaign) => {
   await registerCampaign(campaign);
-};
-
-// get data to be saved into database
-data: () => {
-  return {
-    questions: {},
-    countries,
-    currencies: {},
-    question,
-    campaign: {
-      category: '',
-      sub_category: '',
-      country: '',
-      currency: '',
-      title: '',
-      tagLine: '',
-      cardImage: '',
-      location: '',
-      tags: '',
-      startDate: '',
-      endDate: '',
-      duration: '',
-      targetAmount: '',
-      videoUrl: '',
-      videoOverlayUrl: '',
-      story: '',
-      supportEmail: '',
-      fundingModel: '',
-      user_id: '',
-      campaignStatus: '',
-      countryId: '',
-    },
-  };
 };
 </script>
