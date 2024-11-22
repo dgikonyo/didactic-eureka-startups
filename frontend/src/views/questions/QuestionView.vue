@@ -49,8 +49,8 @@
                 <div class="col-12">
                   <select class="category-choices" placeholder="Select" v-model="campaign.category">
                     <option disabled value="">Please select one</option>
-                    <option value="choice" v-for="category in businessCategories" :key="category.categoryName">
-                      {{ category.categoryName }}
+                    <option value="choice" v-for="category in businessCategories" :key="category">
+                      {{ category }}
                     </option>
                   </select>
                 </div>
@@ -63,8 +63,8 @@
                 <div class="col-12">
                   <select class="category-choices" placeholder="Select" v-model="campaign.sub_category">
                     <option disabled value="">Please select one</option>
-                    <option value="choice" v-for="category in businessCategories" :key="category.categoryName">
-                      {{ category.subcategories }}
+                    <option value="choice" v-for="subCategory in businessSubCategories" :key="subCategory">
+                      {{ subCategory }}
                     </option>
                   </select>
                 </div>
@@ -170,14 +170,12 @@ import { onMounted, ref } from 'vue';
 import type { Campaign } from '@/types/Campaign';
 import { country } from '@/data/menu_data';
 import { businessCategories } from '@/data/menu_data'
+import { businessSubCategories } from '@/data/menu_data';
 import { registerCampaign } from '@/services/CampaignService';
 
 
 const question = ref(1);
 const countries = country;
-const categories = businessCategories;
-
-console.log(countries);
 
 const campaign = ref<Campaign>({
   category: '',
@@ -214,4 +212,6 @@ const next = () => {
 const registerCampaignHandler = async (campaign: Campaign) => {
   await registerCampaign(campaign);
 };
+
+console.log(campaign)
 </script>
