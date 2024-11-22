@@ -172,10 +172,11 @@ import { country } from '@/data/menu_data';
 import { businessCategories } from '@/data/menu_data'
 import { businessSubCategories } from '@/data/menu_data';
 import { registerCampaign } from '@/services/CampaignService';
-
+import { useCampaignStore } from '@/stores/counter';
 
 const question = ref(1);
 const countries = country;
+const campaignStore = useCampaignStore();
 
 const campaign = ref<Campaign>({
   category: '',
@@ -209,8 +210,9 @@ const next = () => {
   }
 };
 
+// save to store, redirect to questions page
 const registerCampaignHandler = async (campaign: Campaign) => {
-  await registerCampaign(campaign);
+ 
 };
 
 console.log(campaign)
