@@ -3,9 +3,12 @@ import axios from 'axios';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-export const registerCampaign = async (
-  campaign: Campaign
-): Promise<Campaign> => {
-  const response = await axios.post(`${BACKEND_URL}`, campaign);
-  return response.data;
+export const registerCampaign = async (campaign: Campaign): Promise<any> => {
+  try {
+    const response = await axios.post(`${BACKEND_URL}`, campaign);
+
+    return response.data;
+  } catch (error) {
+    return error;
+  }
 };
