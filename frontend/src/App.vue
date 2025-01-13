@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router';
-import Footer from './components/FooterComponent.vue';
-import CardComponent from './components/CardComponent.vue';
-import StartCampaign from './StartCampaign.vue';
+import { RouterView } from 'vue-router';
 </script>
 
 <template>
@@ -10,5 +7,3 @@ import StartCampaign from './StartCampaign.vue';
     <RouterView />
   </div>
 </template>
-<style scoped>
-</style>
