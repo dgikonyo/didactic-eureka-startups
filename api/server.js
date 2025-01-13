@@ -4,7 +4,9 @@ const app = express();
 const cors = require("cors");
 const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
-const path = require('path');
+const path = require("path");
+const swaggerUI = require("swagger-ui-express");
+const swaggerSpec = require("./swagger");
 
 //  routes
 const AuthRoutes = require("./routes/auth/auth.routes");
@@ -12,9 +14,11 @@ const ServerRoute = require("./routes/server.route");
 const CampaignRoutes = require("./routes/campaign/campaign.route");
 const UserRoutes = require("./routes/user/user.route");
 const serverTest = require("./routes/server.route");
+
 // database
 const mongoose = require("mongoose");
 const { MongoClient, ServerApiVersion } = require("mongodb");
+
 // middleware
 const AuthMiddleware = require("./middleware/auth.middleware");
 const authMiddleware = new AuthMiddleware();
@@ -30,10 +34,10 @@ app.use(express.json());
 app.use(cors());
 
 // Serve static files from the Vue.js dist directory
-app.use(express.static(path.join(__dirname, '../frontend/dist')));
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
 // Catch-all route to serve the index.html file for any other routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
 // database connection
@@ -71,6 +75,9 @@ app.use(
   (req, res, next) => authMiddleware.authenticateToken(req, res, next),
   UserRoutes
 );
+
+// serve swagger documentation
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}/api/v1`);
