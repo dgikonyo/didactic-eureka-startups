@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
-import { Campaign } from '@/types/Campaign';
+import type { Campaign } from '@/types/Campaign';
 import { registerCampaign } from '@/services/CampaignService';
 
 export const useCounterStore = defineStore('counter', () => {
@@ -14,37 +14,38 @@ export const useCounterStore = defineStore('counter', () => {
 });
 
 export const useCampaignStore = defineStore('campaign', () => {
-  state: () => ({
-    campaignData: {
-      category: '',
-      sub_category: '',
-      country: '',
-      currency: '',
-      title: '',
-      tagLine: '',
-      cardImage: '',
-      location: '',
-      tags: '',
-      startDate: '',
-      endDate: '',
-      duration: '',
-      targetAmount: '',
-      videoUrl: '',
-      videoOverlayUrl: '',
-      story: '',
-      supportEmail: '',
-      fundingModel: '',
-      user_id: '',
-      campaignStatus: '',
-      countryId: '',
-    },
+  const campaignData = ref<Campaign>({
+    category: '',
+    sub_category: '',
+    country: '',
+    currency: '',
+    title: '',
+    tagLine: '',
+    cardImage: '',
+    location: '',
+    tags: '',
+    startDate: new Date(),
+    endDate: new Date(),
+    duration: 0,
+    targetAmount: 0,
+    videoUrl: '',
+    videoOverlayUrl: '',
+    story: '',
+    supportEmail: '',
+    fundingModel: '',
+    user_id: '',
+    campaignStatus: '',
+    countryId: 0,
   });
 
-  actions: {
-    async saveCampaignData() {
-    
-        const response = await registerCampaign(this.campaignData)
- 
+  const saveCampaignData = async () => {
+    try {
+      const response = await registerCampaign(campaignData.value);
+      console.log('Campaign registered successfully:', response);
+    } catch (error) {
+      console.error('Error registering campaign:', error);
     }
-  }
+  };
+
+  return { campaignData, saveCampaignData };
 });

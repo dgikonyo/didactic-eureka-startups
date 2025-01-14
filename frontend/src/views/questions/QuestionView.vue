@@ -1,3 +1,58 @@
+<script setup lang="ts">
+import NavbarComponent from '@/components/NavbarComponent.vue';
+import '@/assets/main.css';
+import { RouterLink } from 'vue-router';
+import { onMounted, ref } from 'vue';
+import type { Campaign } from '@/types/Campaign';
+import { country } from '@/data/menu_data';
+import { businessCategories } from '@/data/menu_data'
+import { businessSubCategories } from '@/data/menu_data';
+import { registerCampaign } from '@/services/CampaignService';
+import { useCampaignStore } from '@/stores/counter';
+
+const question = ref(1);
+const countries = country;
+const campaignStore = useCampaignStore();
+
+const campaign = ref<Campaign>({
+  category: '',
+  sub_category: '',
+  country: '',
+  currency: '',
+  title: '',
+  tagLine: '',
+  cardImage: '',
+  location: '',
+  tags: '',
+  startDate: new Date,
+  endDate: new Date,
+  duration: 0,
+  targetAmount: 0,
+  videoUrl: '',
+  videoOverlayUrl: '',
+  story: '',
+  supportEmail: '',
+  fundingModel: '',
+  user_id: '',
+  campaignStatus: '',
+  countryId: 0,
+});
+
+
+// Methods for navigating between questions
+const next = () => {
+  if (question.value < 3) {
+    question.value++;
+  }
+};
+
+// save to store, redirect to questions page
+const registerCampaignHandler = async (campaign: Campaign) => {
+
+};
+
+console.log(campaign)
+</script>
 <template>
   <!-- https://codepen.io/thomasMM/pen/jOWxOpV?editors=1000 -->
   <NavbarComponent></NavbarComponent>
@@ -124,7 +179,7 @@
 
     <transition class="slide-fade">
       <div class="question-3 container" v-show="question === 3">
-        <form class="form" action="#" @submit.prevent="registerCampaignHandler">
+        <form class="form" action="#" @submit.prevent="registerCampaignHandler(campaign)">
           <div class="question-body">
             <div class="question-header row">
               <div class="col-12">
@@ -162,58 +217,3 @@
     </transition>
   </section>
 </template>
-<script setup lang="ts">
-import NavbarComponent from '@/components/NavbarComponent.vue';
-import '@/assets/main.css';
-import { RouterLink } from 'vue-router';
-import { onMounted, ref } from 'vue';
-import type { Campaign } from '@/types/Campaign';
-import { country } from '@/data/menu_data';
-import { businessCategories } from '@/data/menu_data'
-import { businessSubCategories } from '@/data/menu_data';
-import { registerCampaign } from '@/services/CampaignService';
-import { useCampaignStore } from '@/stores/counter';
-
-const question = ref(1);
-const countries = country;
-const campaignStore = useCampaignStore();
-
-const campaign = ref<Campaign>({
-  category: '',
-  sub_category: '',
-  country: '',
-  currency: '',
-  title: '',
-  tagLine: '',
-  cardImage: '',
-  location: '',
-  tags: '',
-  startDate: '',
-  endDate: '',
-  duration: '',
-  targetAmount: '',
-  videoUrl: '',
-  videoOverlayUrl: '',
-  story: '',
-  supportEmail: '',
-  fundingModel: '',
-  user_id: '',
-  campaignStatus: '',
-  countryId: '',
-});
-
-
-// Methods for navigating between questions
-const next = () => {
-  if (question.value < 3) {
-    question.value++;
-  }
-};
-
-// save to store, redirect to questions page
-const registerCampaignHandler = async (campaign: Campaign) => {
- 
-};
-
-console.log(campaign)
-</script>

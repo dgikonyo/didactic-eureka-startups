@@ -5,10 +5,10 @@
                 <div class="nav-items row">
                     <div class="nav-item col-sm-12 col-md-4 col-lg-4">
                         <div class="col-sm-6 col-md-4 col-lg-4">
-                            <button class="btn btn-login">Login</button>
+                            <RouterLink class="btn btn-login" to="/sign-in">Login</RouterLink>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-4">
-                            <button class="btn btn-sign-up">Sign Up</button>
+                            <RouterLink class="btn btn-sign-up" to="/sign-up">Sign Up</RouterLink>
                         </div>
                     </div>
                     <div class="nav-item col-sm-12 col-md-4 col-lg-4">

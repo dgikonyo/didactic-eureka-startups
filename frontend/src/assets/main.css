@@ -100,6 +100,20 @@
 
 /* NAVBAR SECTION END */
 
+/* LOGIN SECTION START */
+.login-section {
+  .error {
+    border-color: red;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 0.875rem;
+  }
+}
+
+/* LOGIN SECTINO END */
+
 /* HOME SECTION START */
 .home-section {
 
@@ -111,7 +125,7 @@
   }
 
   .hero-section {
-    background-image: url('./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png');
+    background-image: url('./assets/Images/deniz-altindas-t1XLQvDqt.png');
     width: 100%;
     height: 70%;
     background-color: #e40066;
@@ -322,7 +336,7 @@
   }
 
   .trending-card {
-    background-image: url('./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png');
+    background-image: url('./assets/Images/deniz-altindas-t1XLQvDqt.png');
     object-fit: contain;
     max-width: 400px;
     border: none;

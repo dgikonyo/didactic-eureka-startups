@@ -101,7 +101,7 @@ class AuthService {
     }
   }
 
-  async validateRegistration(registrationDto) {
+  validateRegistration(registrationDto) {
     const errors = [];
     if (!registrationDto.username) errors.push("Username missing");
     if (!registrationDto.firstName) errors.push("First Name missing");

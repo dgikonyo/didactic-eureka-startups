@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
+import LoginView from '@/views/auth/LoginView.vue';
+import SignUpView from '@/views/auth/SignUpView.vue';
 import HomeView from '../views/HomeView.vue';
 import QuestionViewVue from '@/views/questions/QuestionView.vue';
 import ContentView from '@/views/content/ContentView.vue';
@@ -39,6 +41,17 @@ const router = createRouter({
       path: '/article',
       name: 'article',
       component: () => ArticleView,
+    },
+
+    {
+      path: '/sign-in',
+      name: 'sign-in',
+      component: () => LoginView,
+    },
+    {
+      path: '/sign-up',
+      name: 'sign-up',
+      component: () => SignUpView,
     },
   ],
 });

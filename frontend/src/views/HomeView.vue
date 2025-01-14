@@ -3,8 +3,8 @@
     <div class="hero-section">
       <div class="hero-container-row">
         <div class="left-hero">
-          <button class="btn btn-login">Login</button>
-          <button class="btn2 btn-sign-up">Sign Up</button>
+          <RouterLink class="btn btn-login" to="/sign-in">Login</RouterLink>
+          <RouterLink class="btn2 btn-sign-up" to="/sign-up">Sign Up</RouterLink>
         </div>
 
         <div class="right-hero">
@@ -70,7 +70,7 @@
         <div class="project-cards row">
           <div class="card col-sm-12 col-md-4 col-lg-4">
             <div class="pic-space">
-              <img src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png" class="card-img-top" alt="..." />
+              <img :src="imgrl" class="card-img-top" alt="..." />
             </div>
             <div class="card-body">
               <h5 class="category">HEALTH 4 U</h5>
@@ -85,7 +85,7 @@
 
           <div class="card col-sm-12 col-md-4 col-lg-4">
             <div class="pic-space">
-              <img src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png" class="card-img-top" alt="..." />
+              <img :src="imgrl" class="card-img-top" alt="..." />
             </div>
             <div class="card-body">
               <h5 class="category">HEALTH 4 U</h5>
@@ -100,7 +100,7 @@
 
           <div class="card col-sm-12 col-md-4 col-lg-4">
             <div class="pic-space">
-              <img src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png" class="card-img-top" alt="..." />
+              <img :src="imgrl" class="card-img-top" alt="..." />
             </div>
             <div class="card-body">
               <h5 class="category">HEALTH 4 U</h5>
@@ -127,8 +127,7 @@
         <div class="project-cards row">
           <div class="card col-sm-12 col-md-4 col-lg-4">
             <div class="pic-space">
-              <img src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png" class="card-img-top"
-                alt="Bathing stones" />
+              <img :src="imgrl" class="card-img-top" alt="Bathing stones" />
             </div>
             <div class="card-body">
               <h5 class="category">HEALTH 4 U</h5>
@@ -143,8 +142,7 @@
 
           <div class="card col-sm-12 col-md-4 col-lg-4">
             <div class="pic-space">
-              <img src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png" class="card-img-top"
-                alt="Bathing stones" />
+              <img :src="imgrl" class="card-img-top" alt="Bathing stones" />
             </div>
             <div class="card-body">
               <h5 class="category">HEALTH 4 U</h5>
@@ -159,8 +157,7 @@
 
           <div class="card col-sm-12 col-md-4 col-lg-4">
             <div class="pic-space">
-              <img src="./assets/Images/deniz-altindas-t1XLQvDqt_4-unsplash 1 (2).png" class="card-img-top"
-                alt="Bathing stones" />
+              <img :src="imgrl" class="card-img-top" alt="Bathing stones" />
             </div>
             <div class="card-body">
               <h5 class="category">HEALTH 4 U</h5>
@@ -227,4 +224,6 @@
 <script setup lang="ts">
 import Footer from '@/components/FooterComponent.vue';
 import '@/assets/main.css'
+
+import imgrl from '@/assets/Images/deniz-altindas-t1XLQvDqt.png'
 </script>

@@ -33,13 +33,6 @@ let PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
 
-// Serve static files from the Vue.js dist directory
-app.use(express.static(path.join(__dirname, "../frontend/dist")));
-// Catch-all route to serve the index.html file for any other routes
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
-});
-
 // database connection
 const username = encodeURIComponent(process.env.DB_USER_NAME);
 const password = encodeURIComponent(process.env.DB_PASSWORD);
@@ -78,6 +71,23 @@ app.use(
 
 // serve swagger documentation
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+
+// Serve static files from the Vue.js dist directory
+const distPath = path.join(__dirname, "../frontend/dist");
+console.log("Static files served from:", distPath);
+app.use(express.static(distPath));
+
+// Catch-all route to serve the index.html file for any other routes
+app.get("*", (req, res) => {
+  const indexPath = path.join(distPath, "index.html");
+  console.log("Serving index.html from:", indexPath);
+  res.sendFile(indexPath, (err) => {
+    if (err) {
+      console.error("Error serving index.html:", err);
+      res.status(500).send("Server Error");
+    }
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}/api/v1`);
