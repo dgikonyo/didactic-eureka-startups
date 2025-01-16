@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { User } from '@/types/User';
 import type { LoginDto } from '@/types/User';
-import jwt from 'jsonwebtoken';
+import {jwtDecode} from 'jwt-decode';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 const JWT_SECRET = import.meta.env.VITE_SECRET_KEY;
@@ -25,16 +25,17 @@ export class AuthService {
     try {
       const response = await axios.post(`${BACKEND_URL}/auth/sign-in`, payload);
 
-      const decoded_info = this.decodeToken(response.data, JWT_SECRET, JWT_ALGORITHM);
+      const decoded_info = this.decodeToken(response.data);
       console.log(decoded_info);
       return decoded_info;
+      return response.data;
     } catch (error) {
       console.error('Login failed', error);
       throw error;
     }
   }
 
-  private async decodeToken(token: any, secret: string, algorithm: string) {
-    return jwt.decode(token, secret, algorithm);
+  private async decodeToken(token: any) {
+    return jwtDecode(token);
   }
 }
