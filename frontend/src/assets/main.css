@@ -4,6 +4,10 @@
 /* for styling components */
 #app {
   margin: 0 auto;
+
+  a {
+    text-decoration: none;
+  }
 }
 
 ::placeholder {
@@ -19,7 +23,7 @@
   font-size: var(--desktop-body-text-size);
   border: none;
   padding: 10px 30px;
-  border-radius: 8px;
+  border-radius: 30px;
 }
 
 .btn-secondary {
@@ -70,15 +74,24 @@
   }
 
   .btn-login {
-    background-color: hsla(333, 100%, 45%, 1);
-    color: white;
+    background-color: var(--button-primary-color);
+    color: #FFFFFF;
+    font-size: var(--desktop-body-text-size);
     border: none;
+    padding: 5px 15px;
+    border-radius: 30px;
+    text-decoration: none;
+    margin:5px 0px 5px 0px;
   }
 
   .btn-sign-up {
     background-color: hsla(0, 0%, 100%, 0.3);
     color: black;
-    border: black, 0.8px, solid;
+    border: var(--button-secondary-color), 0.8px, solid;
+    border-radius: 30px;
+    padding: 5px 15px;
+    margin:5px 0px 5px 0px;
+    text-decoration: none;
   }
 
   .title {
@@ -102,6 +115,61 @@
 
 /* LOGIN SECTION START */
 .login-section {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:#f4f6f6;
+  max-width:40%;
+  padding: 30px 0px 30px 0px;
+  border-radius: 10px;
+
+  .auth-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .page-title>p {
+      color:var(--light-primary);
+      font-size:var(--desktop-secondary-text-size);
+      font-weight: 600;
+    }
+
+    .page-sub-title>p {
+      color:var(--light-primary);
+      font-size:var(--desktop-body-text-size);
+      font-weight: 500;
+    }
+
+    .forgot-password>p{
+
+    }
+
+    .form {
+      width: 75%;
+      display: inherit;
+      flex-direction: inherit;
+      align-items: inherit;
+      justify-content: inherit;
+      flex-wrap: inherit;
+
+      input, select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+    }
+    .login-button {
+      margin:10px 0px 10px 0px;
+    }
+  }
+
   .error {
     border-color: red;
   }
@@ -172,17 +240,6 @@
     border: none;
     border-radius: 8px;
     padding: 6px 30px;
-  }
-
-  .btn2 {
-    background-color: hsla(0, 0%, 100%, 0.3);
-    font-size: 18px;
-    font-family: 'Inter', sans-serif;
-    color: black;
-    border-radius: 8px;
-    padding: 6px 30px;
-    margin: 5px 20px;
-    border: black, 0.8px, solid;
   }
 
   .btn-explore {

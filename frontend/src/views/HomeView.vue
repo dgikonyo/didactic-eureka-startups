@@ -1,17 +1,21 @@
+<script setup lang="ts">
+import Footer from '@/components/FooterComponent.vue';
+import Navbar from '@/components/NavbarComponent.vue'
+import '@/assets/main.css'
+
+import imgrl from '@/assets/Images/deniz-altindas-t1XLQvDqt.png'
+</script>
 <template>
+  <section class="navigation-section">
+    <Navbar />
+  </section>
   <section class="home-section">
     <div class="hero-section">
       <div class="hero-container-row">
         <div class="left-hero">
-          <RouterLink class="btn btn-login" to="/sign-in">Login</RouterLink>
-          <RouterLink class="btn2 btn-sign-up" to="/sign-up">Sign Up</RouterLink>
         </div>
 
         <div class="right-hero">
-          <div class="title col-12">
-            <p class="title-text">Konnect</p>
-          </div>
-
           <div class="catchphrase">
             <div class="phrase">
               <p class="point">Create.</p>
@@ -41,7 +45,7 @@
           </div>
 
           <div class="cta">
-            <RouterLink to="/campaigns/questions" class="btn-start col-sm-12 col-md-12 col-lg-6">Start a Campaign
+            <RouterLink to="/campaigns/questions" class="btn-primary col-sm-12 col-md-12 col-lg-6">Start a Campaign
             </RouterLink>
             <button class="btn-explore col-sm-12 col-md-12 col-lg-6">
               Explore Projects
@@ -221,9 +225,3 @@
     </div>
   </section>
 </template>
-<script setup lang="ts">
-import Footer from '@/components/FooterComponent.vue';
-import '@/assets/main.css'
-
-import imgrl from '@/assets/Images/deniz-altindas-t1XLQvDqt.png'
-</script>

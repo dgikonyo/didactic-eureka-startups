@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { RouterLink } from 'vue-router';
+import '../assets/main.css';
+
+if (window.location.href === '/') {
+    document.getElementById('nav-explore').style.display = 'none';
+}
+</script>
 <template>
     <section class="navbar-section">
         <div class="navigation-bar">
@@ -14,7 +22,7 @@
                     <div class="nav-item col-sm-12 col-md-4 col-lg-4">
                         <RouterLink to='/' class="title">Konnect</RouterLink>
                     </div>
-                    <div class="nav-item col-sm-12 col-md-4 col-lg-4">
+                    <div id='nav-explore' class="nav-item col-sm-12 col-md-4 col-lg-4">
                         <RouterLink class="explore" to="/campaigns/questions">Explore Projects <span> <font-awesome-icon
                                     :icon="['fas', 'arrow-right']" size="xs" class="explore-icon" /></span></RouterLink>
                     </div>
@@ -24,7 +32,3 @@
         </div>
     </section>
 </template>
-<script setup lang="ts">
-import { RouterLink } from 'vue-router';
-import '../assets/main.css';
-</script>

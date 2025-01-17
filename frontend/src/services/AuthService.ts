@@ -10,10 +10,11 @@ const JWT_ALGORITHM = import.meta.env.VITE_JWT_ALGORITHM;
 export class AuthService {
   async registerUser(user: User): Promise<any> {
     try {
-      const response = await axios.post(
-        `${BACKEND_URL}/auth/register/users`,
-        user
-      );
+      const response = await axios({
+        method:'POST',
+        url:`${BACKEND_URL}/auth/register/users`,
+        data: user
+      });
 
       return response.data;
     } catch (error) {
@@ -23,16 +24,27 @@ export class AuthService {
 
   async loginInUser(payload: LoginDto): Promise<any> {
     try {
-      const response = await axios.post(`${BACKEND_URL}/auth/sign-in`, payload);
+      const response = await axios({
+        method:'POST',
+        url:`${BACKEND_URL}/auth/sign-in`,
+        data: payload
+      }).then(res => {
+        if (res.data.accessToken) {
+          localStorage.setItem('user', JSON.stringify(res.data));
+        }
 
-      const decoded_info = this.decodeToken(response.data);
-      console.log(decoded_info);
-      return decoded_info;
+        return res;
+      });
+      
       return response.data;
     } catch (error) {
       console.error('Login failed', error);
       throw error;
     }
+  }
+
+  async logout() {
+    localStorage.removeItem('user');
   }
 
   private async decodeToken(token: any) {
