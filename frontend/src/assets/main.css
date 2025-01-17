@@ -81,7 +81,7 @@
     padding: 5px 15px;
     border-radius: 30px;
     text-decoration: none;
-    margin:5px 0px 5px 0px;
+    margin: 5px 0px 5px 0px;
   }
 
   .btn-sign-up {
@@ -90,7 +90,7 @@
     border: var(--button-secondary-color), 0.8px, solid;
     border-radius: 30px;
     padding: 5px 15px;
-    margin:5px 0px 5px 0px;
+    margin: 5px 0px 5px 0px;
     text-decoration: none;
   }
 
@@ -119,8 +119,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color:#f4f6f6;
-  max-width:40%;
+  background-color: #f4f6f6;
+  max-width: 400px;
   padding: 30px 0px 30px 0px;
   border-radius: 10px;
 
@@ -132,19 +132,21 @@
     flex-wrap: wrap;
 
     .page-title>p {
-      color:var(--light-primary);
-      font-size:var(--desktop-secondary-text-size);
+      color: var(--light-primary);
+      font-size: var(--desktop-secondary-text-size);
       font-weight: 600;
     }
 
     .page-sub-title>p {
-      color:var(--light-primary);
-      font-size:var(--desktop-body-text-size);
+      color: var(--light-primary);
+      font-size: var(--desktop-body-text-size);
       font-weight: 500;
     }
 
-    .forgot-password>p{
-
+    .forgot-password>p {
+      color: var(--light-primary);
+      font-size: var(--desktop-body-text-size);
+      font-weight: 500;
     }
 
     .form {
@@ -155,7 +157,8 @@
       justify-content: inherit;
       flex-wrap: inherit;
 
-      input, select {
+      input,
+      select {
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
@@ -165,8 +168,9 @@
         box-sizing: border-box;
       }
     }
+
     .login-button {
-      margin:10px 0px 10px 0px;
+      margin: 10px 0px 10px 0px;
     }
   }
 
@@ -181,6 +185,60 @@
 }
 
 /* LOGIN SECTINO END */
+
+/* SIGN UP SECTION START */
+.sign-up-form {
+  max-width: 400px;
+  margin: 1rem auto 0 auto;
+
+  .page-title>p {
+    color: var(--light-primary);
+    font-size: var(--desktop-secondary-text-size);
+    font-weight: 600;
+  }
+
+  .page-sub-title>p {
+    color: var(--light-primary);
+    font-size: var(--desktop-body-text-size);
+    font-weight: 500;
+  }
+
+  .page-title,
+  .page-sub-title,
+  .form-group {
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-container {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-input {
+    width: 90%;
+    padding: 8px;
+    margin-top: 4px;
+    border-radius: 10px;
+    border-color: var(--button-secondary-color);
+  }
+
+  .error {
+    border-color: red;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 0.875rem;
+  }
+}
+
+/* SIGN UP SECTION END */
 
 /* HOME SECTION START */
 .home-section {
