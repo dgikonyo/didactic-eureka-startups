@@ -1,5 +1,5 @@
 <script lang="ts">
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
 import { ref } from 'vue';
 import '../../assets/main.css'
 import type { User } from '@/types/User';
@@ -21,26 +21,28 @@ export default {
             role_id: new Number,
             password: '',
         });
-
         const authService = new AuthService;
-
         const validationErrors = ref<Record<string, string>>({});
         const isSubmitting = ref(false);
 
-        const handleSubmit = () => {
+        const handleSubmit = (e: Event) => {
+            e.preventDefault();
             validationErrors.value = {};
+
+            console.log(formData.value);
 
             if (!formData.value.username) validationErrors.value.username = 'Username is required';
             if (!formData.value.firstName) validationErrors.value.firstName = 'First Name is required';
             if (!formData.value.lastName) validationErrors.value.lastName = 'Last Name is required';
             if (!formData.value.email) validationErrors.value.email = 'Email is required';
             if (!formData.value.password) validationErrors.value.password = 'Password is required';
-
+            formData.value.role_id = 1;
             // If no errors, proceed with form submission (or API call)
             if (Object.keys(validationErrors.value).length === 0) {
                 try {
-                    return authService.registerUser(formData.value);
+                    const response = authService.registerUser(formData.value);
 
+                    return response;
                 } catch (error: any) {
                     console.log(validationErrors.value.error = error.message);
                 }
