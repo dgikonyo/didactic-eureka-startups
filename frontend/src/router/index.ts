@@ -4,7 +4,6 @@ import LoginView from '@/views/auth/LoginView.vue';
 import SignUpView from '@/views/auth/SignUpView.vue';
 import HomeView from '../views/HomeView.vue';
 import QuestionViewVue from '@/views/questions/QuestionView.vue';
-import ContentView from '@/views/content/ContentView.vue';
 import ExploreView from '@/views/campaign/ExploreView.vue';
 import ArticleView from '@/views/article/ArticleView.vue';
 import CampaignView from '@/views/campaign/CampaignView.vue';
@@ -21,11 +20,6 @@ const router = createRouter({
       path: '/campaigns/questions',
       name: 'questions',
       component: () => QuestionViewVue,
-    },
-    {
-      path: '/campaigns/content',
-      name: 'content',
-      component: () => ContentView,
     },
     {
       path: '/campaigns/explore',

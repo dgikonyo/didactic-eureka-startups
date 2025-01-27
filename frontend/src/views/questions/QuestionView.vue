@@ -1,57 +1,83 @@
-<script setup lang="ts">
+<script lang="ts">
 import NavbarComponent from '@/components/NavbarComponent.vue';
 import '@/assets/main.css';
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
 import type { Campaign } from '@/types/Campaign';
 import { country } from '@/data/menu_data';
 import { businessCategories } from '@/data/menu_data'
 import { businessSubCategories } from '@/data/menu_data';
-import { registerCampaign } from '@/services/CampaignService';
-import { useCampaignStore } from '@/stores/counter';
+import { useCampaignStore } from '@/stores';
 
-const question = ref(1);
-const countries = country;
-const campaignStore = useCampaignStore();
+export default {
+  name: 'campaign-content',
+  components: {
+    NavbarComponent, RouterLink
+  },
+  setup() {
+    const campaignStore = useCampaignStore();
+    const router = useRouter();
 
-const campaign = ref<Campaign>({
-  category: '',
-  sub_category: '',
-  country: '',
-  currency: '',
-  title: '',
-  tagLine: '',
-  cardImage: '',
-  location: '',
-  tags: '',
-  startDate: new Date,
-  endDate: new Date,
-  duration: 0,
-  targetAmount: 0,
-  videoUrl: '',
-  videoOverlayUrl: '',
-  story: '',
-  supportEmail: '',
-  fundingModel: '',
-  user_id: '',
-  campaignStatus: '',
-  countryId: 0,
-});
+    const question = ref(1);
+    const countries = country;
+
+    const campaign = ref<Campaign>({
+      category: '',
+      sub_category: '',
+      country: '',
+      currency: '',
+      title: '',
+      tagLine: '',
+      cardImage: '',
+      location: '',
+      tags: '',
+      startDate: new Date,
+      endDate: new Date,
+      duration: 0,
+      targetAmount: 0,
+      videoUrl: '',
+      videoOverlayUrl: '',
+      story: '',
+      supportEmail: '',
+      fundingModel: '',
+      user_id: '',
+      campaignStatus: '',
+      countryId: 0,
+    });
 
 
-// Methods for navigating between questions
-const next = () => {
-  if (question.value < 3) {
-    question.value++;
+    // Methods for navigating between questions
+    function next() {
+      if (question.value <= 4) {
+        question.value++;
+      }
+    };
+
+    // save to store, redirect to questions page
+    async function registerCampaignHandler(campaign: Campaign) {
+
+    };
+
+    function calculateDuration(startDate: Date, endDate: Date) {
+      const oneDay: number = 24 * 60 * 60 * 1000;
+      const diffDays: number = Math.floor(Math.abs(startDate.getTime() - endDate.getTime()) / oneDay);
+
+      return diffDays;
+    }
+
+    console.log(campaign)
+
+    return {
+      businessCategories,
+      businessSubCategories,
+      question,
+      countries,
+      campaign,
+      next,
+      registerCampaignHandler
+    }
   }
-};
-
-// save to store, redirect to questions page
-const registerCampaignHandler = async (campaign: Campaign) => {
-
-};
-
-console.log(campaign)
+}
 </script>
 <template>
   <!-- https://codepen.io/thomasMM/pen/jOWxOpV?editors=1000 -->
@@ -76,10 +102,16 @@ console.log(campaign)
       }">
         3
       </div>
+      <div class="question" :class="{
+        'question-active': question === 4,
+        'question-done': question > 4,
+      }">
+        4
+      </div>
     </div>
     <transition name="slide-fade">
       <div class="question-1 container" v-show="question === 1">
-        <form class="form" method="post" action="#" @submit.prevent="next">
+        <form class="form" method="post" action="#" @submit.prevent="next()">
           <div class="question-body">
             <div class="question-header row">
               <div class="col-12">
@@ -129,7 +161,7 @@ console.log(campaign)
           <div class="horizontal-line"></div>
           <div class="next row">
             <div class="col-xs-12">
-              <button class="btn-secondary" id="btn-location" @click.prevent="next()">
+              <button class="btn-secondary" id="btn-location">
                 Next: Location
               </button>
             </div>
@@ -168,7 +200,7 @@ console.log(campaign)
           <div class="horizontal-line"></div>
           <div class="next row">
             <div class="col-xs-12">
-              <button class="btn-secondary" id="btn-currency" @click="next">
+              <button class="btn-secondary" id="btn-currency">
                 Next: Currency
               </button>
             </div>
@@ -177,9 +209,9 @@ console.log(campaign)
       </div>
     </transition>
 
-    <transition class="slide-fade">
+    <transition name="slide-fade">
       <div class="question-3 container" v-show="question === 3">
-        <form class="form" action="#" @submit.prevent="registerCampaignHandler(campaign)">
+        <form class="form" action="#" method="post" @submit.prevent="next()">
           <div class="question-body">
             <div class="question-header row">
               <div class="col-12">
@@ -207,9 +239,120 @@ console.log(campaign)
             <div class="horizontal-line"></div>
             <div class="next row">
               <div class="col-xs-12">
-                <RouterLink class="btn-secondary" to="/campaigns/content" id="btn-next-campaign">Next:Campaign Details
-                </RouterLink>
+                <button class="btn-secondary" id="btn-next-campaign">Next:Campaign Details
+                </button>
               </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </transition>
+
+    <transition name="slide-fade">
+      <div class="content-section" v-show="question === 4">
+        <form @submit.prevent="registerCampaignHandler(campaign)">
+          <div class="campaign-info">
+            <h2 class="campaign-info-title">Basics</h2>
+            <p class="campaign-info-expl">
+              Make a good first impression: introduce your campaign objectives and
+              entice people to learn more. This basic information will represent your
+              campaign on your page, cards and in searches.
+            </p>
+          </div>
+          <div class="campaign-info">
+            <h2 class="campaign-info-title">Campaign Title</h2>
+            <div>
+              <p class="campaign-info-expl">What is the title of your campaign?</p>
+            </div>
+            <div class="campaign-info-input">
+              <input v-model="campaign.title" placeholder="Campaign Title" type="text" />
+            </div>
+          </div>
+          <div class="campaign-info">
+            <h2 class="campaign-info-title">Campaign Tagline</h2>
+            <div>
+              <p class="campaign-info-expl">
+                Provide a short description that best describes your campaign to
+                your audience
+              </p>
+            </div>
+            <div class="campaign-info-input">
+              <textarea v-model="campaign.tagLine" placeholder="Enter Campaign Tagline :-)" rows="2"
+                cols="80"></textarea>
+            </div>
+          </div>
+          <div class="campaign-info">
+            <h2 class="campaign-info-title">Campaign Card Image</h2>
+            <div>
+              <p class="campaign-info-expl">
+                Upload a square image that represents your campaign
+              </p>
+              <p class="campaign-info-expl">
+                1080 * 1080 recommended resolution. 220 * 220 minimum resolution.
+              </p>
+            </div>
+            <div class="campaign-info-input">
+              <input v-on="campaign.cardImage" type="file" class="card-upload" name="campaign-card-image-upload" />
+              <label for="file">Select file</label>
+            </div>
+          </div>
+          <div class="campaign-info">
+            <h2 class="campaign-info-title">Pitch Video or Image</h2>
+            <div>
+              <p class="campaign-info-expl">
+                Make a good first impression: introduce your campaign objectives and
+                entice people to learn more. This basic information will represent
+                your campaign on your page, cards and in searches.
+              </p>
+            </div>
+            <div class="campaign-info-input">
+              <input v-on="campaign.videoUrl" type="text" placeholder="Paste Video Link" />
+            </div>
+          </div>
+          <div class="campaign-info">
+            <h2 class="campaign-info-title">Tags</h2>
+            <div>
+              <p class="campaign-info-expl">
+                Enter up to five keywords that best describe your campaign. These
+                tags will help with organization and discoverability.
+              </p>
+            </div>
+            <div class="campaign-info-input">
+              <textarea v-model="campaign.tags" placeholder="...project, hiking-gear, assistance," rows="2"
+                cols="80"></textarea>
+            </div>
+          </div>
+
+          <div class="campaign-info">
+            <h2 class="campaign-info-title">Start Date</h2>
+            <div class="campaign-info-input">
+              <input v-on="campaign.startDate" type="date" name="campaign-card-image-upload" />
+            </div>
+          </div>
+
+          <div class="campaign-info">
+            <h2 class="campaign-info-title">End Date</h2>
+            <div class="campaign-info-input">
+              <input v-on="campaign.endDate" type="date" name="campaign-card-image-upload" />
+            </div>
+          </div>
+
+          <div class="campaign-info">
+            <h2 class="campaign-info-title">Campaign Duration</h2>
+            <div>
+              <p class="campaign-info-expl">
+                Enter the duration of your campaign in days
+              </p>
+            </div>
+            <div class="campaign-info-input">
+              <label type="number" placeholder="16, 18, 20, 79 ...."></label>
+            </div>
+          </div>
+
+          <div class="horizontal-line"></div>
+          <div class="next row">
+            <div class="col-xs-12">
+              <button class="btn-secondary">Create</button>
             </div>
           </div>
         </form>
