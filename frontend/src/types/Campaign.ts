@@ -7,14 +7,14 @@ export interface Campaign {
   title: string;
   tagLine: string;
   cardImage: string;
+  videoUrl: string;
+  videoOverlayUrl: string;
   location: string;
   tags: string;
   startDate: Date;
   endDate: Date;
   duration: Number;
   targetAmount: Number;
-  videoUrl: string;
-  videoOverlayUrl: string;
   story: string;
   supportEmail: string;
   fundingModel: string;

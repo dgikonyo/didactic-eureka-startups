@@ -3,8 +3,11 @@ import { defineStore } from 'pinia';
 import type { User } from '@/types/User';
 import { AuthService } from '../services/AuthService';
 import type { LoginDto } from '@/types/User';
+import type { Campaign } from '@/types/Campaign';
+import { CampaignService } from '../services/CampaignService';
 
 const authService = new AuthService;
+const campaignService = new CampaignService;
 
 export const useAuthStore = defineStore('auth', {
     state: () => {
@@ -57,6 +60,39 @@ export const useAuthStore = defineStore('auth', {
                 return response.data; // Return data to the component
             } catch (error) {
                 this.status.loggedIn = false;
+                throw error;
+            }
+        }
+    }
+});
+
+export const useCampaignStore = defineStore('campaign', {
+    state: () => {
+        const storedCampaign = (() => {
+            try {
+                return JSON.parse(localStorage.getItem('campaign') || 'null')
+            } catch (error) { return null }
+        })();
+
+        return {
+            status: { campaignRegistered: !!storedCampaign },
+            campaign: storedCampaign as Campaign | null
+        }
+    },
+    actions: {
+        async generateCampaign(payload: Campaign) {
+            try {
+                const campaign = await campaignService.registerCampaign(payload);
+
+                // update state
+                this.status.campaignRegistered = true;
+                this.campaign = campaign;
+
+                // save to local storage
+                localStorage.setItem('campaign', JSON.stringify(campaign));
+            } catch (error) {
+                this.status.campaignRegistered = false;
+                this.campaign = null;
                 throw error;
             }
         }
