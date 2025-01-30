@@ -51,6 +51,11 @@ export default {
             message,
             loginAction,
         }
+    },
+    computed: {
+        loggedIn() {
+            return this.$store.state.auth.status.loggedIn;
+        }
     }
 }
 </script>

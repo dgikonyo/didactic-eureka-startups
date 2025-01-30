@@ -4,6 +4,8 @@ import { ref } from 'vue';
 import '../../assets/main.css'
 import type { User } from '@/types/User';
 import { AuthService } from '@/services/AuthService';
+import router from '@/router';
+import { useAuthStore } from '@/stores';
 
 export default {
     name: 'Sign Up',
@@ -22,12 +24,17 @@ export default {
             password: '',
         });
         const authService = new AuthService;
+        const authStore = useAuthStore();
+        const router = useRouter();
         const validationErrors = ref<Record<string, string>>({});
         const isSubmitting = ref(false);
+        const successful = ref(false);
+        const loading = ref(false);
 
         const handleSubmit = (e: Event) => {
             e.preventDefault();
             validationErrors.value = {};
+            isSubmitting.value = true;
 
             console.log(formData.value);
 
@@ -38,22 +45,33 @@ export default {
             if (!formData.value.password) validationErrors.value.password = 'Password is required';
             formData.value.role_id = 1;
             // If no errors, proceed with form submission (or API call)
-            if (Object.keys(validationErrors.value).length === 0) {
-                try {
-                    const response = authService.registerUser(formData.value);
 
-                    return response;
-                } catch (error: any) {
-                    console.log(validationErrors.value.error = error.message);
-                }
+            if (Object.keys(validationErrors.value).length > 0) {
+                isSubmitting.value = false;
+                return;
             }
+
+            try {
+                await authStore.register(formData.value);
+
+                return response;
+            } catch (error: any) {
+                console.log(validationErrors.value.error = error.message);
+            }
+
         }
 
         return {
+            successful,
             formData,
             isSubmitting,
             validationErrors,
             handleSubmit
+        }
+    },
+    mounted() {
+        if (this.successful) {
+            router.push("/user/:id/dashboard");
         }
     }
 }

@@ -13,7 +13,7 @@ export class AuthService {
   async registerUser(user: User): Promise<any> {
     try {
       const response = await axios.post(`${BACKEND_URL}/auth/register/users`, user);
-      
+
       console.log(response.data);
       router.push('/sign-in');
 
