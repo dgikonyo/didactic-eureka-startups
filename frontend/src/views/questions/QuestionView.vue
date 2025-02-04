@@ -5,14 +5,15 @@ import { RouterLink, useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
 import type { Campaign } from '@/types/Campaign';
 import { country } from '@/data/menu_data';
-import { businessCategories } from '@/data/menu_data'
+import { businessCategories } from '@/data/menu_data';
 import { businessSubCategories } from '@/data/menu_data';
 import { useCampaignStore } from '@/stores';
 
 export default {
   name: 'campaign-content',
   components: {
-    NavbarComponent, RouterLink
+    NavbarComponent,
+    RouterLink,
   },
   setup() {
     const campaignStore = useCampaignStore();
@@ -31,8 +32,8 @@ export default {
       cardImage: '',
       location: '',
       tags: '',
-      startDate: new Date,
-      endDate: new Date,
+      startDate: new Date(),
+      endDate: new Date(),
       duration: 0,
       targetAmount: 0,
       videoUrl: '',
@@ -45,27 +46,26 @@ export default {
       countryId: 0,
     });
 
-
     // Methods for navigating between questions
     function next() {
       if (question.value <= 4) {
         question.value++;
       }
-    };
+    }
 
     // save to store, redirect to questions page
-    async function registerCampaignHandler(campaign: Campaign) {
-
-    };
+    async function registerCampaignHandler(campaign: Campaign) {}
 
     function calculateDuration(startDate: Date, endDate: Date) {
       const oneDay: number = 24 * 60 * 60 * 1000;
-      const diffDays: number = Math.floor(Math.abs(startDate.getTime() - endDate.getTime()) / oneDay);
+      const diffDays: number = Math.floor(
+        Math.abs(startDate.getTime() - endDate.getTime()) / oneDay
+      );
 
       return diffDays;
     }
 
-    console.log(campaign)
+    console.log(campaign);
 
     return {
       businessCategories,
@@ -74,38 +74,50 @@ export default {
       countries,
       campaign,
       next,
-      registerCampaignHandler
-    }
-  }
-}
+      registerCampaignHandler,
+    };
+  },
+};
 </script>
 <template>
   <!-- https://codepen.io/thomasMM/pen/jOWxOpV?editors=1000 -->
   <NavbarComponent></NavbarComponent>
   <section class="questions-section">
     <div class="question-stepper">
-      <div class="question" :class="{
-        'question-active': question === 1,
-        'question-done': question > 1,
-      }">
+      <div
+        class="question"
+        :class="{
+          'question-active': question === 1,
+          'question-done': question > 1,
+        }"
+      >
         1
       </div>
-      <div class="question" :class="{
-        'question-active': question === 2,
-        'question-done': question > 2,
-      }">
+      <div
+        class="question"
+        :class="{
+          'question-active': question === 2,
+          'question-done': question > 2,
+        }"
+      >
         2
       </div>
-      <div class="question" :class="{
-        'question-active': question === 3,
-        'question-done': question > 3,
-      }">
+      <div
+        class="question"
+        :class="{
+          'question-active': question === 3,
+          'question-done': question > 3,
+        }"
+      >
         3
       </div>
-      <div class="question" :class="{
-        'question-active': question === 4,
-        'question-done': question > 4,
-      }">
+      <div
+        class="question"
+        :class="{
+          'question-active': question === 4,
+          'question-done': question > 4,
+        }"
+      >
         4
       </div>
     </div>
@@ -134,9 +146,17 @@ export default {
                 </div>
 
                 <div class="col-12">
-                  <select class="category-choices" placeholder="Select" v-model="campaign.category">
+                  <select
+                    class="category-choices"
+                    placeholder="Select"
+                    v-model="campaign.category"
+                  >
                     <option disabled value="">Please select one</option>
-                    <option value="choice" v-for="category in businessCategories" :key="category">
+                    <option
+                      value="choice"
+                      v-for="category in businessCategories"
+                      :key="category"
+                    >
                       {{ category }}
                     </option>
                   </select>
@@ -148,9 +168,17 @@ export default {
                   <p>Sub Category</p>
                 </div>
                 <div class="col-12">
-                  <select class="category-choices" placeholder="Select" v-model="campaign.sub_category">
+                  <select
+                    class="category-choices"
+                    placeholder="Select"
+                    v-model="campaign.sub_category"
+                  >
                     <option disabled value="">Please select one</option>
-                    <option value="choice" v-for="subCategory in businessSubCategories" :key="subCategory">
+                    <option
+                      value="choice"
+                      v-for="subCategory in businessSubCategories"
+                      :key="subCategory"
+                    >
                       {{ subCategory }}
                     </option>
                   </select>
@@ -189,9 +217,17 @@ export default {
               </div>
             </div>
             <div class="categories row">
-              <select class="category-choices" placeholder="Select your country" v-model="campaign.country">
+              <select
+                class="category-choices"
+                placeholder="Select your country"
+                v-model="campaign.country"
+              >
                 <option disabled value="">Please select one</option>
-                <option value="choice" v-for="country in countries" :key="country.name">
+                <option
+                  value="choice"
+                  v-for="country in countries"
+                  :key="country.name"
+                >
                   {{ country.name }}
                 </option>
               </select>
@@ -228,9 +264,17 @@ export default {
               </div>
             </div>
             <div class="categories row">
-              <select class="category-choices col-xs-12" placeholder="Select the currency" v-model="campaign.currency">
+              <select
+                class="category-choices col-xs-12"
+                placeholder="Select the currency"
+                v-model="campaign.currency"
+              >
                 <option disabled value="">Please select one</option>
-                <option value="choice" v-for="country in countries" :key="country.name">
+                <option
+                  value="choice"
+                  v-for="country in countries"
+                  :key="country.name"
+                >
                   {{ country.currencyAbbr }}
                 </option>
               </select>
@@ -239,7 +283,8 @@ export default {
             <div class="horizontal-line"></div>
             <div class="next row">
               <div class="col-xs-12">
-                <button class="btn-secondary" id="btn-next-campaign">Next:Campaign Details
+                <button class="btn-secondary" id="btn-next-campaign">
+                  Next:Campaign Details
                 </button>
               </div>
             </div>
@@ -254,18 +299,24 @@ export default {
           <div class="campaign-info">
             <h2 class="campaign-info-title">Basics</h2>
             <p class="campaign-info-expl">
-              Make a good first impression: introduce your campaign objectives and
-              entice people to learn more. This basic information will represent your
-              campaign on your page, cards and in searches.
+              Make a good first impression: introduce your campaign objectives
+              and entice people to learn more. This basic information will
+              represent your campaign on your page, cards and in searches.
             </p>
           </div>
           <div class="campaign-info">
             <h2 class="campaign-info-title">Campaign Title</h2>
             <div>
-              <p class="campaign-info-expl">What is the title of your campaign?</p>
+              <p class="campaign-info-expl">
+                What is the title of your campaign?
+              </p>
             </div>
             <div class="campaign-info-input">
-              <input v-model="campaign.title" placeholder="Campaign Title" type="text" />
+              <input
+                v-model="campaign.title"
+                placeholder="Campaign Title"
+                type="text"
+              />
             </div>
           </div>
           <div class="campaign-info">
@@ -277,8 +328,12 @@ export default {
               </p>
             </div>
             <div class="campaign-info-input">
-              <textarea v-model="campaign.tagLine" placeholder="Enter Campaign Tagline :-)" rows="2"
-                cols="80"></textarea>
+              <textarea
+                v-model="campaign.tagLine"
+                placeholder="Enter Campaign Tagline :-)"
+                rows="2"
+                cols="80"
+              ></textarea>
             </div>
           </div>
           <div class="campaign-info">
@@ -288,11 +343,17 @@ export default {
                 Upload a square image that represents your campaign
               </p>
               <p class="campaign-info-expl">
-                1080 * 1080 recommended resolution. 220 * 220 minimum resolution.
+                1080 * 1080 recommended resolution. 220 * 220 minimum
+                resolution.
               </p>
             </div>
             <div class="campaign-info-input">
-              <input v-on="campaign.cardImage" type="file" class="card-upload" name="campaign-card-image-upload" />
+              <input
+                v-on="campaign.cardImage"
+                type="file"
+                class="card-upload"
+                name="campaign-card-image-upload"
+              />
               <label for="file">Select file</label>
             </div>
           </div>
@@ -300,40 +361,56 @@ export default {
             <h2 class="campaign-info-title">Pitch Video or Image</h2>
             <div>
               <p class="campaign-info-expl">
-                Make a good first impression: introduce your campaign objectives and
-                entice people to learn more. This basic information will represent
-                your campaign on your page, cards and in searches.
+                Make a good first impression: introduce your campaign objectives
+                and entice people to learn more. This basic information will
+                represent your campaign on your page, cards and in searches.
               </p>
             </div>
             <div class="campaign-info-input">
-              <input v-on="campaign.videoUrl" type="text" placeholder="Paste Video Link" />
+              <input
+                v-on="campaign.videoUrl"
+                type="text"
+                placeholder="Paste Video Link"
+              />
             </div>
           </div>
           <div class="campaign-info">
             <h2 class="campaign-info-title">Tags</h2>
             <div>
               <p class="campaign-info-expl">
-                Enter up to five keywords that best describe your campaign. These
-                tags will help with organization and discoverability.
+                Enter up to five keywords that best describe your campaign.
+                These tags will help with organization and discoverability.
               </p>
             </div>
             <div class="campaign-info-input">
-              <textarea v-model="campaign.tags" placeholder="...project, hiking-gear, assistance," rows="2"
-                cols="80"></textarea>
+              <textarea
+                v-model="campaign.tags"
+                placeholder="...project, hiking-gear, assistance,"
+                rows="2"
+                cols="80"
+              ></textarea>
             </div>
           </div>
 
           <div class="campaign-info">
             <h2 class="campaign-info-title">Start Date</h2>
             <div class="campaign-info-input">
-              <input v-on="campaign.startDate" type="date" name="campaign-card-image-upload" />
+              <input
+                v-on="campaign.startDate"
+                type="date"
+                name="campaign-card-image-upload"
+              />
             </div>
           </div>
 
           <div class="campaign-info">
             <h2 class="campaign-info-title">End Date</h2>
             <div class="campaign-info-input">
-              <input v-on="campaign.endDate" type="date" name="campaign-card-image-upload" />
+              <input
+                v-on="campaign.endDate"
+                type="date"
+                name="campaign-card-image-upload"
+              />
             </div>
           </div>
 
