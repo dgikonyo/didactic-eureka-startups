@@ -9,7 +9,6 @@ class UserService {
    * @returns {Promise<void>} A promise that resolves with a response sent to the client.
    */
   async listUserCampaigns(req, res) {
-    console.log(req.user.id);
     try {
       const userCampaigns = await Campaign.find({
         user_id: req.user.id,
