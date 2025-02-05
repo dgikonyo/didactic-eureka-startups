@@ -5,9 +5,9 @@ export interface User {
   lastName: string;
   email: string;
   dateOfBirth: Date;
-  country_id: Number;
+  country_id: number;
   password: string;
-  role_id: Number;
+  role_id: number;
 }
 
 export interface LoginDto {

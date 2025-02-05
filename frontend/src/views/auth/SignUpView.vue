@@ -40,16 +40,11 @@ export default {
 
       console.log(formData.value);
 
-      if (!formData.value.username)
-        validationErrors.value.username = 'Username is required';
-      if (!formData.value.firstName)
-        validationErrors.value.firstName = 'First Name is required';
-      if (!formData.value.lastName)
-        validationErrors.value.lastName = 'Last Name is required';
-      if (!formData.value.email)
-        validationErrors.value.email = 'Email is required';
-      if (!formData.value.password)
-        validationErrors.value.password = 'Password is required';
+      if (!formData.value.username) validationErrors.value.username = 'Username is required';
+      if (!formData.value.firstName) validationErrors.value.firstName = 'First Name is required';
+      if (!formData.value.lastName) validationErrors.value.lastName = 'Last Name is required';
+      if (!formData.value.email) validationErrors.value.email = 'Email is required';
+      if (!formData.value.password) validationErrors.value.password = 'Password is required';
       formData.value.role_id = 1;
       // If no errors, proceed with form submission (or API call)
 

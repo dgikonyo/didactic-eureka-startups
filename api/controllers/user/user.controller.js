@@ -1,4 +1,4 @@
-const UserService = require("../../services/user/user.service");
+const UserService = require('../../services/user/user.service');
 
 class UserController {
   async getUserCampaigns(req, res) {

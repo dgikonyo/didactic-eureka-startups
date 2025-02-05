@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import Footer from '@/components/FooterComponent.vue';
-import Navbar from '@/components/NavbarComponent.vue'
-import '@/assets/main.css'
+import Navbar from '@/components/NavbarComponent.vue';
+import '@/assets/main.css';
 
-import imgrl from '@/assets/Images/deniz-altindas-t1XLQvDqt.png'
+import imgrl from '@/assets/Images/deniz-altindas-t1XLQvDqt.png';
 </script>
 <template>
   <section class="navigation-section">

@@ -78,5 +78,5 @@
 import NavbarComponent from '@/components/NavbarComponent.vue';
 import '@/assets/main.css';
 
-import imgrl from '@/assets/Images/deniz-altindas-t1XLQvDqt.png'
+import imgrl from '@/assets/Images/deniz-altindas-t1XLQvDqt.png';
 </script>
