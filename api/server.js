@@ -3,21 +3,18 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const dotenv = require('dotenv');
-const jwt = require('jsonwebtoken');
 const path = require('path');
 const swaggerUI = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
 
 //  routes
 const AuthRoutes = require('./routes/auth/auth.routes');
-const ServerRoute = require('./routes/server.route');
 const CampaignRoutes = require('./routes/campaign/campaign.route');
 const UserRoutes = require('./routes/user/user.route');
 const serverTest = require('./routes/server.route');
 
 // database
 const mongoose = require('mongoose');
-const { MongoClient, ServerApiVersion } = require('mongodb');
 
 // middleware
 const AuthMiddleware = require('./middleware/auth.middleware');

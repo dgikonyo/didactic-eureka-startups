@@ -32,7 +32,7 @@ class CampaignStatusController {
         return res.status(400).json(responseDto);
       }
 
-      if (campaignStatusInstance.getStatusName() == null) {
+      if (campaignStatusInstance.getStatusName() === null) {
         responseDto.setTimeStamp(new Date());
         responseDto.setStatusCode(400);
         responseDto.setStatusCodeDesc('Bad Request');

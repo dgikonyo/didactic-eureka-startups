@@ -32,6 +32,13 @@ class CampaignController {
     const campaignService = new CampaignService();
     return await campaignService.getSingleCampaign(req, res);
   }
+
+  async updateCampaign(req, res) {
+    console.log(`Attempt to update a campaign: ${JSON.stringify(req.body)}`);
+
+    const campaignService = new CampaignService();
+    return await campaignService.updateCampaignDetails(req, res);
+  }
 }
 
 module.exports = CampaignController;

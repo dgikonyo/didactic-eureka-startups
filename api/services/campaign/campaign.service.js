@@ -258,6 +258,71 @@ class CampaignService {
     }
   }
 
+  async updateCampaignDetails (req, res) {
+    const campaignInstance = plainToInstance(CampaignDto, req.body);
+    const campaignDto = new CampaignDto();
+    const userId = req.user.id;
+
+    const validationErrors = await this.validateCampaign(
+      campaignInstance,
+      userId
+    );
+
+    if (validationErrors.length > 0) {
+      ResponseService.sendResponse(
+        res,
+        400,
+        'BAD REQUEST',
+        'FAILURE',
+        validationErrors.join(', ')
+      );
+    }
+
+    try {
+      campaignDto.setTitle(campaignInstance.title);
+      campaignDto.setTagLine(campaignInstance.tagLine);
+      campaignDto.setStartDate(campaignInstance.startDate);
+      campaignDto.setEndDate(campaignInstance.endDate);
+      campaignDto.setDuration(campaignInstance.duration);
+      campaignDto.setTargetAmount(campaignInstance.targetAmount);
+      campaignDto.setVideoUrl(campaignInstance.videoUrl);
+      campaignDto.setVideoOverlayUrl(campaignInstance.videoOverlayUrl);
+      campaignDto.setStory(campaignInstance.story);
+      campaignDto.setSupportEmail(campaignInstance.supportEmail);
+
+      const updateCampaign = await Campaign.findByIdAndUpdate(
+        req.body.id, campaignDto
+      );
+
+      if (!updateCampaign) {
+        return ResponseService.sendResponse(
+          res,
+          400,
+          'BAD REQUEST',
+          'FAILURE',
+          'COULD NOT UPDATE CAMPAIGN'
+        );
+      }
+
+      return ResponseService.sendResponse(
+        res,
+        200,
+        'CAMPAIGN UPDATED',
+        'Success',
+        updateCampaign
+      );
+    } catch (error) {
+      return ResponseService.sendResponse(
+        res,
+        500,
+        'INTERNAL SERVER ERROR',
+        'FAILURE',
+        error.message
+      );
+    }
+
+  }
+
   /**
    * Validates a campaign instance.
    *
