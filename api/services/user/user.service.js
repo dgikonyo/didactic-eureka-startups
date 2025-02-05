@@ -1,5 +1,6 @@
 const Campaign = require('../../entities/campaign/campaign.model');
 const ResponseService = require('../../utils/responses/responseUtils');
+
 class UserService {
   /**
    * Fetches and returns a list of campaigns associated with the currently authenticated user.

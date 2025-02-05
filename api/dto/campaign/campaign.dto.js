@@ -35,7 +35,7 @@ class CampaignDto {
     this.title = title;
     this.tagLine = tagLine;
     this.startDate = startDate;
-    this.endDate - endDate;
+    this.endDate = endDate;
     this.duration = duration;
     this.targetAmount = targetAmount;
     this.videoUrl = videoUrl;
