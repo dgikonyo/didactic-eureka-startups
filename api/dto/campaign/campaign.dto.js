@@ -1,4 +1,4 @@
-class CampaignDto {
+export default class CampaignDto {
   id;
   title;
   tagLine;
@@ -164,5 +164,3 @@ class CampaignDto {
     this.countryId = countryId;
   }
 }
-
-module.exports = CampaignDto;

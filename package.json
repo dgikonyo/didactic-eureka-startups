@@ -2,7 +2,7 @@
 	"scripts": {
 		"dev": "concurrently \"npm run dev --prefix api\" \"npm run dev --prefix frontend\"",
 		"build": "concurrently \"npm run build --prefix api\" \"npm run build --prefix frontend\"",
-		"lint": "concurrently \"npm run lint --prefix api\" \"npm run lint --prefix frontend\"",,
+		"lint": "concurrently \"npm run lint --prefix api\" \"npm run lint --prefix frontend\"",
 		"start": "concurrently \"npm run start --prefix api\" \"npm run dev --prefix frontend\""
 	},
 	"devDependencies": {

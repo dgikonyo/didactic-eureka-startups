@@ -1,7 +1,7 @@
-const Campaign = require('../../entities/campaign/campaign.model');
-const ResponseService = require('../../utils/responses/responseUtils');
+import Campaign from '../../entities/campaign/campaign.model.js';
+import ResponseService from '../../utils/responses/responseUtils.js';
 
-class UserService {
+export default class UserService {
   /**
    * Fetches and returns a list of campaigns associated with the currently authenticated user.
    *
@@ -43,5 +43,3 @@ class UserService {
     }
   }
 }
-
-module.exports = UserService;

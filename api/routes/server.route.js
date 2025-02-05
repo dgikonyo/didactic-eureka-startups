@@ -1,6 +1,6 @@
-const ResponseDto = require('../dto/response.dto');
+import ResponseDto from '../dto/response.dto.js';
 
-const serverTest = async (req, res) => {
+export const serverTest = async (req, res) => {
   console.log('Attempt to access server');
   const responseDto = new ResponseDto();
 
@@ -22,5 +22,3 @@ const serverTest = async (req, res) => {
     res.status(500).json({ responseDto });
   }
 };
-
-module.exports = serverTest;

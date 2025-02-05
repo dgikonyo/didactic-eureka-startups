@@ -1,13 +1,12 @@
 // stores all modules
 import { defineStore } from 'pinia';
-import type { User } from '@/types/User';
-import { AuthService } from '../services/AuthService';
-import type { LoginDto } from '@/types/User';
+import type { User, LoginDto } from '@/types/User';
+import AuthService from '../services/AuthService';
 import type { Campaign } from '@/types/Campaign';
-import { CampaignService } from '../services/CampaignService';
+import CampaignService from '../services/CampaignService';
 
-const authService = new AuthService;
-const campaignService = new CampaignService;
+const authService = new AuthService();
+const campaignService = new CampaignService();
 
 export const useAuthStore = defineStore('auth', {
   state: () => {
@@ -16,6 +15,7 @@ export const useAuthStore = defineStore('auth', {
         return JSON.parse(localStorage.getItem('user') || 'null');
       } catch (error) {
         return null;
+        throw error;
       }
     })();
 
@@ -62,8 +62,8 @@ export const useAuthStore = defineStore('auth', {
         this.status.loggedIn = false;
         throw error;
       }
-    }
-  }
+    },
+  },
 });
 
 export const useCampaignStore = defineStore('campaign', {
@@ -71,12 +71,15 @@ export const useCampaignStore = defineStore('campaign', {
     const storedCampaign = (() => {
       try {
         return JSON.parse(localStorage.getItem('campaign') || 'null');
-      } catch (error) { return null; }
+      } catch (error) {
+        return null;
+        throw error;
+      }
     })();
 
     return {
       status: { campaignRegistered: !!storedCampaign },
-      campaign: storedCampaign as Campaign | null
+      campaign: storedCampaign as Campaign | null,
     };
   },
   actions: {
@@ -95,6 +98,6 @@ export const useCampaignStore = defineStore('campaign', {
         this.campaign = null;
         throw error;
       }
-    }
-  }
+    },
+  },
 });

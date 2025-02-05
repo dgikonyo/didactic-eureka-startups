@@ -1,9 +1,12 @@
-const express = require('express');
-const router = express.Router();
-const UserController = require('../../controllers/user/user.controller');
+import express from 'express';
+import UserController from '../../controllers/user/user.controller.js';
 
+const router = express.Router();
 const userController = new UserController();
 
-router.get('/campaigns/show', userController.getUserCampaigns.bind(userController));
+router.get(
+  '/campaigns/show',
+  userController.getUserCampaigns.bind(userController)
+);
 
-module.exports = router;
+export default router;

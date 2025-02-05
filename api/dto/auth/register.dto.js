@@ -1,4 +1,4 @@
-class RegisterDto {
+export default class RegisterDto {
   username;
   firstName;
   lastName;
@@ -114,5 +114,3 @@ class RegisterDto {
     this.updatedAt = updatedAt;
   }
 }
-
-module.exports = RegisterDto;

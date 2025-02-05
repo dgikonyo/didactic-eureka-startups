@@ -1,14 +1,12 @@
-const mongoose = require('mongoose');
-const uuid = require('uuid');
-const Schema = mongoose.Schema;
-const validator = require('validator');
-
+import { mongoose, Schema } from 'mongoose';
+import { v4 as uuid } from 'uuid';
+import validator from 'validator';
 
 const userSchema = new Schema(
   {
     id: {
       type: String,
-      default: uuid.v4(),
+      default: uuid(),
       unique: true,
     },
     username: {
@@ -59,4 +57,4 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('User', userSchema);
+export default mongoose.model('User', userSchema);

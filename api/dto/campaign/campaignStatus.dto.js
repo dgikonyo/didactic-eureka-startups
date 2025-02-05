@@ -1,4 +1,4 @@
-class CampaignStatusDto {
+export default class CampaignStatusDto {
   statusName;
 
   constructor(id, statusName) {
@@ -13,5 +13,3 @@ class CampaignStatusDto {
     this.statusName = statusName;
   }
 }
-
-module.exports = CampaignStatusDto;

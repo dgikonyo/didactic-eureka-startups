@@ -1,9 +1,9 @@
-const CampaignStatus = require('../../entities/campaign/campaignStatus.model');
-const CampaignStatusDto = require('../../dto/campaign/campaignStatus.dto');
-const { plainToInstance } = require('class-transformer');
-const ResponseDto = require('../../dto/response.dto');
+import CampaignStatus from '../../entities/campaign/campaignStatus.model.js';
+import CampaignStatusDto from '../../dto/campaign/campaignStatus.dto.js';
+import { plainToInstance } from 'class-transformer';
+import ResponseDto from '../../dto/response.dto.js';
 
-class CampaignStatusController {
+export default class CampaignStatusController {
   /**
    * Creates a new campaign status.
    * @param {Object} req - The incoming request object containing campaign status data.
@@ -161,5 +161,3 @@ class CampaignStatusController {
     }
   }
 }
-
-module.exports = CampaignStatusController;

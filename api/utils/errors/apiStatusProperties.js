@@ -1,4 +1,4 @@
-class Helper {
+export class Helper {
   HttpStatusCode = Object.freeze({
     OK: 200,
     BAD_REQUEST: 400,
@@ -7,12 +7,12 @@ class Helper {
     INTERNAL_SERVER: 500,
   });
 }
-class AppError extends Error {
+export class AppError extends Error {
   constructor(message, statusCode) {
     super(message);
     this.statusCode = statusCode;
     /**
-     * isOperational: Flag to distinguish between operational errors 
+     * isOperational: Flag to distinguish between operational errors
      * (expected) and programmer errors (unexpected).
      */
     this.isOperational = true;
@@ -20,34 +20,26 @@ class AppError extends Error {
   }
 }
 
-class BadRequestError extends AppError {
+export class BadRequestError extends AppError {
   constructor(message) {
     super(message, Helper.HttpStatusCode.OK);
   }
 }
 
-class NotFoundError extends AppError {
+export class NotFoundError extends AppError {
   constructor(message) {
     super(message, Helper.HttpStatusCode.NOT_FOUND);
   }
 }
 
-class InternalServerError extends AppError {
+export class InternalServerError extends AppError {
   constructor(message) {
     super(message, Helper.HttpStatusCode.INTERNAL_SERVER);
   }
 }
 
-class ForbiddenError extends AppError {
+export class ForbiddenError extends AppError {
   constructor(message) {
     super(message, Helper.HttpStatusCode.FORBIDDEN);
   }
 }
-
-module.exports = {
-  AppError,
-  BadRequestError,
-  NotFoundError,
-  InternalServerError,
-  ForbiddenError,
-};
