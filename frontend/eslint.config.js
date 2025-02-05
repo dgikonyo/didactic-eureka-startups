@@ -20,7 +20,7 @@ export default [
     languageOptions: { parserOptions: { parser: tseslint.parser } },
   },
   {
-    ignores: ['node_modules', '.gitignore'],
+    ignores: ['node_modules', '.gitignore', 'dist'],
   },
   {
     plugins: { cypress },
