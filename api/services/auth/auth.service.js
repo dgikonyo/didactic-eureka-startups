@@ -1,12 +1,12 @@
-const { plainToInstance } = require('class-transformer');
-const User = require('../../entities/users.model');
-const RegisterDto = require('../../dto/auth/register.dto');
-const LoginDto = require('../../dto/auth/login.dto');
-const AuthMiddleware = require('../../middleware/auth.middleware');
-const bycrpt = require('bcrypt');
-const ResponseService = require('../../utils/responses/responseUtils');
+import { plainToInstance } from 'class-transformer';
+import User from '../../entities/users.model.js';
+import RegisterDto from '../../dto/auth/register.dto.js';
+import LoginDto from '../../dto/auth/login.dto.js';
+import AuthMiddleware from '../../middleware/auth.middleware.js';
+import bcrypt from 'bcrypt';
+import ResponseService from '../../utils/responses/responseUtils.js';
 
-class AuthService {
+export default class AuthService {
   constructor() {
     this.authMiddleware = new AuthMiddleware();
   }
@@ -39,7 +39,7 @@ class AuthService {
         );
       }
 
-      const hashedPassword = await bycrpt.hash(registrationDto.password, 12);
+      const hashedPassword = await bcrypt.hash(registrationDto.password, 12);
       const user = new User({
         ...registrationDto,
         password: hashedPassword,
@@ -71,7 +71,7 @@ class AuthService {
       const user = await User.findOne({ email: loginDto.getEmail() });
       if (
         !user ||
-        !(await bycrpt.compare(loginDto.getPassword(), user.password))
+        !(await bcrypt.compare(loginDto.getPassword(), user.password))
       ) {
         return ResponseService.sendResponse(
           res,
@@ -111,5 +111,3 @@ class AuthService {
     return errors;
   }
 }
-
-module.exports = AuthService;

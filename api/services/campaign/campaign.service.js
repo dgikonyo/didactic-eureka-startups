@@ -1,10 +1,10 @@
-const { plainToInstance } = require('class-transformer');
-const Campaign = require('../../entities/campaign/campaign.model');
-const CampaignDto = require('../../dto/campaign/campaign.dto');
-const ResponseService = require('../../utils/responses/responseUtils');
-const ResponseDto = require('../../dto/response.dto');
+import { plainToInstance } from 'class-transformer';
+import Campaign from '../../entities/campaign/campaign.model.js';
+import CampaignDto from '../../dto/campaign/campaign.dto.js';
+import ResponseService from '../../utils/responses/responseUtils.js';
+import ResponseDto from '../../dto/response.dto.js';
 
-class CampaignService {
+export default class CampaignService {
   /**
    * Creates a new campaign.
    *
@@ -258,7 +258,7 @@ class CampaignService {
     }
   }
 
-  async updateCampaignDetails (req, res) {
+  async updateCampaignDetails(req, res) {
     const campaignInstance = plainToInstance(CampaignDto, req.body);
     const campaignDto = new CampaignDto();
     const userId = req.user.id;
@@ -291,7 +291,8 @@ class CampaignService {
       campaignDto.setSupportEmail(campaignInstance.supportEmail);
 
       const updateCampaign = await Campaign.findByIdAndUpdate(
-        req.body.id, campaignDto
+        req.body.id,
+        campaignDto
       );
 
       if (!updateCampaign) {
@@ -320,7 +321,6 @@ class CampaignService {
         error.message
       );
     }
-
   }
 
   /**
@@ -364,4 +364,3 @@ class CampaignService {
     return res.status(statusCode).json(responseDto);
   }
 }
-module.exports = CampaignService;

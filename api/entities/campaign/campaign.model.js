@@ -1,13 +1,12 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const validator = require('validator');
-const uuid = require('uuid');
+import { mongoose, Schema } from 'mongoose';
+import validator from 'validator';
+import { v4 as uuid } from 'uuid';
 
 const campaignSchema = new Schema(
   {
     id: {
       type: String,
-      default: uuid.v4(),
+      default: uuid(),
       unique: true,
     },
     title: {
@@ -47,7 +46,7 @@ const campaignSchema = new Schema(
     },
     story: {
       type: String,
-      required: [true, 'Campaign target amount must be provided'],
+      required: [true, 'Campaign story must be provided'],
       minlength: 3,
     },
     supportEmail: {
@@ -76,4 +75,4 @@ const campaignSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Campaign', campaignSchema);
+export default mongoose.model('Campaign', campaignSchema);

@@ -1,11 +1,13 @@
-const jwt = require('jsonwebtoken');
-const dotenv = require('dotenv');
-const ResponseService = require('../utils/responses/responseUtils');
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+import process from 'process';
+import ResponseService from '../utils/responses/responseUtils.js';
+
 // setup global config acess
 dotenv.config();
 const secret = process.env.JWT_SECRET_KEY;
 
-class AuthMiddleware {
+export default class AuthMiddleware {
   async generateToken(user) {
     const payload = {
       id: user.id,
@@ -70,4 +72,3 @@ class AuthMiddleware {
     }
   }
 }
-module.exports = AuthMiddleware;

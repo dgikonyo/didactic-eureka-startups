@@ -1,32 +1,29 @@
 // imports
-const express = require('express');
-const app = express();
-const cors = require('cors');
-const dotenv = require('dotenv');
-const path = require('path');
-const swaggerUI = require('swagger-ui-express');
-const swaggerSpec = require('./swagger');
-
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import process from 'process';
+import path from 'path';
+import swaggerUI from 'swagger-ui-express';
+import { swaggerSpec } from './swagger.js';
 //  routes
-const AuthRoutes = require('./routes/auth/auth.routes');
-const CampaignRoutes = require('./routes/campaign/campaign.route');
-const UserRoutes = require('./routes/user/user.route');
-const serverTest = require('./routes/server.route');
-
+import AuthRoutes from './routes/auth/auth.routes.js';
+import CampaignRoutes from './routes/campaign/campaign.route.js';
+import UserRoutes from './routes/user/user.route.js';
+import { serverTest } from './routes/server.route.js';
 // database
-const mongoose = require('mongoose');
-
+import mongoose from 'mongoose';
 // middleware
-const AuthMiddleware = require('./middleware/auth.middleware');
-const authMiddleware = new AuthMiddleware();
-
+import AuthMiddleware from './middleware/auth.middleware.js';
 // setup global config acess
 dotenv.config();
 
-// declaratinos
+// declarations
 const PORT = process.env.PORT || 3000;
+const authMiddleware = new AuthMiddleware();
 
 // Middleware to parse JSON bodies
+const app = express();
 app.use(express.json());
 app.use(cors());
 
@@ -70,7 +67,7 @@ app.use(
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 // Serve static files from the Vue.js dist directory
-const distPath = path.join(__dirname, '../frontend/dist');
+const distPath = path.join(path.dirname('../frontend/dist'));
 console.log('Static files served from:', distPath);
 app.use(express.static(distPath));
 

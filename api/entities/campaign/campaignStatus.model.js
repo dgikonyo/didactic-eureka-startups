@@ -1,12 +1,11 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const uuid = require('uuid');
+import { mongoose, Schema } from 'mongoose';
+import { v4 as uuid } from 'uuid';
 
 const campaignStatusSchema = new Schema(
   {
     id: {
       type: String,
-      default: uuid.v4(),
+      default: uuid(),
       unique: true,
     },
     statusName: {
@@ -19,4 +18,4 @@ const campaignStatusSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('CampaignStatus', campaignStatusSchema);
+export default mongoose.model('CampaignStatus', campaignStatusSchema);

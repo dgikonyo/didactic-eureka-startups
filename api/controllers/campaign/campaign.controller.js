@@ -1,6 +1,6 @@
-const CampaignService = require('../../services/campaign/campaign.service');
+import CampaignService from '../../services/campaign/campaign.service.js';
 
-class CampaignController {
+export default class CampaignController {
   async createCampaign(req, res) {
     console.log(
       `Attempt to create a new campaign: ${JSON.stringify(req.body)}`
@@ -40,5 +40,3 @@ class CampaignController {
     return await campaignService.updateCampaignDetails(req, res);
   }
 }
-
-module.exports = CampaignController;

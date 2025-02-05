@@ -1,7 +1,13 @@
-const ResponseDto = require('../../dto/response.dto.js');
+import ResponseDto from '../../dto/response.dto.js';
 
-class ResponseService {
-  static sendResponse(res, statusCode, statusDesc, statusMessage, additionalData) {
+export default class ResponseService {
+  static sendResponse(
+    res,
+    statusCode,
+    statusDesc,
+    statusMessage,
+    additionalData
+  ) {
     const responseDto = new ResponseDto();
 
     responseDto.setTimeStamp(new Date());
@@ -13,5 +19,3 @@ class ResponseService {
     return res.status(statusCode).json(responseDto);
   }
 }
-
-module.exports = ResponseService;

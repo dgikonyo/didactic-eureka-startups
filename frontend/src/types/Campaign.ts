@@ -11,8 +11,8 @@ export interface Campaign {
   videoOverlayUrl: string;
   location: string;
   tags: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
   duration: number;
   targetAmount: number;
   story: string;
@@ -21,4 +21,4 @@ export interface Campaign {
   user_id: string;
   campaignStatus: string;
   countryId: number;
-};
+}

@@ -1,6 +1,6 @@
-const UserService = require('../../services/user/user.service');
+import UserService from '../../services/user/user.service.js';
 
-class UserController {
+export default class UserController {
   async getUserCampaigns(req, res) {
     console.log(
       `Attempt to fetch all campaigns belonging to user: ${JSON.stringify(req.body)}`
@@ -10,4 +10,3 @@ class UserController {
     return await userService.listUserCampaigns(req, res);
   }
 }
-module.exports = UserController;

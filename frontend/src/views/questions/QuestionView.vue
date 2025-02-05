@@ -1,19 +1,20 @@
 <script lang="ts">
 import NavbarComponent from '@/components/NavbarComponent.vue';
 import '@/assets/main.css';
-import { RouterLink, useRouter } from 'vue-router';
-import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { ref } from 'vue';
 import type { Campaign } from '@/types/Campaign';
-import { country } from '@/data/menu_data';
-import { businessCategories } from '@/data/menu_data';
-import { businessSubCategories } from '@/data/menu_data';
+import {
+  businessCategories,
+  businessSubCategories,
+  country,
+} from '@/data/menu_data';
 import { useCampaignStore } from '@/stores';
 
 export default {
   name: 'campaign-content',
   components: {
     NavbarComponent,
-    RouterLink,
   },
   setup() {
     const campaignStore = useCampaignStore();
