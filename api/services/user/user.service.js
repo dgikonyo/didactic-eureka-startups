@@ -1,5 +1,5 @@
-const Campaign = require("../../entities/campaign/campaign.model");
-const ResponseService = require("../../utils/responses/responseUtils");
+const Campaign = require('../../entities/campaign/campaign.model');
+const ResponseService = require('../../utils/responses/responseUtils');
 class UserService {
   /**
    * Fetches and returns a list of campaigns associated with the currently authenticated user.
@@ -18,25 +18,25 @@ class UserService {
         return ResponseService.sendResponse(
           res,
           404,
-          "NOT FOUND",
-          "SUCCESS",
-          "User has no campaigns"
+          'NOT FOUND',
+          'SUCCESS',
+          'User has no campaigns'
         );
       }
 
       return ResponseService.sendResponse(
         res,
         200,
-        "OK",
-        "SUCCESSFUL",
+        'OK',
+        'SUCCESSFUL',
         userCampaigns
       );
     } catch (error) {
       return ResponseService.sendResponse(
         res,
         500,
-        "INTERNAL SERVER ERROR",
-        "FAILURE",
+        'INTERNAL SERVER ERROR',
+        'FAILURE',
         error.message
       );
     }

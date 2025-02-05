@@ -1,10 +1,10 @@
-const { plainToInstance } = require("class-transformer");
-const User = require("../../entities/users.model");
-const RegisterDto = require("../../dto/auth/register.dto");
-const LoginDto = require("../../dto/auth/login.dto");
-const AuthMiddleware = require("../../middleware/auth.middleware");
-const bycrpt = require("bcrypt");
-const ResponseService = require("../../utils/responses/responseUtils");
+const { plainToInstance } = require('class-transformer');
+const User = require('../../entities/users.model');
+const RegisterDto = require('../../dto/auth/register.dto');
+const LoginDto = require('../../dto/auth/login.dto');
+const AuthMiddleware = require('../../middleware/auth.middleware');
+const bycrpt = require('bcrypt');
+const ResponseService = require('../../utils/responses/responseUtils');
 
 class AuthService {
   constructor() {
@@ -19,9 +19,9 @@ class AuthService {
       return ResponseService.sendResponse(
         res,
         400,
-        "BAD REQUEST",
-        "FAILURE",
-        validationErrors.join(", ")
+        'BAD REQUEST',
+        'FAILURE',
+        validationErrors.join(', ')
       );
     }
 
@@ -33,9 +33,9 @@ class AuthService {
         return ResponseService.sendResponse(
           res,
           400,
-          "BAD REQUEST",
-          "FAILURE",
-          "Duplicate email found"
+          'BAD REQUEST',
+          'FAILURE',
+          'Duplicate email found'
         );
       }
 
@@ -49,16 +49,16 @@ class AuthService {
       return ResponseService.sendResponse(
         res,
         201,
-        "USER CREATED",
-        "SUCCESS",
+        'USER CREATED',
+        'SUCCESS',
         result
       );
     } catch (error) {
       return ResponseService.sendResponse(
         res,
         500,
-        "INTERNAL SERVER ERROR",
-        "FAILURE",
+        'INTERNAL SERVER ERROR',
+        'FAILURE',
         error.message
       );
     }
@@ -76,9 +76,9 @@ class AuthService {
         return ResponseService.sendResponse(
           res,
           400,
-          "BAD REQUEST",
-          "FAILURE",
-          "Email or password not found"
+          'BAD REQUEST',
+          'FAILURE',
+          'Email or password not found'
         );
       }
 
@@ -86,16 +86,16 @@ class AuthService {
       return ResponseService.sendResponse(
         res,
         200,
-        "USER SIGN IN SUCCESSFUL",
-        "Success",
+        'USER SIGN IN SUCCESSFUL',
+        'Success',
         accessToken
       );
     } catch (error) {
       return ResponseService.sendResponse(
         res,
         500,
-        "INTERNAL SERVER ERROR",
-        "FAILURE",
+        'INTERNAL SERVER ERROR',
+        'FAILURE',
         error.message
       );
     }
@@ -103,11 +103,11 @@ class AuthService {
 
   validateRegistration(registrationDto) {
     const errors = [];
-    if (!registrationDto.username) errors.push("Username missing");
-    if (!registrationDto.firstName) errors.push("First Name missing");
-    if (!registrationDto.lastName) errors.push("Last Name missing");
-    if (!registrationDto.email) errors.push("Email missing");
-    if (!registrationDto.password) errors.push("Password missing");
+    if (!registrationDto.username) errors.push('Username missing');
+    if (!registrationDto.firstName) errors.push('First Name missing');
+    if (!registrationDto.lastName) errors.push('Last Name missing');
+    if (!registrationDto.email) errors.push('Email missing');
+    if (!registrationDto.password) errors.push('Password missing');
     return errors;
   }
 }

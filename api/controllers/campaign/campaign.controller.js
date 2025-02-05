@@ -1,4 +1,4 @@
-const CampaignService = require("../../services/campaign/campaign.service");
+const CampaignService = require('../../services/campaign/campaign.service');
 
 class CampaignController {
   async createCampaign(req, res) {

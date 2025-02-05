@@ -3,7 +3,7 @@ import { RouterLink } from 'vue-router';
 import '../assets/main.css';
 
 if (window.location.href === '/') {
-    document.getElementById('nav-explore').style.display = 'none';
+  document.getElementById('nav-explore').style.display = 'none';
 }
 </script>
 <template>

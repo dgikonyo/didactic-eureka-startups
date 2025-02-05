@@ -13,12 +13,12 @@ export interface Campaign {
   tags: string;
   startDate: Date;
   endDate: Date;
-  duration: Number;
-  targetAmount: Number;
+  duration: number;
+  targetAmount: number;
   story: string;
   supportEmail: string;
   fundingModel: string;
   user_id: string;
   campaignStatus: string;
-  countryId: Number;
+  countryId: number;
 };

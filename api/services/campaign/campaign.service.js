@@ -1,8 +1,8 @@
-const { plainToInstance } = require("class-transformer");
-const Campaign = require("../../entities/campaign/campaign.model");
-const CampaignDto = require("../../dto/campaign/campaign.dto");
-const ResponseService = require("../../utils/responses/responseUtils");
-const ResponseDto = require("../../dto/response.dto");
+const { plainToInstance } = require('class-transformer');
+const Campaign = require('../../entities/campaign/campaign.model');
+const CampaignDto = require('../../dto/campaign/campaign.dto');
+const ResponseService = require('../../utils/responses/responseUtils');
+const ResponseDto = require('../../dto/response.dto');
 
 class CampaignService {
   /**
@@ -33,9 +33,9 @@ class CampaignService {
       ResponseService.sendResponse(
         res,
         400,
-        "BAD REQUEST",
-        "FAILURE",
-        validationErrors.join(", ")
+        'BAD REQUEST',
+        'FAILURE',
+        validationErrors.join(', ')
       );
     }
 
@@ -47,9 +47,9 @@ class CampaignService {
         return ResponseService.sendResponse(
           res,
           400,
-          "BAD REQUEST",
-          "FAILURE",
-          "Duplicate campaign name found"
+          'BAD REQUEST',
+          'FAILURE',
+          'Duplicate campaign name found'
         );
       }
 
@@ -74,16 +74,16 @@ class CampaignService {
       return ResponseService.sendResponse(
         res,
         201,
-        "CAMPAIGN CREATED",
-        "Success",
+        'CAMPAIGN CREATED',
+        'Success',
         result
       );
     } catch (error) {
       return ResponseService.sendResponse(
         res,
         500,
-        "INTERNAL SERVER ERROR",
-        "FAILURE",
+        'INTERNAL SERVER ERROR',
+        'FAILURE',
         error.message
       );
     }
@@ -109,25 +109,25 @@ class CampaignService {
         return ResponseService.sendResponse(
           res,
           404,
-          "NOT FOUND",
-          "FAILURE",
-          "No campaigns found"
+          'NOT FOUND',
+          'FAILURE',
+          'No campaigns found'
         );
       }
 
       return ResponseService.sendResponse(
         res,
         200,
-        "OK",
-        "SUCCESS",
+        'OK',
+        'SUCCESS',
         verifiedCampaigns
       );
     } catch (error) {
       return ResponseService.sendResponse(
         res,
         500,
-        "INTERNAL SERVER ERROR",
-        "FAILURE",
+        'INTERNAL SERVER ERROR',
+        'FAILURE',
         error.message
       );
     }
@@ -156,25 +156,25 @@ class CampaignService {
         return ResponseService.sendResponse(
           res,
           404,
-          "NOT FOUND",
-          "FAILURE",
-          "User has no campaigns"
+          'NOT FOUND',
+          'FAILURE',
+          'User has no campaigns'
         );
       }
 
       return ResponseService.sendResponse(
         res,
         200,
-        "OK",
-        "SUCCESS",
+        'OK',
+        'SUCCESS',
         userCampaigns
       );
     } catch (error) {
       return ResponseService.sendResponse(
         res,
         500,
-        "INTERNAL SERVER ERROR",
-        "FAILURE",
+        'INTERNAL SERVER ERROR',
+        'FAILURE',
         error.message
       );
     }
@@ -193,7 +193,7 @@ class CampaignService {
   async listCampaignsPerCountry(req, res) {
     try {
       const campaigns = await Campaign.find({
-        $or: [{ campaignStatus: "trusted" }, { campaignStatus: "verified" }],
+        $or: [{ campaignStatus: 'trusted' }, { campaignStatus: 'verified' }],
         countryId: req.body.countryId,
       });
 
@@ -201,25 +201,25 @@ class CampaignService {
         return ResponseService.sendResponse(
           res,
           404,
-          "NOT FOUND",
-          "FAILURE",
-          "There are no campaigns, atleast not yet!"
+          'NOT FOUND',
+          'FAILURE',
+          'There are no campaigns, atleast not yet!'
         );
       }
 
       return ResponseService.sendResponse(
         res,
         200,
-        "OK",
-        "SUCCESSFUL",
+        'OK',
+        'SUCCESSFUL',
         campaigns
       );
     } catch (error) {
       return ResponseService.sendResponse(
         res,
         500,
-        "INTERNAL SERVER ERROR",
-        "FAILURE",
+        'INTERNAL SERVER ERROR',
+        'FAILURE',
         error.message
       );
     }
@@ -242,17 +242,17 @@ class CampaignService {
         return ResponseService.sendResponse(
           res,
           404,
-          "NOT FOUND",
-          "FAILURE",
-          "INVALID CAMPAIGN INFO ENTERED"
+          'NOT FOUND',
+          'FAILURE',
+          'INVALID CAMPAIGN INFO ENTERED'
         );
       }
     } catch (error) {
       return ResponseService.sendResponse(
         res,
         500,
-        "INTERNAL SERVER ERROR",
-        "FAILURE",
+        'INTERNAL SERVER ERROR',
+        'FAILURE',
         error.message
       );
     }
@@ -269,18 +269,15 @@ class CampaignService {
    */
   validateCampaign(campaignInstance, userId) {
     const errors = [];
-    if (!campaignInstance.title) errors.push("Input campaign title");
-    if (!campaignInstance.startDate) errors.push("Input campaign start date");
-    if (!campaignInstance.endDate) errors.push("Input campaign end date");
-    if (!campaignInstance.duration) errors.push("Input campaign duration");
-    if (!campaignInstance.targetAmount)
-      errors.push("Input campaign target amount");
-    if (!campaignInstance.story) errors.push("Input campaign story");
-    if (!campaignInstance.fundingModel)
-      errors.push("Input campaign funding model");
-    if (!campaignInstance.campaignStatus)
-      errors.push("Campaign status missing");
-    if (!userId) errors.push("Input user id");
+    if (!campaignInstance.title) errors.push('Input campaign title');
+    if (!campaignInstance.startDate) errors.push('Input campaign start date');
+    if (!campaignInstance.endDate) errors.push('Input campaign end date');
+    if (!campaignInstance.duration) errors.push('Input campaign duration');
+    if (!campaignInstance.targetAmount) errors.push('Input campaign target amount');
+    if (!campaignInstance.story) errors.push('Input campaign story');
+    if (!campaignInstance.fundingModel) errors.push('Input campaign funding model');
+    if (!campaignInstance.campaignStatus) errors.push('Campaign status missing');
+    if (!userId) errors.push('Input user id');
     return errors;
   }
 

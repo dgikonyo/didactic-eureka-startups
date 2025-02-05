@@ -1,63 +1,63 @@
 <script lang="ts">
 import { RouterLink, useRouter } from 'vue-router';
 import { ref } from 'vue';
-import '../../assets/main.css'
+import '../../assets/main.css';
 import type { LoginDto } from '@/types/User';
 import { useAuthStore } from '@/stores';
 // https://www.bezkoder.com/vue-3-authentication-jwt/
 export default {
-    name: 'Login',
-    components: {
-        RouterLink
-    },
-    setup() {
-        const authStore = useAuthStore();
-        const router = useRouter();
+  name: 'Login',
+  components: {
+    RouterLink
+  },
+  setup() {
+    const authStore = useAuthStore();
+    const router = useRouter();
 
-        const validationErrors = ref<Record<string, string>>({});
-        const loginDto = ref<LoginDto>({ email: '', password: '' });
-        const isSubmitting = ref(false);
-        const message = ref('');
+    const validationErrors = ref<Record<string, string>>({});
+    const loginDto = ref<LoginDto>({ email: '', password: '' });
+    const isSubmitting = ref(false);
+    const message = ref('');
 
 
-        const loginAction: any = async () => {
-            validationErrors.value = {}; // Reset errors
-            isSubmitting.value = true;
+    const loginAction: any = async () => {
+      validationErrors.value = {}; // Reset errors
+      isSubmitting.value = true;
 
-            // Validation logic
-            if (!loginDto.value.email) {
-                validationErrors.value.email = 'Email is required';
-            } if (!loginDto.value.password) {
-                validationErrors.value.password = 'Password is required';
-            }
+      // Validation logic
+      if (!loginDto.value.email) {
+        validationErrors.value.email = 'Email is required';
+      } if (!loginDto.value.password) {
+        validationErrors.value.password = 'Password is required';
+      }
 
-            if (Object.keys(validationErrors.value).length > 0) {
-                isSubmitting.value = false;
-                return;
-            }
+      if (Object.keys(validationErrors.value).length > 0) {
+        isSubmitting.value = false;
+        return;
+      }
 
-            try {
-                await authStore.login(loginDto.value);
-                router.push('/campaign/:id');
-            } catch (error: any) {
-                message.value = error.response?.data?.message || error.message || 'Login failed.';
-            } finally { isSubmitting.value = false; }
-        };
+      try {
+        await authStore.login(loginDto.value);
+        router.push('/campaign/:id');
+      } catch (error: any) {
+        message.value = error.response?.data?.message || error.message || 'Login failed.';
+      } finally { isSubmitting.value = false; }
+    };
 
-        return {
-            loginDto,
-            validationErrors,
-            isSubmitting,
-            message,
-            loginAction,
-        }
-    },
-    computed: {
-        loggedIn() {
-            return this.$store.state.auth.status.loggedIn;
-        }
+    return {
+      loginDto,
+      validationErrors,
+      isSubmitting,
+      message,
+      loginAction,
+    };
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
     }
-}
+  }
+};
 </script>
 <template>
     <section class="login-section">
