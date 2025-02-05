@@ -235,8 +235,6 @@ class CampaignService {
    * @returns {Promise} A promise that resolves with the response object.
    */
   async getSingleCampaign(req, res) {
-    // receives an id from the frontend, it then brings up the details of the campaign
-
     try {
       const campaign = await Campaign.find({ id: req.body.id });
 
