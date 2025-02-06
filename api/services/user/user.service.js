@@ -2,6 +2,14 @@ import Campaign from '../../entities/campaign/campaign.model.js';
 import ResponseService from '../../utils/responses/responseUtils.js';
 
 export default class UserService {
+
+  /*
+    Loads the user's profile and the campaigns associated with him
+  */
+  async loadUserProfile(req, res) {
+
+  }
+
   /**
    * Fetches and returns a list of campaigns associated with the currently authenticated user.
    *
