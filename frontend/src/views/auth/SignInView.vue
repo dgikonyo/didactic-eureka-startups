@@ -19,7 +19,6 @@ export default {
     const isSubmitting = ref(false);
     const message = ref('');
 
-
     const loginAction = async () => {
       validationErrors.value = {}; // Reset errors
       isSubmitting.value = true;
@@ -37,8 +36,18 @@ export default {
       }
 
       try {
-        await authStore.login(loginDto.value);
-        router.push('/campaign/:id');
+        const response = await authStore.login(loginDto.value);
+
+        if (response.data.statusCode == 400) {
+          router.push('/sign-up');
+          isSubmitting.value = false;
+
+        } else if (response.data.statusCode == 500) {
+          router.push('/');
+          isSubmitting.value = false;
+        }
+
+        router.push('/profile');
       } catch (error) {
         message.value = error.response?.data?.message || error.message || 'Login failed.';
       } finally { isSubmitting.value = false; }
