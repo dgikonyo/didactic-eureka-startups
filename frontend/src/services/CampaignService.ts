@@ -13,4 +13,8 @@ export default class CampaignService {
       return error;
     }
   }
+
+  async loadAllCampaigns(campaign: Campaign) {
+    try {} catch(error) {}
+  }
 }
