@@ -2,8 +2,14 @@
 import Footer from '@/components/FooterComponent.vue';
 import Navbar from '@/components/NavbarComponent.vue';
 import '@/assets/main.css';
-
 import imgrl from '@/assets/Images/deniz-altindas-t1XLQvDqt.png';
+
+// export default {
+//   name: 'HomeView',
+//   setup () {
+
+//   }
+// };
 </script>
 <template>
   <section class="navigation-section">

@@ -2,14 +2,14 @@
 import NavbarComponent from '@/components/NavbarComponent.vue';
 import '@/assets/main.css';
 import { useRouter } from 'vue-router';
-import { ref } from 'vue';
+import { ref, type ComponentInternalInstance } from 'vue';
 import type { Campaign } from '@/types/Campaign';
 import {
   businessCategories,
   businessSubCategories,
   country,
 } from '@/data/menu_data';
-import { useCampaignStore } from '@/stores';
+import { useAuthStore, useCampaignStore } from '@/stores';
 
 export default {
   name: 'campaign-content',
@@ -17,6 +17,7 @@ export default {
     NavbarComponent,
   },
   setup() {
+    const authStore = useAuthStore();
     const campaignStore = useCampaignStore();
     const router = useRouter();
 
@@ -33,8 +34,8 @@ export default {
       cardImage: '',
       location: '',
       tags: '',
-      startDate: new Date(),
-      endDate: new Date(),
+      startDate: '',
+      endDate: '',
       duration: 0,
       targetAmount: 0,
       videoUrl: '',
@@ -54,8 +55,19 @@ export default {
       }
     }
 
+    function onBeforeMount(
+      callback: () => void,
+      target?: ComponentInternalInstance | null
+    ): void {
+      if (authStore.status.loggedIn == false) {
+        router.push('/sign-in');
+      }
+    }
+
     // save to store, redirect to questions page
     async function registerCampaignHandler(campaign: Campaign) {}
+
+    async function handleFileUploadEvent(event) {}
 
     function calculateDuration(startDate: Date, endDate: Date) {
       const oneDay: number = 24 * 60 * 60 * 1000;

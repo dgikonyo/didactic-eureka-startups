@@ -7,7 +7,7 @@ export default class UserService {
     Loads the user's profile and the campaigns associated with him
   */
   async loadUserProfile(req, res) {
-
+    
   }
 
   /**
