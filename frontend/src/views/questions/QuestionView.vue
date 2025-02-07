@@ -2,17 +2,13 @@
 import NavbarComponent from '@/components/NavbarComponent.vue';
 import '@/assets/main.css';
 import { useRouter } from 'vue-router';
-import { ref, type ComponentInternalInstance } from 'vue';
+import { ref, type ComponentInternalInstance, onMounted, computed } from 'vue';
 import type { Campaign } from '@/types/Campaign';
-import {
-  businessCategories,
-  businessSubCategories,
-  country,
-} from '@/data/menu_data';
+import { businessCategories, businessSubCategories, country } from '@/data/menu_data';
 import { useAuthStore, useCampaignStore } from '@/stores';
 
 export default {
-  name: 'campaign-content',
+  name: 'CampaignContent',
   components: {
     NavbarComponent,
   },
@@ -23,7 +19,6 @@ export default {
 
     const question = ref(1);
     const countries = country;
-
     const campaign = ref<Campaign>({
       category: '',
       sub_category: '',
@@ -48,37 +43,72 @@ export default {
       countryId: 0,
     });
 
-    // Methods for navigating between questions
-    function next() {
-      if (question.value <= 4) {
-        question.value++;
+    const isStepValid = computed(() => {
+      switch (step.value) {
+        case 1: return campaign.value.category && campaign.value.sub_category;
+        case 2: return campaign.value.country;
+        case 3: return campaign.value.currency;
+        default: return true;
       }
+    });
+
+    function validateCurrentStep() {
+      if (!isStepValid.value) {
+        alert(`Please fill in all required fields for Step ${step.value}.`);
+        return false;
+      }
+      return true;
     }
 
-    function onBeforeMount(
-      callback: () => void,
-      target?: ComponentInternalInstance | null
-    ): void {
-      if (authStore.status.loggedIn == false) {
-        router.push('/sign-in');
+    // Methods for navigating between questions
+    function nextStep() {
+      if (step.value <= 4 && validateCurrentStep()) {
+        step.value++;
       }
     }
 
     // save to store, redirect to questions page
-    async function registerCampaignHandler(campaign: Campaign) {}
+    async function registerCampaignHandler(campaign: Campaign) {
+      try {
+        await campaignStore.createCampaign(campaign);
+        router.push('/campaigns');
+      } catch (error) {
+        console.error('Error creating campaign:', error);
+      }
+    }
 
-    async function handleFileUploadEvent(event) {}
+    async function handleFileUploadEvent(event: Event) {
+      const fileInput = event.target as HTMLInputElement;
+      if (fileInput && fileInput.files) {
+        const file = fileInput.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = () => {
+            campaign.value.cardImage = reader.result as string;
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+    }
 
-    function calculateDuration(startDate: Date, endDate: Date) {
+    const calculateDuration = (startDate: Date, endDate: Date) => {
       const oneDay: number = 24 * 60 * 60 * 1000;
       const diffDays: number = Math.floor(
         Math.abs(startDate.getTime() - endDate.getTime()) / oneDay
       );
 
       return diffDays;
+    };
+
+    function isAuthenticated() {
+      return authStore.user;
     }
 
-    console.log(campaign);
+    onMounted(() => {
+      if (!isAuthenticated.value) {
+        router.push('/sign-in');
+      }
+    });
 
     return {
       businessCategories,
@@ -88,9 +118,9 @@ export default {
       campaign,
       next,
       registerCampaignHandler,
+      isAuthenticated,
     };
-  },
-};
+  },};
 </script>
 <template>
   <!-- https://codepen.io/thomasMM/pen/jOWxOpV?editors=1000 -->
@@ -362,10 +392,10 @@ export default {
             </div>
             <div class="campaign-info-input">
               <input
-                v-on="campaign.cardImage"
                 type="file"
                 class="card-upload"
                 name="campaign-card-image-upload"
+                @change="handleFileUploadEvent"
               />
               <label for="file">Select file</label>
             </div>
@@ -409,7 +439,7 @@ export default {
             <h2 class="campaign-info-title">Start Date</h2>
             <div class="campaign-info-input">
               <input
-                v-on="campaign.startDate"
+                v-model="campaign.startDate"
                 type="date"
                 name="campaign-card-image-upload"
               />
