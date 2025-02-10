@@ -100,15 +100,15 @@ export default {
       return diffDays;
     };
 
-    function isAuthenticated() {
-      return authStore.user;
-    }
+    // function isAuthenticated() {
+    //   return authStore.user;
+    // }
 
-    onMounted(() => {
-      if (!isAuthenticated.value) {
-        router.push('/sign-in');
-      }
-    });
+    // onMounted(() => {
+    //   if (!isAuthenticated.value) {
+    //     router.push('/sign-in');
+    //   }
+    // });
 
     return {
       businessCategories,
@@ -116,9 +116,9 @@ export default {
       question,
       countries,
       campaign,
-      next,
+      nextStep,
       registerCampaignHandler,
-      isAuthenticated,
+      // isAuthenticated,
     };
   },};
 </script>
@@ -166,7 +166,7 @@ export default {
     </div>
     <transition name="slide-fade">
       <div class="question-1 container" v-show="question === 1">
-        <form class="form" method="post" action="#" @submit.prevent="next()">
+        <form class="form" method="post" action="#" @submit.prevent="nextStep()">
           <div class="question-body">
             <div class="question-header row">
               <div class="col-12">
@@ -243,7 +243,7 @@ export default {
 
     <transition name="slide-fade">
       <div class="question-2 container" v-show="question === 2">
-        <form class="form" method="post" action="#" @submit.prevent="next()">
+        <form class="form" method="post" action="#" @submit.prevent="nextStep()">
           <div class="question-body">
             <div class="question-header row">
               <div class="col-12">
@@ -290,7 +290,7 @@ export default {
 
     <transition name="slide-fade">
       <div class="question-3 container" v-show="question === 3">
-        <form class="form" action="#" method="post" @submit.prevent="next()">
+        <form class="form" action="#" method="post" @submit.prevent="nextStep()">
           <div class="question-body">
             <div class="question-header row">
               <div class="col-12">

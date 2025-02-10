@@ -15,6 +15,6 @@ export default class CampaignService {
   }
 
   async loadAllCampaigns(campaign: Campaign) {
-    try {} catch(error) {}
+    try {} catch (error) {}
   }
 }

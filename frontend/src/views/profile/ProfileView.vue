@@ -4,20 +4,20 @@ import { useRouter } from 'vue-router';
 import '../../assets/main.css';
 
 export default {
-	name: 'profile',
-	setup() {
-		const authStore = useAuthStore();
-		const router = useRouter();
+  name: 'profile',
+  setup() {
+    const authStore = useAuthStore();
+    const router = useRouter();
 
-		if (authStore.loggedIn == false ){
-			router.push('/sign-in');
-		}
+    if (!authStore.status.loggedIn) {
+      router.push('/sign-in');
+    }
 
 	
-		return {
+    return {
 			
-		}
-	},
+    };
+  },
 };
 </script>
 <template>
