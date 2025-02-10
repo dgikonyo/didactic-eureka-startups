@@ -1,19 +1,24 @@
-<script setup lang="ts">
+<script  lang="ts">
 import Footer from '@/components/FooterComponent.vue';
-import Navbar from '@/components/NavbarComponent.vue';
+import NavbarComponent from '@/components/NavbarComponent.vue';
 import '@/assets/main.css';
 import imgrl from '@/assets/Images/deniz-altindas-t1XLQvDqt.png';
 
-// export default {
-//   name: 'HomeView',
-//   setup () {
+export default {
+  name: 'HomeView',
+  components: {
+    NavbarComponent
+  },
+  setup () {
 
-//   }
-// };
+    return {
+    }
+  }
+};
 </script>
 <template>
   <section class="navigation-section">
-    <Navbar />
+    <NavbarComponent />
   </section>
   <section class="home-section">
     <div class="hero-section">

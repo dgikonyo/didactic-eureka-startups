@@ -1,6 +1,6 @@
 <script lang="ts">
 import { RouterLink, useRouter } from 'vue-router';
-import { ref } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import '../../assets/main.css';
 import type { LoginDto } from '@/types/User';
 import { useAuthStore } from '@/stores';
@@ -19,6 +19,10 @@ export default {
     const isSubmitting = ref(false);
     const message = ref('');
 
+    const isLoggedIn = computed(() => {
+      return authStore.status.loggedIn;
+    });
+
     const loginAction = async () => {
       validationErrors.value = {}; // Reset errors
       isSubmitting.value = true;
@@ -36,22 +40,22 @@ export default {
       }
 
       try {
-        const response = await authStore.login(loginDto.value);
+        await authStore.login(loginDto.value);
 
-        if (response.data.statusCode == 400) {
-          router.push('/sign-up');
-          isSubmitting.value = false;
-
-        } else if (response.data.statusCode == 500) {
-          router.push('/');
-          isSubmitting.value = false;
+        if (authStore.status.loggedIn) {
+          router.push('/profile');
         }
 
-        router.push('/profile');
       } catch (error) {
         message.value = error.response?.data?.message || error.message || 'Login failed.';
       } finally { isSubmitting.value = false; }
     };
+
+    onMounted(()=> {
+      if (isLoggedIn.value) {
+        router.push('/profile');
+      }
+    });
 
     return {
       loginDto,
@@ -59,13 +63,9 @@ export default {
       isSubmitting,
       message,
       loginAction,
+      isLoggedIn
     };
   },
-  computed: {
-    loggedIn() {
-      return this.$store.state.auth.status.loggedIn;
-    }
-  }
 };
 </script>
 <template>

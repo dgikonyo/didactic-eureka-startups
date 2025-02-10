@@ -8,6 +8,7 @@ import ExploreView from '@/views/campaign/ExploreView.vue';
 import ArticleView from '@/views/article/ArticleView.vue';
 import CampaignView from '@/views/campaign/CampaignView.vue';
 import ProfileView from '@/views/profile/ProfileView.vue';
+import ForgotPasswordView from '@/views/auth/ForgotPasswordView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,6 +48,11 @@ const router = createRouter({
       path: '/sign-up',
       name: 'sign-up',
       component: () => SignUpView,
+    },
+    {
+      path:'/forgot-password',
+      name: 'forgot-password',
+      component: () => ForgotPasswordView,
     },
     {
       path: '/profile',
