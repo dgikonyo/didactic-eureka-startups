@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import NavbarComponent from '@/components/NavbarComponent.vue';
+import '@/assets/main.css';
+
+import imgrl from '@/assets/Images/deniz-altindas-t1XLQvDqt.png';
+</script>
 <template>
     <NavbarComponent></NavbarComponent>
     <section class="explore-section row">
@@ -74,9 +80,4 @@
         </div>
     </section>
 </template>
-<script setup lang="ts">
-import NavbarComponent from '@/components/NavbarComponent.vue';
-import '@/assets/main.css';
 
-import imgrl from '@/assets/Images/deniz-altindas-t1XLQvDqt.png';
-</script>

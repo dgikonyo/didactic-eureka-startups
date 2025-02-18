@@ -46,22 +46,10 @@ mongoose
   .catch((err) => console.log(err));
 
 // mount routes
-app.get(
-  '/api/v1/ping',
-  (req, res, next) => authMiddleware.authenticateToken(req, res, next),
-  serverTest
-);
+app.get('/api/v1/ping', (req, res, next) => authMiddleware.authenticateToken(req, res, next), serverTest);
 app.use('/api/v1/auth', AuthRoutes);
-app.use(
-  '/api/v1/campaigns',
-  (req, res, next) => authMiddleware.authenticateToken(req, res, next),
-  CampaignRoutes
-);
-app.use(
-  '/api/v1/users',
-  (req, res, next) => authMiddleware.authenticateToken(req, res, next),
-  UserRoutes
-);
+app.use('/api/v1/campaigns', (req, res, next) => authMiddleware.authenticateToken(req, res, next), CampaignRoutes);
+app.use('/api/v1/users', (req, res, next) => authMiddleware.authenticateToken(req, res, next),UserRoutes);
 
 // serve swagger documentation
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));

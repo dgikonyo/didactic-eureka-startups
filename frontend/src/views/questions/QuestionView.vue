@@ -100,15 +100,15 @@ export default {
       return diffDays;
     };
 
-    // function isAuthenticated() {
-    //   return authStore.user;
-    // }
+    function isAuthenticated() {
+      return authStore.isLoggedIn;
+    }
 
-    // onMounted(() => {
-    //   if (!isAuthenticated.value) {
-    //     router.push('/sign-in');
-    //   }
-    // });
+    onMounted(() => {
+      if (!isAuthenticated.value) {
+        router.push('/sign-in');
+      }
+    });
 
     return {
       businessCategories,
@@ -118,7 +118,7 @@ export default {
       campaign,
       nextStep,
       registerCampaignHandler,
-      // isAuthenticated,
+      isAuthenticated,
     };
   },};
 </script>

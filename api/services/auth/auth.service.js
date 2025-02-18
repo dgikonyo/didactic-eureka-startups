@@ -69,6 +69,7 @@ export default class AuthService {
 
     try {
       const user = await User.findOne({ email: loginDto.getEmail() });
+      console.log(user);
       if (
         !user ||
         !(await bcrypt.compare(loginDto.getPassword(), user.password))
@@ -82,7 +83,11 @@ export default class AuthService {
         );
       }
 
-      const accessToken = await this.authMiddleware.generateToken(user);
+      const userDetails = {
+
+      }
+
+      const accessToken = await this.authMiddleware.generateToken(userDetails);
       return ResponseService.sendResponse(
         res,
         200,
