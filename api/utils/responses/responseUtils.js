@@ -18,4 +18,10 @@ export default class ResponseService {
 
     return res.status(statusCode).json(responseDto);
   }
+
+  static logger(req, res, next){
+    console.log("Request Method: ", req.method);
+    console.log("Request URL: ", req.url);
+    next();
+  }
 }
