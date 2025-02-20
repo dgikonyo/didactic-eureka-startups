@@ -11,7 +11,9 @@
     "lint": "eslint . --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["crowdfunding"],
+  "keywords": [
+    "crowdfunding"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
