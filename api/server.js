@@ -11,7 +11,7 @@ import AuthRoutes from './routes/auth/auth.routes.js';
 import CampaignRoutes from './routes/campaign/campaign.route.js';
 import UserRoutes from './routes/user/user.route.js';
 import { serverTest } from './routes/server.route.js';
-import {Logger}
+import ResponseService from './utils/responses/responseUtils.js';
 // database
 import mongoose from 'mongoose';
 // middleware
@@ -22,11 +22,13 @@ dotenv.config();
 // declarations
 const PORT = process.env.PORT || 3000;
 const authMiddleware = new AuthMiddleware();
+const responseService = new ResponseService();
 
 // Middleware to parse JSON bodies
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(responseService.logger);
 
 // database connection
 const username = encodeURIComponent(process.env.DB_USER_NAME);

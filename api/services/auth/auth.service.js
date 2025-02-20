@@ -84,13 +84,13 @@ export default class AuthService {
       }
 
       const userDetails = new Map([
-          ["id", user.id],
-          ["username", user.username],
-          ["firstName", user.firstName],
-          ["lastName", user.lastName],
-          ["email", user.email],
-          ["role", user.role],
-          ["country_id", user.country_id]
+        ['id', user.id],
+        ['username', user.username],
+        ['firstName', user.firstName],
+        ['lastName', user.lastName],
+        ['email', user.email],
+        ['role', user.role],
+        ['country_id', user.country_id]
       ]);
 
       console.log(`Attempt to sign up a user: ${JSON.stringify(loginDto.getEmail(), loginDto.getPassword())}`);
