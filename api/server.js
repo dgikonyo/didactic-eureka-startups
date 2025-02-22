@@ -13,7 +13,7 @@ import UserRoutes from './routes/user/user.route.js';
 import { serverTest } from './routes/server.route.js';
 import ResponseService from './utils/responses/responseUtils.js';
 // database
-import mongoose from 'mongoose';
+import sequelize from './config/database.config.js';
 // middleware
 import AuthMiddleware from './middleware/auth.middleware.js';
 // setup global config acess
@@ -31,22 +31,11 @@ app.use(cors());
 app.use(responseService.logger);
 
 // database connection
-const username = encodeURIComponent(process.env.DB_USER_NAME);
-const password = encodeURIComponent(process.env.DB_PASSWORD);
-const cluster_name = encodeURIComponent(process.env.DB_CLUSTER_NAME);
-const app_name = encodeURIComponent(process.env.DB_APP_NAME);
-
-// mongodb connnection
-const uri = `mongodb+srv://${username}:${password}@${cluster_name}.d8hy7uz.mongodb.net/?retryWrites=true&w=majority&appName=${app_name}`;
-
-mongoose
-  .connect(uri)
-  .then(() =>
-    console.log(
-      'Pinged your deployment. You successfully connected to MongoDB!'
-    )
-  )
-  .catch((err) => console.log(err));
+sequelize.sync().then(() => {
+  console.log('✅ Database synced');
+}).catch((err) => {
+  console.error('❌ Error syncing database:', err);
+});
 
 // mount routes
 app.get('/api/v1/ping', (req, res, next) => authMiddleware.authenticateToken(req, res, next), serverTest);
@@ -75,5 +64,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/api/v1`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });

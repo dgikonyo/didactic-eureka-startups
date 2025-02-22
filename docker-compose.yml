@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  konnekt-api:
+    build:
+      context: ./api  # Path to your Express.js app
+    container_name: startups_api
+    ports:
+      - "3000:3000"  # API port
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: mysql://konnekt_admin:secret@mysql_db:3306/startups_db
+    depends_on:
+      mysql_db:
+        condition: service_healthy
+    networks:
+      - app-network
+    command: >
+      sh -c "if [ \"$NODE_ENV\" = 'production' ]; then 
+        npm run start; 
+      else 
+        npm run dev; 
+      fi"
+
+  konnekt-frontend:
+    build:
+      context: ./frontend  # Path to your Vue.js app
+    container_name: startups_frontend
+    ports:
+      - "5173:5173"  # Vue.js development port
+    environment:
+      NODE_ENV: development
+    networks:
+      - app-network
+    command: >
+      sh -c "if [ \"$NODE_ENV\" = 'production' ]; then 
+        npm run build && npm run preview; 
+      else 
+        npm run dev; 
+      fi"
+
+  mysql_db:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: startups_db
+      MYSQL_USER: konnekt_admin
+      MYSQL_PASSWORD: secret
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  db-data:
+
+networks:
+  app-network:
+    driver: bridge

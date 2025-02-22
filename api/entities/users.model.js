@@ -1,60 +1,102 @@
-import { mongoose, Schema } from 'mongoose';
-import { v4 as uuid } from 'uuid';
-import validator from 'validator';
+import { DataTypes } from 'sequelize';
+import { v4 as uuidv4 } from 'uuid';
+import sequelize from '../config/database.config.js';
 
-const userSchema = new Schema(
+const User = sequelize.define(
+  'User',
   {
     id: {
-      type: String,
-      default: uuid(),
+      type: DataTypes.UUID,
+      defaultValue: uuidv4,
+      primaryKey: true,
       unique: true,
     },
     username: {
-      type: String,
+      type: DataTypes.STRING,
+      allowNull: false,
       unique: true,
-      required: [true, 'Username must be provided'],
-      minlength: 3,
+      validate: {
+        len: {
+          args: [3, 255],
+          msg: 'Username must be at least 3 characters long',
+        },
+      },
     },
     firstName: {
-      type: String,
-      trim: true,
-      required: [true, 'First name must be provided'],
-      minlength: 3,
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: {
+          args: [3, 255],
+          msg: 'First name must be at least 3 characters long',
+        },
+      },
     },
     lastName: {
-      type: String,
-      trim: true,
-      required: [true, 'Last name must be provided'],
-      minlength: 3,
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: {
+          args: [3, 255],
+          msg: 'Last name must be at least 3 characters long',
+        },
+      },
     },
     email: {
-      type: String,
-      required: true,
+      type: DataTypes.STRING,
+      allowNull: false,
       unique: true,
-      lowercase: true,
-      trim: true,
-      validate: [validator.isEmail, 'Please provide a valid email.'],
+      set(value) {
+        this.setDataValue('email', value.toLowerCase().trim());
+      },
+      validate: {
+        isEmail: {
+          msg: 'Please provide a valid email.',
+        },
+      },
     },
     dateOfBirth: {
-      type: Date,
-      required: true,
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+      validate: {
+        isDate: {
+          msg: 'Please provide a valid date.',
+        },
+      },
     },
     country_id: {
-      type: Number,
-      required: [true, 'Country details must be provided'],
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Country details must be provided',
+        },
+      },
     },
     password: {
-      type: String,
-      trim: false,
-      required: [true, 'Password must be provided'],
-      minlength: 8,
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: {
+          args: [8, 255],
+          msg: 'Password must be at least 8 characters long',
+        },
+      },
     },
     role_id: {
-      type: Number,
-      required: [true, 'Role details must be provided'],
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Role details must be provided',
+        },
+      },
     },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    tableName: 'users', // Explicit table name to match database convention
+  }
 );
 
-export default mongoose.model('User', userSchema);
+export default User;
