@@ -1,36 +1,34 @@
-// const mongoose = require("mongoose");
-// const { MongoClient, ServerApiVersion } = require('mongodb');
-// const dotenv = require("dotenv");
-// dotenv.config();
+import { Sequelize } from 'sequelize';
+import dotenv from 'dotenv';
+import process from 'process';
 
-// const username = encodeURIComponent(process.env.DB_USER_NAME);
-// const password = encodeURIComponent(process.env.DB_PASSWORD);
-// const cluster_name = encodeURIComponent(process.env.DB_CLUSTER_NAME);
-// const app_name = encodeURIComponent(process.env.DB_APP_NAME);
+dotenv.config();
 
-// // mongodb connnection
-// const uri = `mongodb+srv://${username}:${password}@${cluster_name}.d8hy7uz.mongodb.net/?retryWrites=true&w=majority&appName=${app_name}`;
+const sequelize = new Sequelize(
+  process.env.MYSQL_DB_NAME,
+  process.env.MYSQL_DB_USER_NAME,
+  process.env.MYSQL_DB_PASSWORD,
+  {
+    host: process.env.MYSQL_DB_HOST,
+    dialect: 'mysql',
+    logging: false, // Disable SQL query logging in production
+    pool: {
+      max: 10,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    }
+  }
+);
 
-// // Create a MongoClient with a MongoClientOptions object to set the Stable API version
-// const client = new MongoClient(uri, {
-//   serverApi: {
-//     version: ServerApiVersion.v1,
-//     strict: true,
-//     deprecationErrors: true,
-//   }
-// });
+// Test DB Connection
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log('✅ Database connection established successfully.');
+  } catch (error) {
+    console.error('❌ Unable to connect to the database:', error);
+  }
+})();
 
-// async function run() {
-//   try {
-//     // Connect the client to the server	(optional starting in v4.7)
-//     await client.connect();
-//     // Send a ping to confirm a successful connection
-//     await client.db(`${username}`).command({ ping: 1 });
-//     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-//   } finally {
-//     // Ensures that the client will close when you finish/error
-//     await client.close();
-//   }
-// }
-
-// run().catch(console.dir);
+export default sequelize;

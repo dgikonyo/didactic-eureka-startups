@@ -92,8 +92,9 @@ export default class AuthService {
         ['role', user.role],
         ['country_id', user.country_id]
       ]);
+      const hashedLogin = await bcrypt.hash(loginDto.getPassword(), 12);
 
-      console.log(`Attempt to sign up a user: ${JSON.stringify(loginDto.getEmail(), loginDto.getPassword())}`);
+      console.log(`Attempt to sign up a user: ${JSON.stringify(loginDto.getEmail(), hashedLogin)}`);
       console.log(userDetails);
 
       const accessToken = await this.authMiddleware.generateToken(userDetails);

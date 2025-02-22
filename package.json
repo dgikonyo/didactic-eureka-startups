@@ -1,9 +1,10 @@
 {
 	"scripts": {
-		"dev": "concurrently \"npm run dev --prefix api\" \"npm run dev --prefix frontend\"",
 		"build": "concurrently \"npm run build --prefix api\" \"npm run build --prefix frontend\"",
 		"lint": "concurrently \"npm run lint --prefix api\" \"npm run lint --prefix frontend\"",
-		"start": "concurrently \"npm run start --prefix api\" \"npm run dev --prefix frontend\""
+		"start:dev": "concurrently \"npm run dev --prefix api\" \"npm run dev --prefix frontend\"",
+		"start:prod": "concurrently \"npm run start --prefix api\" \"npm run dev --prefix frontend\"",
+		"start": "if-env NODE_ENV=production ?? npm run start:prod || npm run start:dev"
 	},
 	"devDependencies": {
 		"concurrently": "^9.0.1"
@@ -14,6 +15,10 @@
 		"@fortawesome/free-solid-svg-icons": "^6.6.0",
 		"@fortawesome/vue-fontawesome": "^3.0.8",
 		"axios": "^1.7.7",
-		"jwt-decode": "^4.0.0"
+		"core-js": "^3.40.0",
+		"if-env": "^1.0.4",
+		"jwt-decode": "^4.0.0",
+		"konnekt-api": "file:api",
+		"konnekt-frontend": "file:frontend"
 	}
 }

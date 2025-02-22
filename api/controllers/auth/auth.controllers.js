@@ -22,8 +22,6 @@ export default class AuthController {
    * @param {Object} res - The outgoing response object for sending responses.
    */
   async signIn(req, res) {
-    console.log(`Attempt to sign in a user: ${JSON.stringify(req.body)}`);
-
     const authService = new AuthService();
     return await authService.loginUser(req, res);
   }
