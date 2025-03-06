@@ -16,6 +16,10 @@
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,vue}\""
   },
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^6.6.0",
+    "@fortawesome/free-regular-svg-icons": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
     "bootstrap": "^5.3.3",
     "core-js": "^3.40.0",
     "pinia": "^2.2.6",

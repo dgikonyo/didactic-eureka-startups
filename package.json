@@ -10,15 +10,14 @@
 		"concurrently": "^9.0.1"
 	},
 	"dependencies": {
-		"@fortawesome/free-brands-svg-icons": "^6.6.0",
-		"@fortawesome/free-regular-svg-icons": "^6.6.0",
-		"@fortawesome/free-solid-svg-icons": "^6.6.0",
-		"@fortawesome/vue-fontawesome": "^3.0.8",
 		"axios": "^1.7.7",
 		"core-js": "^3.40.0",
+		"dotenv": "^16.4.7",
 		"if-env": "^1.0.4",
 		"jwt-decode": "^4.0.0",
 		"konnekt-api": "file:api",
-		"konnekt-frontend": "file:frontend"
+		"konnekt-frontend": "file:frontend",
+		"pg": "^8.13.3",
+		"pg-hstore": "^2.3.4"
 	}
 }
