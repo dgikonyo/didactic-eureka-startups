@@ -9,6 +9,6 @@ RUN npm install
 # Copy the entire project
 COPY . .
 # Expose ports for API and frontend
-EXPOSE 3000 5173
+EXPOSE 3000 
 # Use nodemon for hot reloading in development
 CMD ["npm", "run", "dev"]

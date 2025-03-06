@@ -3,20 +3,21 @@ version: '3.8'
 services:
   konnekt-api:
     build:
-      context: ./api  # Path to your Express.js app
+      context: ./api
     container_name: startups_api
     ports:
-      - "3000:3000"  # API port
+      - "3000:3000"
+    env_file:
+      - .env
     environment:
-      NODE_ENV: development
-      DATABASE_URL: mysql://konnekt_admin:secret@mysql_db:3306/startups_db
+      NODE_ENV: ${NODE_ENV}
     depends_on:
-      mysql_db:
-        condition: service_healthy
+      - postgres_db
+    restart: always
     networks:
       - app-network
     command: >
-      sh -c "if [ \"$NODE_ENV\" = 'production' ]; then 
+      sh -c "if [ \"${NODE_ENV}\" = 'production' ]; then 
         npm run start; 
       else 
         npm run dev; 
@@ -24,37 +25,40 @@ services:
 
   konnekt-frontend:
     build:
-      context: ./frontend  # Path to your Vue.js app
+      context: ./frontend
     container_name: startups_frontend
     ports:
-      - "5173:5173"  # Vue.js development port
+      - "5173:5173"
+    env_file:
+      - .env
     environment:
-      NODE_ENV: development
+      VITE_HOST: "0.0.0.0"
     networks:
       - app-network
     command: >
-      sh -c "if [ \"$NODE_ENV\" = 'production' ]; then 
-        npm run build && npm run preview; 
+      sh -c "if [ \"${NODE_ENV}\" = 'production' ]; then 
+        npm run build && npm run preview --host; 
       else 
-        npm run dev; 
+        npm run dev --host; 
       fi"
 
-  mysql_db:
-    image: mysql:8.0
-    container_name: mysql_db
+  postgres_db:
+    image: postgres:15
+    container_name: startups_db
+    env_file:
+      - .env
     environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: startups_db
-      MYSQL_USER: konnekt_admin
-      MYSQL_PASSWORD: secret
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_DB_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
-      - db-data:/var/lib/mysql
+      - db-data:/var/lib/postgresql/data
     ports:
-      - "3306:3306"
+      - "${POSTGRES_PORT}:5432"
     networks:
       - app-network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB} || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 3
