@@ -20,9 +20,9 @@ export default {
       router.push('/sign-in');
     }
 
-  const isAuthenticated = authStore.user;
+    const isAuthenticated = authStore.user;
     return {
-			isAuthenticated
+      isAuthenticated
     };
   },
 };

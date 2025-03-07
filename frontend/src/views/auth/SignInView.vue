@@ -51,7 +51,7 @@ export default {
       } finally { isSubmitting.value = false; }
     };
 
-    onMounted(()=> {
+    onMounted(() => {
       if (isLoggedIn.value) {
         router.push('/profile');
       }
