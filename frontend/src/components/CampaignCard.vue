@@ -1,11 +1,11 @@
 <script lang="ts">
 import '../assets/main.css';
-	/*
+/*
 load the card with campaign information
 	*/
 
 export default {
-	name:'CampaignCard'
+  name:'CampaignCard'
 };
 </script>
 <template>

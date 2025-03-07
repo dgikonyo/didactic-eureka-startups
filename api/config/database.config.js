@@ -19,7 +19,7 @@ const options = {
 const config = {
   development: {
     username: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_DB_PASSWORD,
+    password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
     host: process.env.POSTGRES_DB_HOST || 'postgres_db',
     port: process.env.POSTGRES_PORT || 5432,
@@ -47,7 +47,9 @@ const config = {
 };
 
 // Initialize Sequelize with the correct environment configuration
-const sequelize = process.env.NODE_ENV === 'production' ? new Sequelize(process.env.DATABASE_URL, config.production) : new Sequelize(process.env.DATABASE_URL, config.development);
+const sequelize = process.env.NODE_ENV === 'production' 
+? new Sequelize(process.env.DATABASE_URL, config.production) 
+: new Sequelize(config[process.env.NODE_ENV] || config.development);
 
 // Test DB Connection
 (async () => {
