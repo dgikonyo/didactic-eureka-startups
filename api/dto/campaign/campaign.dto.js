@@ -5,6 +5,7 @@ export default class CampaignDto {
   startDate;
   endDate;
   duration;
+  cardImage;
   targetAmount;
   videoUrl;
   videoOverlayUrl;
@@ -13,23 +14,20 @@ export default class CampaignDto {
   fundingModel;
   user_id;
   campaignStatus;
+  countryId;
+  category;
+  sub_category;
 
   constructor(
-    id,
-    title,
-    tagLine,
-    startDate,
-    endDate,
-    duration,
-    targetAmount,
-    videoUrl,
-    videoOverlayUrl,
-    story,
-    supportEmail,
+    id,title,tagLine,startDate,endDate,duration,
+    targetAmount,videoUrl,videoOverlayUrl,story,supportEmail,
     fundingModel,
     user_id,
     campaignStatus,
-    countryId
+    countryId,
+    category,
+    sub_category,
+    cardImage
   ) {
     this.id = id;
     this.title = title;
@@ -46,6 +44,9 @@ export default class CampaignDto {
     this.user_id = user_id;
     this.campaignStatus = campaignStatus;
     this.countryId = countryId;
+    this.category = category;
+    this.sub_category = sub_category;
+    this.cardImage = cardImage;
   }
 
   getId() {
@@ -162,5 +163,29 @@ export default class CampaignDto {
 
   setCountryId(countryId) {
     this.countryId = countryId;
+  }
+
+  getCategory() {
+    return this.category;
+  }
+
+  setCategory(category) {
+    this.category = category;
+  }
+
+  getSubCategory() {
+    return this.sub_category;
+  }
+
+  setSubCategory(sub_category) {
+    this.sub_category = sub_category;
+  }
+
+  getCardImage() {
+    return this.cardImage;
+  }
+
+  setCardImage(cardImage) {
+    this.cardImage = cardImage;
   }
 }

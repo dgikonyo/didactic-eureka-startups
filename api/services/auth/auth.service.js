@@ -12,9 +12,10 @@ export default class AuthService {
   }
 
   async registerUser(req, res) {
-    const registrationDto = plainToInstance(RegisterDto, req.body);
+    const registrationInstance = plainToInstance(RegisterDto, req.body);
+    const registrationDto = new RegisterDto();
 
-    const validationErrors = this.validateRegistration(registrationDto);
+    const validationErrors = this.validateRegistration(registrationInstance);
     if ((await validationErrors).length > 0) {
       return ResponseService.sendResponse(
         res,
@@ -24,27 +25,36 @@ export default class AuthService {
         validationErrors.join(', ')
       );
     }
-
+    
     try {
-      const isEmailAlreadyExist = await User.findOne({
-        email: registrationDto.email,
-      });
+      const isEmailAlreadyExist = await User.findOne({where :{email: registrationInstance.email} });
+      
       if (isEmailAlreadyExist) {
         return ResponseService.sendResponse(
           res,
-          400,
+          400,  
           'BAD REQUEST',
           'FAILURE',
           'Duplicate email found'
         );
       }
 
-      const hashedPassword = await bcrypt.hash(registrationDto.password, 12);
-      const user = new User({
-        ...registrationDto,
-        password: hashedPassword,
-      });
-      const result = await user.save();
+      const hashedPassword = await bcrypt.hash(registrationInstance.password, 12);
+
+      registrationDto.setUsername(registrationInstance.username);
+      registrationDto.setFirstName(registrationInstance.firstName);
+      registrationDto.setLastName(registrationInstance.lastName);
+      registrationDto.setEmail(registrationInstance.email);
+      registrationDto.setDateOfBirth(registrationInstance.dateOfBirth);
+      registrationDto.setEmail(registrationInstance.email);
+      registrationDto.setCountryId(registrationInstance.country_id);
+      registrationDto.setPassword(hashedPassword);
+      registrationDto.setRoleId(1);
+      registrationDto.setCreatedAt(new Date);
+      registrationDto.setUpdatedAt(new Date);
+
+      console.log(`Attempt to sign up a user: ${JSON.stringify(registrationDto)}`);
+      const result = await User.create(registrationDto);
 
       return ResponseService.sendResponse(
         res,
@@ -68,7 +78,7 @@ export default class AuthService {
     const loginDto = plainToInstance(LoginDto, req.body);
 
     try {
-      const user = await User.findOne({ email: loginDto.getEmail() });
+      const user = await User.findOne({ where: {email: loginDto.getEmail()} });
 
       if (
         !user ||
@@ -83,19 +93,19 @@ export default class AuthService {
         );
       }
 
-      const userDetails = new Map([
-        ['id', user.id],
-        ['username', user.username],
-        ['firstName', user.firstName],
-        ['lastName', user.lastName],
-        ['email', user.email],
-        ['role', user.role],
-        ['country_id', user.country_id]
-      ]);
+      const userDetails = {
+        id:user.id,
+        username: user.username,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        role: user.role_id,
+        country_id: user.country_id
+      };
+
       const hashedLogin = await bcrypt.hash(loginDto.getPassword(), 12);
 
       console.log(`Attempt to sign up a user: ${JSON.stringify(loginDto.getEmail(), hashedLogin)}`);
-      console.log(userDetails);
 
       const accessToken = await this.authMiddleware.generateToken(userDetails);
       return ResponseService.sendResponse(

@@ -2,10 +2,6 @@ import CampaignService from '../../services/campaign/campaign.service.js';
 
 export default class CampaignController {
   async createCampaign(req, res) {
-    console.log(
-      `Attempt to create a new campaign: ${JSON.stringify(req.body)}`
-    );
-
     const campaignService = new CampaignService();
     return await campaignService.createCampaign(req, res);
   }
@@ -27,8 +23,6 @@ export default class CampaignController {
   }
 
   async showCampaign(req, res) {
-    console.log(`Attempt to get campaign: ${JSON.stringify(req.body)}`);
-
     const campaignService = new CampaignService();
     return await campaignService.getSingleCampaign(req, res);
   }
