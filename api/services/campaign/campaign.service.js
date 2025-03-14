@@ -14,7 +14,7 @@ export default class CampaignService {
   async createCampaign(req, res) {
     const campaignInstance = plainToInstance(CampaignDto, req.body);
     const campaignDto = new CampaignDto();
-    const userId = req.user.id;
+    const userId = req.user.id; 
 
     const validationErrors = await this.validateCampaign(
       campaignInstance,
@@ -32,7 +32,7 @@ export default class CampaignService {
 
     try {
       const isCampaignExists = await Campaign.findOne({
-        title: campaignInstance.title,
+        where: {title: campaignInstance.title}
       });
       if (isCampaignExists) {
         return ResponseService.sendResponse(
@@ -61,6 +61,7 @@ export default class CampaignService {
 
       // const campaign = new Campaign(campaignDto);
       const result = await Campaign.create(campaignDto);
+      console.log(`Attempt to create a new campaign: ${JSON.stringify(result)}`);
 
       return ResponseService.sendResponse(
         res,
@@ -119,50 +120,6 @@ export default class CampaignService {
       );
     }
   }
-
-  /**
-   * @async
-   * @brief Lists all campaigns associated with the requesting user.
-   *
-   * @param {Object} req The Express request object.
-   * @param {Object} res The Express response object.
-   * @return {Promise} A promise that resolves with the response object.
-   */
-  async listUserCampaigns(req, res) {
-    try {
-      const userId = req.user.id;
-      const userCampaigns = await Campaign.findAll({ 
-        where: { user_id: userId },
-      });
-
-      if (!userCampaigns || userCampaigns.length === 0) {
-        return ResponseService.sendResponse(
-          res,
-          404,
-          'NOT FOUND',
-          'FAILURE',
-          'User has no campaigns'
-        );
-      }
-
-      return ResponseService.sendResponse(
-        res,
-        200,
-        'OK',
-        'SUCCESS',
-        userCampaigns
-      );
-    } catch (error) {
-      return ResponseService.sendResponse(
-        res,
-        500,
-        'INTERNAL SERVER ERROR',
-        'FAILURE',
-        error.message
-      );
-    }
-  }
-
   /**
    * Lists campaigns for a specific country.
 
@@ -219,8 +176,9 @@ export default class CampaignService {
    */
   async getSingleCampaign(req, res) {
     try {
-      const id = req.body.id;
-      const campaign = await Campaign.findOne({where: { id } });
+      const campaign = await Campaign.findOne({where: { id: req.body.id } });
+      const campaignDto = new CampaignDto();
+      console.log(campaign);
 
       if (campaign.length === 0) {
         return ResponseService.sendResponse(
@@ -231,6 +189,30 @@ export default class CampaignService {
           'INVALID CAMPAIGN INFO ENTERED'
         );
       }
+
+      campaignDto.setTitle(campaign.title);
+      campaignDto.setTagLine(campaign.tagLine);
+      campaignDto.setStartDate(campaign.startDate);
+      campaignDto.setEndDate(campaign.endDate);
+      campaignDto.setDuration(campaign.duration);
+      campaignDto.setTargetAmount(campaign.targetAmount);
+      campaignDto.setVideoUrl(campaign.videoUrl);
+      campaignDto.setVideoOverlayUrl(campaign.videoOverlayUrl);
+      campaignDto.setStory(campaign.story);
+      campaignDto.setSupportEmail(campaign.supportEmail);
+      campaignDto.setFundingModel(campaign.fundingModel);
+      campaignDto.setCampaignStatus(campaign.campaignStatus);
+      campaignDto.setCountryId(campaign.countryId);
+      campaignDto.setCardImage(campaign.cardImage);
+
+      return ResponseService.sendResponse(
+        res,
+        200,
+        'CAMPAIGN DETAILS',
+        'SUCCESS',
+        campaignDto
+      );
+
     } catch (error) {
       return ResponseService.sendResponse(
         res,
@@ -328,23 +310,5 @@ export default class CampaignService {
     if (!campaignInstance.campaignStatus) errors.push('Campaign status missing');
     if (!userId) errors.push('Input user id');
     return errors;
-  }
-
-  static sendResponse(
-    res,
-    statusCode,
-    statusDesc,
-    statusMessage,
-    additionalData
-  ) {
-    const responseDto = new ResponseDto();
-
-    responseDto.setTimeStamp(new Date());
-    responseDto.setStatusCode(statusCode);
-    responseDto.setStatusCodeDesc(statusDesc);
-    responseDto.setStatusCodeMessage(statusMessage);
-    responseDto.setAdditionalData(additionalData);
-
-    return res.status(statusCode).json(responseDto);
   }
 }

@@ -30,6 +30,10 @@ const Campaign = sequelize.define('Campaign', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  cardImage: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   targetAmount: {
     type: DataTypes.DECIMAL(15, 2),
     allowNull: false,
@@ -38,16 +42,45 @@ const Campaign = sequelize.define('Campaign', {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  videoOverlayUrl: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   story: {
     type: DataTypes.TEXT,
     allowNull: false,
+  },
+  supportEmail :{
+    type: DataTypes.STRING,
+    allowNull: true,
   },
   fundingModel: {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  user_id: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  campaignStatus: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  countryId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  category: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  sub_category: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 }, {
   timestamps: true,
+  tableName: 'campaigns'
 });
 
 export default Campaign;

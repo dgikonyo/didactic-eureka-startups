@@ -47,9 +47,7 @@ const config = {
 };
 
 // Initialize Sequelize with the correct environment configuration
-const sequelize = process.env.NODE_ENV === 'production' 
-? new Sequelize(process.env.DATABASE_URL, config.production) 
-: new Sequelize(config[process.env.NODE_ENV] || config.development);
+const sequelize = process.env.NODE_ENV === 'production' ? new Sequelize(process.env.DATABASE_URL, config.production) : new Sequelize(config[process.env.NODE_ENV] || config.development);
 
 // Test DB Connection
 (async () => {

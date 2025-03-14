@@ -11,24 +11,25 @@ export default class UserService {
   }
 
   /**
-   * Fetches and returns a list of campaigns associated with the currently authenticated user.
+   * @async
+   * @brief Lists all campaigns associated with the requesting user.
    *
-   * @param {Object} req The Express.js request object.
-   * @param {Object} res The Express.js response object.
-   * @returns {Promise<void>} A promise that resolves with a response sent to the client.
+   * @param {Object} req The Express request object.
+   * @param {Object} res The Express response object.
+   * @return {Promise} A promise that resolves with the response object.
    */
   async listUserCampaigns(req, res) {
     try {
-      const userCampaigns = await Campaign.find({
-        user_id: req.user.id,
+      const userCampaigns = await Campaign.findAll({ 
+        where: { user_id: req.user.id },
       });
 
-      if (userCampaigns.length === 0) {
+      if (!userCampaigns || userCampaigns.length === 0) {
         return ResponseService.sendResponse(
           res,
           404,
           'NOT FOUND',
-          'SUCCESS',
+          'FAILURE',
           'User has no campaigns'
         );
       }
@@ -37,7 +38,7 @@ export default class UserService {
         res,
         200,
         'OK',
-        'SUCCESSFUL',
+        'SUCCESS',
         userCampaigns
       );
     } catch (error) {
@@ -50,4 +51,5 @@ export default class UserService {
       );
     }
   }
+
 }
