@@ -1,7 +1,7 @@
-import CampaignStatus from '../../entities/campaign/campaignStatus.model.js';
-import CampaignStatusDto from '../../dto/campaign/campaignStatus.dto.js';
-import { plainToInstance } from 'class-transformer';
-import ResponseDto from '../../dto/response.dto.js';
+import CampaignStatus from "../../entities/campaign/campaignStatus.model.js";
+import CampaignStatusDto from "../../dto/campaign/campaignStatus.dto.js";
+import { plainToInstance } from "class-transformer";
+import ResponseDto from "../../dto/response.dto.js";
 
 export default class CampaignStatusController {
   /**
