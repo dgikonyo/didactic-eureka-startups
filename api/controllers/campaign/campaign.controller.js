@@ -1,4 +1,4 @@
-import CampaignService from '../../services/campaign/campaign.service.js';
+import CampaignService from "../../services/campaign/campaign.service.js";
 
 export default class CampaignController {
   async createCampaign(req, res) {
