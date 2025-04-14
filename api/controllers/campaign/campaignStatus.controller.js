@@ -25,9 +25,9 @@ export default class CampaignStatusController {
       if (isStatusAlreadyExists) {
         responseDto.setTimeStamp(new Date());
         responseDto.setStatusCode(400);
-        responseDto.setStatusCodeDesc("Bad Request");
-        responseDto.setStatusCodeMessage("Failure");
-        responseDto.setAdditionalData("Duplicate campaign status found");
+        responseDto.setStatusCodeDesc('Bad Request');
+        responseDto.setStatusCodeMessage('Failure');
+        responseDto.setAdditionalData('Duplicate campaign status found');
 
         return res.status(400).json(responseDto);
       }
@@ -35,9 +35,9 @@ export default class CampaignStatusController {
       if (campaignStatusInstance.getStatusName() === null) {
         responseDto.setTimeStamp(new Date());
         responseDto.setStatusCode(400);
-        responseDto.setStatusCodeDesc("Bad Request");
-        responseDto.setStatusCodeMessage("Failure");
-        responseDto.setAdditionalData("Input status name");
+        responseDto.setStatusCodeDesc('Bad Request');
+        responseDto.setStatusCodeMessage('Failure');
+        responseDto.setAdditionalData('Input status name');
 
         return res.status(400).json(responseDto);
       } else {
@@ -48,8 +48,8 @@ export default class CampaignStatusController {
 
         responseDto.setTimeStamp(new Date());
         responseDto.setStatusCode(201);
-        responseDto.setStatusCodeDesc("CAMPAIGN STATUS CREATED");
-        responseDto.setStatusCodeMessage("Success");
+        responseDto.setStatusCodeDesc('CAMPAIGN STATUS CREATED');
+        responseDto.setStatusCodeMessage('Success');
         responseDto.setAdditionalData(result);
 
         return res.status(201).json(responseDto);
@@ -57,8 +57,8 @@ export default class CampaignStatusController {
     } catch (error) {
       responseDto.setTimeStamp(new Date());
       responseDto.setStatusCode(500);
-      responseDto.setStatusCodeDesc("INTERNAL SERVER ERROR");
-      responseDto.setStatusCodeMessage("Failure");
+      responseDto.setStatusCodeDesc('INTERNAL SERVER ERROR');
+      responseDto.setStatusCodeMessage('Failure');
       responseDto.setAdditionalData(error.message);
 
       return res.status(500).json(responseDto);
@@ -82,9 +82,9 @@ export default class CampaignStatusController {
       if (!campaignStatuses || campaignStatuses.length === 0) {
         responseDto.setTimeStamp(new Date());
         responseDto.setStatusCode(404);
-        responseDto.setStatusCodeDesc("NOT FOUND");
-        responseDto.setStatusCodeMessage("Failure");
-        responseDto.setAdditionalData("No campaign statuses available");
+        responseDto.setStatusCodeDesc('NOT FOUND');
+        responseDto.setStatusCodeMessage('Failure');
+        responseDto.setAdditionalData('No campaign statuses available');
 
         return res.status(404).json(responseDto);
       }
@@ -96,16 +96,16 @@ export default class CampaignStatusController {
 
       responseDto.setTimeStamp(new Date());
       responseDto.setStatusCode(200);
-      responseDto.setStatusCodeDesc("SUCCESS");
-      responseDto.setStatusCodeMessage("Success");
+      responseDto.setStatusCodeDesc('SUCCESS');
+      responseDto.setStatusCodeMessage('Success');
       responseDto.setAdditionalData(campaignStatusesDto);
 
       return res.status(200).json(responseDto);
     } catch (error) {
       responseDto.setTimeStamp(new Date());
       responseDto.setStatusCode(500);
-      responseDto.setStatusCodeDesc("INTERNAL SERVER ERROR");
-      responseDto.setStatusCodeMessage("Failure");
+      responseDto.setStatusCodeDesc('INTERNAL SERVER ERROR');
+      responseDto.setStatusCodeMessage('Failure');
       responseDto.setAdditionalData(error.message);
 
       return res.status(500).json(responseDto);
@@ -128,9 +128,9 @@ export default class CampaignStatusController {
       if (!isCampaignStatusExists || isCampaignStatusExists.length === 0) {
         responseDto.setTimeStamp(new Date());
         responseDto.setStatusCode(404);
-        responseDto.setStatusCodeDesc("NOT FOUND");
-        responseDto.setStatusCodeMessage("Failure");
-        responseDto.setAdditionalData("Campaign Status not found");
+        responseDto.setStatusCodeDesc('NOT FOUND');
+        responseDto.setStatusCodeMessage('Failure');
+        responseDto.setAdditionalData('Campaign Status not found');
 
         return res.status(404).json(responseDto);
       }
@@ -145,16 +145,16 @@ export default class CampaignStatusController {
 
       responseDto.setTimeStamp(new Date());
       responseDto.setStatusCode(200);
-      responseDto.setStatusCodeDesc("OK");
-      responseDto.setStatusCodeMessage("RESOURCE UPDATED");
+      responseDto.setStatusCodeDesc('OK');
+      responseDto.setStatusCodeMessage('RESOURCE UPDATED');
       responseDto.setAdditionalData(result);
 
       return res.status(200).json(responseDto);
     } catch (error) {
       responseDto.setTimeStamp(new Date());
       responseDto.setStatusCode(500);
-      responseDto.setStatusCodeDesc("INTERNAL SERVER ERROR");
-      responseDto.setStatusCodeMessage("Failure");
+      responseDto.setStatusCodeDesc('INTERNAL SERVER ERROR');
+      responseDto.setStatusCodeMessage('Failure');
       responseDto.setAdditionalData(error.message);
 
       return res.status(500).json(responseDto);
