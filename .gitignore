@@ -141,4 +141,11 @@ dist
 # SvelteKit build / generate output
 .svelte-kit
 
+# package-lock
+package-lock.**
+
+# vite temporary processing files
+vite.config.ts.*
+.vite/
+
 # End of https://www.toptal.com/developers/gitignore/api/node

@@ -1,28 +1,24 @@
-const express = require("express");
-const router = express.Router();
-const ResponseDto = require("../dto/response.dto");
+import ResponseDto from '../dto/response.dto.js';
 
-const serverTest = async (req, res, next) => {
-  console.log(`Attempt to access server`);
-  var responseDto = new ResponseDto();
+export const serverTest = async (req, res) => {
+  console.log('Attempt to access server');
+  const responseDto = new ResponseDto();
 
   try {
     responseDto.setTimeStamp(new Date());
     responseDto.setStatusCode(200);
-    responseDto.setStatusCodeDesc("OK");
-    responseDto.setStatusCodeMessage("Successful");
-    responseDto.setAdditionalData("Server is up");
+    responseDto.setStatusCodeDesc('OK');
+    responseDto.setStatusCodeMessage('Successful');
+    responseDto.setAdditionalData('Server is up');
 
     res.status(200).json({ responseDto });
   } catch (err) {
     responseDto.setTimeStamp(new Date());
     responseDto.setStatusCode(500);
-    responseDto.setStatusCodeDesc("INTERNAL SERVER ERROR");
+    responseDto.setStatusCodeDesc('INTERNAL SERVER ERROR');
     responseDto.setStatusCodeMessage(err.message);
-    responseDto.setAdditionalData("Server failure");
+    responseDto.setAdditionalData('Server failure');
 
     res.status(500).json({ responseDto });
   }
 };
-
-module.exports = serverTest;

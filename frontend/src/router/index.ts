@@ -1,5 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router';
+
+import SignInView from '@/views/auth/SignInView.vue';
+import SignUpView from '@/views/auth/SignUpView.vue';
 import HomeView from '../views/HomeView.vue';
+import QuestionViewVue from '@/views/questions/QuestionView.vue';
+import ExploreView from '@/views/campaign/ExploreView.vue';
+import ArticleView from '@/views/article/ArticleView.vue';
+import CampaignView from '@/views/campaign/CampaignView.vue';
+import ProfileView from '@/views/profile/ProfileView.vue';
+import ForgotPasswordView from '@/views/auth/ForgotPasswordView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,13 +19,46 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
+      path: '/campaigns/questions',
+      name: 'questions',
+      component: () => QuestionViewVue,
     },
+    {
+      path: '/campaigns/explore',
+      name: 'explore',
+      component: () => ExploreView,
+    },
+    {
+      path: '/campaigns/:id',
+      name: 'campaign',
+      component: () => CampaignView,
+    },
+    {
+      path: '/article',
+      name: 'article',
+      component: () => ArticleView,
+    },
+
+    {
+      path: '/sign-in',
+      name: 'sign-in',
+      component: () => SignInView,
+    },
+    {
+      path: '/sign-up',
+      name: 'sign-up',
+      component: () => SignUpView,
+    },
+    {
+      path:'/forgot-password',
+      name: 'forgot-password',
+      component: () => ForgotPasswordView,
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: () => ProfileView,
+    }
   ],
 });
 

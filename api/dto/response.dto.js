@@ -1,4 +1,4 @@
-class ResponseDto {
+export default class ResponseDto {
   timestamp;
   statusCode;
   statusCodeDesc;
@@ -59,5 +59,3 @@ class ResponseDto {
     this.additionalData = additionalData;
   }
 }
-
-module.exports = ResponseDto;

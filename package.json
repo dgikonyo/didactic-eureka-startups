@@ -1,34 +1,23 @@
 {
-  "name": "startups",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "dev": "nodemon server.js",
-    "build": "npm run build",
-    "start": "npm run start",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bcrypt": "^5.1.1",
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.14.1",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.4.5",
-    "uuid": "^9.0.1"
-  },
-  "devDependencies": {
-    "@types/cors": "^2.8.17",
-    "@types/express": "^4.17.21",
-    "@types/jsonwebtoken": "^9.0.6",
-    "nodemon": "^3.1.4",
-    "prettier": "^3.3.3",
-    "typescript": "^5.5.3"
-  }
+	"scripts": {
+		"build": "concurrently \"npm run build --prefix api\" \"npm run build --prefix frontend\"",
+		"lint": "concurrently \"npm run lint --prefix api\" \"npm run lint --prefix frontend\"",
+		"start:dev": "concurrently \"npm run dev --prefix api\" \"npm run dev --prefix frontend\"",
+		"start:prod": "concurrently \"npm run start --prefix api\" \"npm run dev --prefix frontend\"",
+		"start": "if-env NODE_ENV=production ?? npm run start:prod || npm run start:dev"
+	},
+	"devDependencies": {
+		"concurrently": "^9.0.1"
+	},
+	"dependencies": {
+		"axios": "^1.7.7",
+		"core-js": "^3.40.0",
+		"dotenv": "^16.4.7",
+		"if-env": "^1.0.4",
+		"jwt-decode": "^4.0.0",
+		"konnekt-api": "file:api",
+		"konnekt-frontend": "file:frontend",
+		"pg": "^8.13.3",
+		"pg-hstore": "^2.3.4"
+	}
 }

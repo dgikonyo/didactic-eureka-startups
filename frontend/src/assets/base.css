@@ -1,86 +1,67 @@
-/* color palette from <https://github.com/vuejs/theme> */
+/* for entire site */
+* {
+  max-width: 100%;
+}
+
 :root {
-  --vt-c-white: #ffffff;
-  --vt-c-white-soft: #f8f8f8;
-  --vt-c-white-mute: #f2f2f2;
+  color-scheme: light dark;
+  --light-background: #f0f0f0;
+  /* Light background color */
+  --light-primary: #261447;
+  /* Light primary color */
+  --light-secondary: #606060;
+  /* Light secondary color */
+  --light-accent: #E40066;
+  /* Light accent color */
+  --button-primary-color: #E40066;
+  /* Button primary color*/
+  --button-secondary-color: #1a1a1a;
+  /* Button secondary color */
 
-  --vt-c-black: #181818;
-  --vt-c-black-soft: #222222;
-  --vt-c-black-mute: #282828;
+  /* font sizes */
+  --desktop-title-text-size: 70px;
+  --desktop-secondary-text-size: 24px;
+  --desktop-body-text-size: 18px;
 
-  --vt-c-indigo: #2c3e50;
+  --laptop-title-text-size: 50px;
+  --laptop-secondary-text-size: 24px;
+  --laptop-body-text-size: 18px;
 
-  --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
-  --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
-  --vt-c-divider-dark-1: rgba(84, 84, 84, 0.65);
-  --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
+  --tablet-title-text-size: 45px;
 
-  --vt-c-text-light-1: var(--vt-c-indigo);
-  --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
-  --vt-c-text-dark-1: var(--vt-c-white);
-  --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+  --mobile-title-size: 50px;
+  --mobile-secondary-size: 20px;
+  --mobile-body-text-size: 18px;
 }
 
 /* semantic color variables for this project */
-:root {
-  --color-background: var(--vt-c-white);
-  --color-background-soft: var(--vt-c-white-soft);
-  --color-background-mute: var(--vt-c-white-mute);
-
-  --color-border: var(--vt-c-divider-light-2);
-  --color-border-hover: var(--vt-c-divider-light-1);
-
-  --color-heading: var(--vt-c-text-light-1);
-  --color-text: var(--vt-c-text-light-1);
-
-  --section-gap: 160px;
-}
+:root {}
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: var(--vt-c-black);
-    --color-background-soft: var(--vt-c-black-soft);
-    --color-background-mute: var(--vt-c-black-mute);
+    --dark-background: #1a1a1a;
+    /* Dark background color (a near-black shade to reduce strain on the eyes) */
+    --dark-primary: #d6d6f7;
+    /* Dark primary color (a softer, light variant of your light primary color) */
 
-    --color-border: var(--vt-c-divider-dark-2);
-    --color-border-hover: var(--vt-c-divider-dark-1);
+    --dark-secondary: #c2c2c2;
+    /* Dark secondary color (a lighter gray for better contrast on dark backgrounds) */
 
-    --color-heading: var(--vt-c-text-dark-1);
-    --color-text: var(--vt-c-text-dark-2);
+    --dark-accent: #ff5a8e;
+    /* Dark accent color (a more vibrant, lighter pink shade for accent visibility) */
+
+    --button-primary-color-dark: #ff5a8e;
+    /* Button primary color in dark mode, matching the accent color for consistency */
   }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  font-weight: normal;
+body {
+  background-color: light-dark(var(--light-background), var(--dark-background));
+  color: light-dark(var(--light-primary), var(--dark-primary));
+  font-family: 'Merriweather Sans', sans-serif;
 }
 
-body {
-  min-height: 100vh;
-  color: var(--color-text);
-  background: var(--color-background);
-  transition:
-    color 0.5s,
-    background-color 0.5s;
-  line-height: 1.6;
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
-    sans-serif;
-  font-size: 15px;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+a {
+  text-decoration: none;
 }

@@ -1,22 +1,34 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-const uuid = require("uuid")
+import { DataTypes } from 'sequelize';
+import { v4 as uuidv4 } from 'uuid';
+import sequelize from '../../config/database.config.js';
 
-const campaignStatusSchema = new Schema(
+const CampaignStatus = sequelize.define(
+  'CampaignStatus',
   {
     id: {
-      type: String,
-      default: uuid.v4(),
+      type: DataTypes.UUID,
+      defaultValue: uuidv4,
+      primaryKey: true,
       unique: true,
     },
     statusName: {
-      type: String,
+      type: DataTypes.STRING,
+      allowNull: false,
       unique: true,
-      lowercase: true,
-      required: [true, "Campaign status name not provided!"],
+      set(value) {
+        this.setDataValue('statusName', value.toLowerCase());
+      },
+      validate: {
+        notEmpty: {
+          msg: 'Campaign status name not provided!',
+        },
+      },
     },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    tableName: 'campaign_statuses', // Explicit table name
+  }
 );
 
-module.exports = mongoose.model("CampaignStatus", campaignStatusSchema);
+export default CampaignStatus;

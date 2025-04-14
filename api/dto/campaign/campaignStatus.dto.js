@@ -1,18 +1,8 @@
-class CampaignStatusDto {
-  id;
+export default class CampaignStatusDto {
   statusName;
 
   constructor(id, statusName) {
-    this.id = id;
     this.statusName = statusName;
-  }
-
-  getId() {
-    return this.id;
-  }
-
-  setId(id) {
-    this.id = id;
   }
 
   getStatusName() {
@@ -23,5 +13,3 @@ class CampaignStatusDto {
     this.statusName = statusName;
   }
 }
-
-module.exports = CampaignStatusDto;

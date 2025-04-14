@@ -1,25 +1,21 @@
-const express = require("express");
-const CampaignStatusController = require("../../controllers/campaign/campaignStatus.controller");
-const CampaignController = require("../../controllers/campaign/campaign.controller");
-const router = express.Router();
+import express from 'express';
+import CampaignStatusController from '../../controllers/campaign/campaignStatus.controller.js';
+import CampaignController from '../../controllers/campaign/campaign.controller.js';
 
+const router = express.Router();
 const campaignController = new CampaignController();
 const campaignStatusController = new CampaignStatusController();
 
 // campaign routes
-router.post("/create", campaignController.createCampaign.bind(campaignController));
-// campaign status routes
-router.post(
-  "/campaign-statuses/create",
-  campaignStatusController.createStatus.bind(campaignStatusController)
-);
-router.get(
-  "/campaign-statuses/show",
-  campaignStatusController.getAllCampaignStatuses.bind(campaignStatusController)
-);
-router.patch(
-  "/campaign-statuses/update",
-  campaignStatusController.updateStatus.bind(campaignStatusController)
-);
+router.post('/create', campaignController.createCampaign.bind(campaignController));
+router.post('/verified/show',campaignController.getVerifiedCampaigns.bind(campaignController));
+router.post('/country',campaignController.getCampaignsPerCountry.bind(campaignController));
+router.post('/show', campaignController.showCampaign.bind(campaignController));
+router.put('/update',campaignController.updateCampaign.bind(campaignController));
 
-module.exports = router;
+// campaign status routes
+router.post('/campaign-statuses/create',campaignStatusController.createStatus.bind(campaignStatusController));
+router.get('/campaign-statuses/show',campaignStatusController.getAllCampaignStatuses.bind(campaignStatusController));
+router.patch('/campaign-statuses/update',campaignStatusController.updateStatus.bind(campaignStatusController));
+
+export default router;

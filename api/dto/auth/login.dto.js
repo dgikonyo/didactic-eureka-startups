@@ -1,4 +1,4 @@
-class LoginDto {
+export default class LoginDto {
   email;
   password;
 
@@ -23,5 +23,3 @@ class LoginDto {
     this.password = newPassword;
   }
 }
-
-module.exports = LoginDto;

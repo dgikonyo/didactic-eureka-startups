@@ -1,10 +1,11 @@
-class CampaignDto {
+export default class CampaignDto {
   id;
   title;
   tagLine;
   startDate;
   endDate;
   duration;
+  cardImage;
   targetAmount;
   videoUrl;
   videoOverlayUrl;
@@ -13,28 +14,26 @@ class CampaignDto {
   fundingModel;
   user_id;
   campaignStatus;
+  countryId;
+  category;
+  sub_category;
 
   constructor(
-    id,
-    title,
-    tagLine,
-    startDate,
-    endDate,
-    duration,
-    targetAmount,
-    videoUrl,
-    videoOverlayUrl,
-    story,
-    supportEmail,
+    id,title,tagLine,startDate,endDate,duration,
+    targetAmount,videoUrl,videoOverlayUrl,story,supportEmail,
     fundingModel,
     user_id,
-    campaignStatus
+    campaignStatus,
+    countryId,
+    category,
+    sub_category,
+    cardImage
   ) {
     this.id = id;
     this.title = title;
     this.tagLine = tagLine;
     this.startDate = startDate;
-    this.endDate - endDate;
+    this.endDate = endDate;
     this.duration = duration;
     this.targetAmount = targetAmount;
     this.videoUrl = videoUrl;
@@ -44,14 +43,14 @@ class CampaignDto {
     this.fundingModel = fundingModel;
     this.user_id = user_id;
     this.campaignStatus = campaignStatus;
+    this.countryId = countryId;
+    this.category = category;
+    this.sub_category = sub_category;
+    this.cardImage = cardImage;
   }
 
   getId() {
     return this.id;
-  }
-
-  setId(id) {
-    this.id = id;
   }
 
   getTitle() {
@@ -158,13 +157,35 @@ class CampaignDto {
     this.campaignStatus = campaignStatus;
   }
 
-  getSupportEmail() {
-    return this.supportEmail;
+  getCountryId() {
+    return this.countryId;
   }
 
-  setSupportEmail(supportEmail) {
-    this.supportEmail = supportEmail;
+  setCountryId(countryId) {
+    this.countryId = countryId;
+  }
+
+  getCategory() {
+    return this.category;
+  }
+
+  setCategory(category) {
+    this.category = category;
+  }
+
+  getSubCategory() {
+    return this.sub_category;
+  }
+
+  setSubCategory(sub_category) {
+    this.sub_category = sub_category;
+  }
+
+  getCardImage() {
+    return this.cardImage;
+  }
+
+  setCardImage(cardImage) {
+    this.cardImage = cardImage;
   }
 }
-
-module.exports = CampaignDto;
