@@ -1,3 +1,6 @@
+# Konnekt Crowdfund
+![image](https://github.com/user-attachments/assets/9f1f5e38-686e-4c50-a49c-f3ec422fac06)
+This design was done by [Norah Oyiengo 🎉🎉](https://github.com/Oyiengonorah)
 # Getting Started with Git for this Project
 
 This document outlines the best practices we'll follow for version control using Git on this project. By adhering to these guidelines, we can ensure a smooth and efficient development workflow while minimizing merge conflicts.
